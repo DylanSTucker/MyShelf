@@ -4,6 +4,8 @@ type Props = {
   search: string;
   setSearch: (search: string) => void;
   searchBook: (evt: { key: string }) => void;
+  sidebar: boolean;
+  setSidebar: (sidebar: boolean) => void;
 };
 
 const Navbar = (props: Props) => {
@@ -11,7 +13,12 @@ const Navbar = (props: Props) => {
     <nav className="flex-div">
       <div className="nav-left flex-div">
         <div className="menu-icon">
-          <i className="fa-solid fa-bars fa-xl" />
+          <i
+            className="fa-solid fa-bars fa-xl"
+            onClick={() =>
+              props.setSidebar(props.sidebar === false ? true : false)
+            }
+          />
         </div>
         <div className="logo">
           <i className="fa-solid fa-book-open-reader fa-2xl" />

@@ -8,6 +8,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 const Home = () => {
   const google_api_key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
 
+  const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [bookData, setData] = useState([]);
   const searchBook = (evt: { key: string }) => {
@@ -28,8 +29,14 @@ const Home = () => {
   };
   return (
     <>
-      <Navbar search={search} setSearch={setSearch} searchBook={searchBook} />
-      <Sidebar />
+      <Navbar
+        search={search}
+        setSearch={setSearch}
+        searchBook={searchBook}
+        setSidebar={setSidebar}
+        sidebar={sidebar}
+      />
+      <Sidebar sidebar={sidebar} />
       <div className={`container`}>
         <Feed bookData={bookData} />
       </div>

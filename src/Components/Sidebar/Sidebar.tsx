@@ -1,8 +1,12 @@
 import "./Sidebar.css";
 
-const Sidebar = () => {
+type Props = {
+  sidebar: boolean;
+};
+
+const Sidebar = (props: Props) => {
   return (
-    <div className={"sidebar"}>
+    <div className={`sidebar ${props.sidebar ? "" : "small-sidebar"}`}>
       <div className="shortcut-links">
         <div className="side-link">
           <i className="fa-solid fa-user" />
