@@ -2,7 +2,8 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
-import Book from "./Pages/Books/Book";
+import Login from "./Pages/Login-Signup/Login";
+import SignUp from "./Pages/Login-Signup/SignUp";
 
 function App() {
   //const [sidebar, setSidebar] = useState(true);
@@ -12,8 +13,9 @@ function App() {
       {/*<Navbar />*/}
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Books/:categoryId/:bookId" element={<Book />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        {/*<Route path="/" element={<Home />} />*/}
         {/* create route to book and notes when user clicks on a book (see 29:28 in tutorial video)*/}
       </Routes>
     </div>
