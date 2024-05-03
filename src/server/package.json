@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server back end for myshelf",
+  "main": "index.ts",
+  "type": "module",
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
+  "scripts": {
+    "start": "tsx watch ./server.ts",
+    "deploy": "node server.ts",
+    "build": "react-scripts build",
+    "test": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2"
+  }
+}

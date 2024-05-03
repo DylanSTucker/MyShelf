@@ -8,13 +8,6 @@ export default defineConfig({
     port: 8080,
   },
   plugins:[
-    react(),
-    ...VitePluginNode({
-      adapter: "express",
-      appPath: "./src/Server/server.ts",
-      exportName: "MyShelf",
-      tsCompiler: "esbuild",
-      swcOptions: {},
-    }),
+    react()
   ],
 });

@@ -1,12 +1,12 @@
 import pg from "pg";
 import dotenv from 'dotenv';
-dotenv.config({ path: '../../.env' });
+dotenv.config({ path: './db.env' });
 
 export const pool = new pg.Pool({
-    user: import.meta.env.VITE_POSTGRES_USERNAME as string,
-    password: import.meta.env.VITE_POSTGRES_PASSWORD as string,
-    host: import.meta.env.VITE_HOST,
-    port: import.meta.env.VITE_DB_PORT as unknown as number,
+    user: process.env.POSTGRES_USERNAME as string,
+    password: process.env.POSTGRES_PASSWORD as string,
+    host: process.env.HOST,
+    port: process.env.PORT as unknown as number,
     database: "myshelf"
 });
 

@@ -1,12 +1,15 @@
 import express, { Request, Response } from "express";
+import Cors from "cors";
 const app = express();
+app.use(Cors());
 
 //db info
 import {pool} from "./db";
 
-app.get("/shelf", async (req: Request, res: Response) =>{
-    console.log(req);
-    const userEmail = req.params;
+app.get("/shelf/:userEmail", async (req: Request, res: Response) =>{
+    //gets user email from request
+    const {userEmail} = req.params;
+    console.log(userEmail);
     try{
         const shelf = await pool.query("SELECT * FROM shelf WHERE email = $1", [userEmail]);
         res.json(shelf.rows);
@@ -15,7 +18,7 @@ app.get("/shelf", async (req: Request, res: Response) =>{
     }
 });
 
-const PORT = import.meta.env.PORT ?? 8000;
+const PORT = 8000;
 
 app.listen(PORT, () =>{
     console.log("server started successfully");
