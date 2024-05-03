@@ -1,8 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const getData = async () => {
+    const userEmail = "something@outlook.com";
+    try {
+      const response = await fetch(`http://localhost:8080/shelf/${userEmail}`);
+      const json = await response.json();
+      console.log(json);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    getData;
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   function handleSubmit(event: { preventDefault: () => void }) {

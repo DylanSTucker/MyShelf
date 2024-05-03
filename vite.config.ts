@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     ...VitePluginNode({
       adapter: "express",
-      appPath: "./src/server.ts",
+      appPath: "./src/Server/server.ts",
       exportName: "MyShelf",
       tsCompiler: "esbuild",
       swcOptions: {},
