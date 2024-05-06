@@ -2,6 +2,8 @@ import "./Sidebar.css";
 
 type Props = {
   sidebar: boolean;
+  shelf: boolean;
+  setShelf: (shelf: boolean) => void;
 };
 
 const Sidebar = (props: Props) => {
@@ -12,7 +14,10 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-user" />
           <p>Profile</p>
         </div>
-        <div className="side-link">
+        <div
+          className="side-link"
+          onClick={() => props.setShelf(props.shelf === false ? true : false)}
+        >
           <i className="fa-solid fa-book" />
           <p>My Shelf</p>
         </div>
