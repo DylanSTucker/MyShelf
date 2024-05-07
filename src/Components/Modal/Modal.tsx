@@ -1,16 +1,35 @@
+import { useState } from "react";
 import "./Modal.css";
 type Props = {
   show: boolean;
   item: any;
+  data: Object;
   onClose: () => void;
 };
 
-const Modal = ({ show, item, onClose }: Props) => {
+const Modal = ({ show, item, data, onClose }: Props) => {
   if (!show) {
     return null;
   }
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+
+  const addToShelf = async (e: { preventDefault: () => void }) => {
+    //e.preventDefault();
+    console.log(data);
+    try {
+      const response = await fetch(`http://localhost:8000/shelf/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.status === 200) {
+        console.log("worked");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <div className="overlay">
@@ -29,8 +48,9 @@ const Modal = ({ show, item, onClose }: Props) => {
               </h4>
               <br></br>
               <a href={item.volumeInfo.previewLink}>
-                <button>More</button>
+                <button className="more">More</button>
               </a>
+              <button onClick={addToShelf}>Add To Shelf</button>
             </div>
           </div>
           <h4 className="description">{item.volumeInfo.description}</h4>

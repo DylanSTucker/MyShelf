@@ -8,6 +8,15 @@ interface Props {
 const Card = (props: Props) => {
   const [show, setShow] = useState(false);
   const [bookItem, setBookItem] = useState();
+  const [data, setData] = useState({
+    book_title: "",
+    book_author: "",
+    book_publisher: "",
+    email: "something@outlook.com",
+    date: new Date(),
+    thumbnail: "",
+  });
+
   return (
     <>
       {props.bookData.map((item: any) => {
@@ -23,6 +32,14 @@ const Card = (props: Props) => {
                 onClick={() => {
                   setShow(true);
                   setBookItem(item);
+                  setData({
+                    book_title: item.volumeInfo.title,
+                    book_author: item.volumeInfo.authors,
+                    book_publisher: item.volumeInfo.publisher,
+                    email: "something@outlook.com",
+                    date: new Date(),
+                    thumbnail: item.volumeInfo.imageLinks.thumbnail,
+                  });
                 }}
               >
                 <img src={thumbnail} alt="" />
@@ -34,6 +51,7 @@ const Card = (props: Props) => {
               <Modal
                 show={show}
                 item={bookItem}
+                data={data}
                 onClose={() => setShow(false)}
               />
             </>

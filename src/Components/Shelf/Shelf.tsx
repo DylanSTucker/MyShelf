@@ -13,7 +13,11 @@ const Shelf = (props: Props) => {
   return (
     <div className="shelf">
       {props.tasks?.map((item: any) => (
-        <BookCard book_title={item.book_title} book_author={item.book_author} />
+        <BookCard
+          book_title={item.book_title}
+          book_author={item.book_author}
+          thumbnail={item.thumbnail}
+        />
       ))}
     </div>
   );

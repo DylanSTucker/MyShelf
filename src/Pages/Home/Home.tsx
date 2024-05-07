@@ -1,14 +1,7 @@
 import "./Home.css";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Feed from "../../Components/Feed/Feed";
-import {
-  JSXElementConstructor,
-  ReactElement,
-  ReactNode,
-  ReactPortal,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
@@ -40,6 +33,7 @@ const Home = () => {
   };
 
   const [tasks, setTasks] = useState<taskTypes>();
+  //this function should be created in the app.tsx file and passed through Home.tsx and anywhere else it needs to go
   const getData = async () => {
     const userEmail = "something@outlook.com";
     try {
@@ -53,21 +47,6 @@ const Home = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(tasks);
-  /*        {tasks.map(
-          (item: {
-            id: string;
-            book_title: string;
-            book_author: string;
-            book_publisher: string;
-          }) => (
-            <Shelf
-              key={item.id}
-              book_title={item.book_title}
-              book_author={item.book_author}
-              book_publisher={item.book_publisher}
-            />
-    */
 
   return (
     <>
@@ -81,7 +60,6 @@ const Home = () => {
       <Sidebar sidebar={sidebar} shelf={shelf} setShelf={setShelf} />
       <div className={shelf ? "container" : "d-none"}>
         <Feed bookData={bookData} />
-
         {/*Using '!' is not a good solution. 
         It tells typescript that 'tasks' will not be null, but it could be in some instances. Find a better solution */}
         {<Shelf tasks={tasks!} />}

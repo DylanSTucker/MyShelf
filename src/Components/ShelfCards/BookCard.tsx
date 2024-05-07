@@ -3,11 +3,19 @@ type Props = {
   book_title: string;
   book_author: string;
   //book_publisher: string;
+  thumbnail: string;
 };
 
 const BookCard = (props: Props) => {
-  console.log(props.book_title);
-  return <div className="card">{props.book_author}</div>;
+  return (
+    <div className="card">
+      <img src={props.thumbnail} />
+      <div>
+        <h3 className="title">{props.book_title}</h3>
+        <p className="authors">{props.book_author}</p>
+      </div>
+    </div>
+  );
 };
 
 export default BookCard;
