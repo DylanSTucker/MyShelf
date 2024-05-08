@@ -2,23 +2,25 @@ import BookCard from "../ShelfCards/BookCard";
 import "./Shelf.css";
 
 type Props = {
-  tasks: Object[];
+  itemInfo: Object[];
 };
 
 const Shelf = (props: Props) => {
-  /*const sortedTasks = tasks
-    .map((date: Date) => new Date(date))
-    .sort((a: Date, b: Date) => a.getTime() - b.getTime());
-    */
+  //const sortedInfo = props.info?.map((date: Date) => new Date(date)).sort((a: Date, b: Date) => a.getTime() - b.getTime());
+
   return (
-    <div className="shelf">
-      {props.tasks?.map((item: any) => (
-        <BookCard
-          book_title={item.book_title}
-          book_author={item.book_author}
-          thumbnail={item.thumbnail}
-        />
-      ))}
+    <div className="shelf container">
+      <div className="row justify-content-start">
+        {props.itemInfo?.map((item: any) => (
+          <div className="col-sm">
+            <BookCard
+              book_title={item.book_title}
+              book_author={item.book_author}
+              thumbnail={item.thumbnail}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
