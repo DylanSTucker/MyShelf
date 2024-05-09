@@ -6,8 +6,6 @@ type Props = {
 };
 
 const Shelf = (props: Props) => {
-  //const sortedInfo = props.info?.map((date: Date) => new Date(date)).sort((a: Date, b: Date) => a.getTime() - b.getTime());
-
   return (
     <div className="shelf container">
       <div className="row justify-content-start">

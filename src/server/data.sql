@@ -8,6 +8,7 @@ CREATE TABLE shelf(
 );
 
 CREATE TABLE users(
+    user_name VARCHAR(100),
     email VARCHAR(255) PRIMARY KEY,
     hashed_password VARCHAR(255)
 );

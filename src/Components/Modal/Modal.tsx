@@ -15,7 +15,7 @@ const Modal = ({ show, item, data, onClose }: Props) => {
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
 
   const addToShelf = async (e: { preventDefault: () => void }) => {
-    //e.preventDefault();
+    e.preventDefault();
     console.log(data);
     try {
       const response = await fetch(`http://localhost:8000/shelf/`, {

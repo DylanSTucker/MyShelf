@@ -1,18 +1,22 @@
 import "./Card.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
+
 interface Props {
   bookData: Object[];
 }
 
 const Card = (props: Props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(undefined);
+
   const [show, setShow] = useState(false);
   const [bookItem, setBookItem] = useState();
   const [data, setData] = useState({
     book_title: "",
     book_author: "",
     book_publisher: "",
-    email: "something@outlook.com",
+    email: cookies.Email,
     date: new Date(),
     thumbnail: "",
   });
