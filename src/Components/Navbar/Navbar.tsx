@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import { useCookies } from "react-cookie";
 
 type Props = {
   search: string;
@@ -11,6 +12,14 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
+  const [cookies, setCookies, removeCookie] = useCookies(undefined);
+
+  const signOut = () => {
+    removeCookie("Email");
+    removeCookie("AuthToken");
+    window.location.reload();
+  };
+
   const handleChange = (e: { target: { value: string } }) => {
     props.setSearch(e.target.value);
     props.setShelf(false);
@@ -54,7 +63,7 @@ const Navbar = (props: Props) => {
       <div className="nav-right flex-div">
         <i className="fa-solid fa-moon fa-xl" />
         <i className="fa-solid fa-gear fa-xl" />
-        <div className="user-icon">
+        <div className="user-icon" onClick={() => signOut()}>
           <i className="fa-solid fa-user fa-xl" />
         </div>
       </div>
