@@ -1,4 +1,5 @@
 import "./Sidebar.css";
+import { useCookies } from "react-cookie";
 
 type Props = {
   sidebar: boolean;
@@ -7,10 +8,18 @@ type Props = {
 };
 
 const Sidebar = (props: Props) => {
+  const [cookies, setCookies, removeCookie] = useCookies(undefined);
+
+  const signOut = () => {
+    removeCookie("Email");
+    removeCookie("AuthToken");
+    window.location.reload();
+  };
+
   return (
     <div className={`sidebar ${props.sidebar ? "" : "small-sidebar"}`}>
       <div className="shortcut-links">
-        <div className="side-link">
+        <div className="side-link" onClick={() => signOut()}>
           <i className="fa-solid fa-user" />
           <p>Profile</p>
         </div>

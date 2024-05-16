@@ -110,8 +110,8 @@ const SignUp = () => {
           <button
             className={
               isLogin
-                ? "btn w-100 btn-success"
-                : "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+                ? "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+                : "btn w-100 btn-success"
             }
             //onClick={(e) => handleSubmit(e, "signup")}
             onClick={(e) => viewLogin(e, false)}
@@ -121,8 +121,8 @@ const SignUp = () => {
           <button
             className={
               isLogin
-                ? "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-                : "btn w-100 btn-success"
+                ? "btn w-100 btn-success"
+                : "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
             }
             onClick={(e) => viewLogin(e, true)}
           >

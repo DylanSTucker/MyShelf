@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Modal.css";
+import { useCookies } from "react-cookie";
+
 type Props = {
   show: boolean;
   item: any;
@@ -8,27 +10,33 @@ type Props = {
 };
 
 const Modal = ({ show, item, data, onClose }: Props) => {
+  const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const userEmail = cookies.Email;
+
   if (!show) {
     return null;
   }
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
 
-  const addToShelf = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const addToShelf = async () => {
     console.log(data);
     try {
-      const response = await fetch(`http://localhost:8000/shelf/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       if (response.status === 200) {
         console.log("worked");
       }
     } catch (err) {
       console.error(err);
     }
+    window.location.reload();
   };
   return (
     <>

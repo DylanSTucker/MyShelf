@@ -25,8 +25,7 @@ const Card = (props: Props) => {
     <>
       {props.bookData.map((item: any) => {
         let thumbnail =
-          item.volumeInfo.imageLinks &&
-          item.volumeInfo.imageLinks.smallThumbnail;
+          item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
         let amount = item.saleInfo.listPrice && item.saleInfo.listPrice.amount;
         if (thumbnail != undefined) {
           return (
@@ -40,7 +39,7 @@ const Card = (props: Props) => {
                     book_title: item.volumeInfo.title,
                     book_author: item.volumeInfo.authors,
                     book_publisher: item.volumeInfo.publisher,
-                    email: "something@outlook.com",
+                    email: cookies.Email,
                     date: new Date(),
                     thumbnail: item.volumeInfo.imageLinks.thumbnail,
                   });

@@ -1,3 +1,28 @@
+:root{
+    
+    --white: #F6F6F6;
+    --light: #EE2B47;
+    --dark: #34374C;
+    --darkest: #2C2E3E;
+    
+    
+    
+    /*
+    
+    --white: #F6F1EE;
+    --highlight: #ED7D31;
+    --dark: #6C5F5B;
+    --darkest: #4F4A45;
+    */
+
+    /*
+    --white: #F75940;
+    --highlight: #3DC7BE;
+    --dark: #364857;
+    --darkest: #334252;
+    */
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -15,4 +40,18 @@ img{
 .flex-div{
     display: flex;
     align-items: center;
+}
+.root-container{
+    /* Height and width fallback for older browsers. */
+    height: 100%;
+    width: 100%;
+
+    /* Set the height to match that of the viewport. */
+    height: 100vh;
+
+    /* Set the width to match that of the viewport. */
+    width: 100vw;
+
+    margin: 0;
+    background: var(--white);
 }

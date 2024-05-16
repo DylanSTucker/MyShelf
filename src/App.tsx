@@ -38,7 +38,7 @@ function App() {
 We should probably make the login/signup into one page
 */
   return (
-    <div>
+    <div className="root-container">
       {/*<Navbar />*/}
       <Routes>
         {authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
