@@ -8,7 +8,7 @@ type Props = {
 
 const BookCard = (props: Props) => {
   return (
-    <div className="card">
+    <div className="bookCard">
       <img src={props.thumbnail} />
       <div>
         <h3 className="title">{props.book_title}</h3>

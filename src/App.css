@@ -1,26 +1,30 @@
 :root{
-    
+    /*
     --white: #F6F6F6;
     --light: #EE2B47;
     --dark: #34374C;
     --darkest: #2C2E3E;
-    
+    */
     
     
     /*
     
     --white: #F6F1EE;
-    --highlight: #ED7D31;
+    --light: #ED7D31;
     --dark: #6C5F5B;
     --darkest: #4F4A45;
     */
 
     /*
     --white: #F75940;
-    --highlight: #3DC7BE;
+    --light: #3DC7BE;
     --dark: #364857;
     --darkest: #334252;
     */
+    --white: #1a1c23;
+    --light: #AFE0CE;
+    --dark: #86615C;
+    --darkest: #FFFFFF;
 }
 
 *{
@@ -54,4 +58,5 @@ img{
 
     margin: 0;
     background: var(--white);
+    overflow-x: hidden;
 }

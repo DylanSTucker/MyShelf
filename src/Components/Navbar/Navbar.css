@@ -2,7 +2,7 @@
 nav{
     padding: 10px 2%;
     justify-content: space-between;
-    background: var(--white);
+    /*background: var(--white);*/
     position: sticky;
     top: 0;
     z-index: 10;
@@ -31,6 +31,7 @@ nav{
     border: 0;
     outline: 0;
     background: transparent;
+    color: var(--darkest)
 }
 
 .nav-middle .search-box img i{

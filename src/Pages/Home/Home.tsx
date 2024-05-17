@@ -31,6 +31,7 @@ const Home = (props: Props) => {
         .catch((err) => console.log(err));
     }
   };
+  console.log(bookData);
 
   return (
     <>

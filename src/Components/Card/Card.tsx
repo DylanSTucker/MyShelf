@@ -31,7 +31,7 @@ const Card = (props: Props) => {
           return (
             <>
               <div
-                className="card"
+                className="bookCard"
                 onClick={() => {
                   setShow(true);
                   setBookItem(item);
@@ -45,10 +45,13 @@ const Card = (props: Props) => {
                   });
                 }}
               >
-                <img src={thumbnail} alt="" />
+                <img className="thumbnail" src={thumbnail} alt="" />
+                <div className="background">
+                  <img src={thumbnail} alt="" />
+                </div>
+
                 <div>
                   <h3 className="title">{item.volumeInfo.title}</h3>
-                  <p className="amount">{amount}</p>
                 </div>
               </div>
               <Modal
