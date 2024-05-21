@@ -26,10 +26,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-size: cover;
     filter: blur(50px);
-    transform: scale(3);
-
+    /*transform: scale(3);*/
     width: 100%;
     height: auto;
 }
@@ -53,6 +51,12 @@
 }
 
 .itemCard .title {
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 200px;
+    display:inline-block;
     color: var(--darkest);
 }
 .itemCard .authors {

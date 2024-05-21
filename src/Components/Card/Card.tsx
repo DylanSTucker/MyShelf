@@ -19,6 +19,7 @@ const Card = (props: Props) => {
     email: cookies.Email,
     date: new Date(),
     thumbnail: "",
+    category: "",
   });
 
   return (
@@ -41,6 +42,7 @@ const Card = (props: Props) => {
                     email: cookies.Email,
                     date: new Date(),
                     thumbnail: item.volumeInfo.imageLinks.thumbnail,
+                    category: item.volumeInfo.categories,
                   });
                 }}
               >
@@ -50,13 +52,10 @@ const Card = (props: Props) => {
                 </div>
 
                 <div>
-                  <h3 className="title">{item.volumeInfo.title}</h3>
+                  <p className="title">{item.volumeInfo.title}</p>
                 </div>
                 <div>
                   <p className="author">{item.volumeInfo.authors}</p>
-                </div>
-                <div>
-                  <p className="publisher">{item.volumeInfo.publisher}</p>
                 </div>
               </div>
               <Modal

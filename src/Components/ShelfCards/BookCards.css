@@ -41,10 +41,14 @@
 .bookCard .title {
     font-weight: bold;
     white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: var(--darkest);
 }
-.bookCard .authors {
-    font-size: 32px;
+.bookCard .author {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     color: var(--darkest);
 }
 .bookCard .publisher {

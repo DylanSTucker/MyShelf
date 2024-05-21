@@ -39,6 +39,28 @@ const Home = (props: Props) => {
   };
   const resetFilters = () => {
     setSeed(Math.random());
+    passesFilter("");
+  };
+  const passesFilter = (category: string): boolean => {
+    if (filters.length < 1 || category === "") {
+      return true;
+    }
+    for (let i = 0; i < filters.length; i++) {
+      if ('{"' + filters[i] + '"}' === category) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const removeFilters = (filter: string) => {
+    for (let i = 0; i < filters.length; i++) {
+      if (filter === filters[i]) {
+        filters.splice(i, 1);
+      }
+    }
+    if (filters.length < 1) filters = [];
+    resetFilters();
+    passesFilter("");
   };
 
   console.log(bookData);
@@ -64,8 +86,12 @@ const Home = (props: Props) => {
         resetFilters={resetFilters}
       />
       <div className={shelf ? "shelf-container" : "d-none"}>
-        <Filters key={seed} filters={filters} resetFilters={resetFilters} />
-        <Shelf itemInfo={props.itemInfo} />
+        <Filters key={seed} filters={filters} removeFilters={removeFilters} />
+        <Shelf
+          itemInfo={props.itemInfo}
+          filters={filters}
+          passesFilter={passesFilter}
+        />
       </div>
       <div className={!shelf ? "container" : "d-none"}>
         <Feed

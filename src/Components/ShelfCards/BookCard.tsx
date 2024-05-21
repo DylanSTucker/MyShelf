@@ -5,6 +5,7 @@ type Props = {
   book_author: string;
   book_publisher: string;
   thumbnail: string;
+  category: string;
 };
 
 const BookCard = (props: Props) => {
@@ -18,7 +19,7 @@ const BookCard = (props: Props) => {
       </div>
 
       <div>
-        <p className="title">{props.book_title}</p>
+        <h6 className="title">{props.book_title}</h6>
       </div>
       <div>
         <p className="author">{allAuthors}</p>

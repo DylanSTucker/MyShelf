@@ -71,7 +71,6 @@ const Sidebar = (props: Props) => {
       </div>
       <hr />
       <div className="genre-list">
-        <h3>Non-Fiction</h3>
         <div className="side-link" onClick={() => addFilter("Science")}>
           <i className="fa-solid fa-flask" />
           <p>Science</p>
@@ -84,7 +83,9 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-landmark" />
           <p>History</p>
         </div>
-        <h3>Fiction</h3>
+        <div className="side-link" onClick={() => addFilter("Fiction")}>
+          <p>Fiction</p>
+        </div>
         <div className="side-link" onClick={() => addFilter("Sci-Fi")}>
           <i className="fa-solid fa-atom" />
           <p>Sci-Fi</p>
