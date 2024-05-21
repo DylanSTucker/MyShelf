@@ -22,9 +22,10 @@
     --darkest: #334252;
     */
     --white: #1a1c23;
-    --light: #AFE0CE;
-    --dark: #86615C;
+    --light: #23252F;
+    --dark: #23252F;
     --darkest: #FFFFFF;
+    --blacker: #121217;
 }
 
 *{

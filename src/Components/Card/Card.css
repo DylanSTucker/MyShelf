@@ -1,16 +1,17 @@
-.bookCard{
-    background-color: var(--white);
+.itemCard{
+    background-color: var(--dark);
+    padding-top: 1rem;
     margin-bottom: 10px;
-    box-shadow: 0 5px 5px rgba(255,255,255,.5);
+    /*box-shadow: 0 5px 5px rgba(255,255,255,.5);*/
     transition: .5s;
     text-align: center;
     position: relative;
     overflow: hidden;
 }
-.bookCard:hover{
+.itemCard:hover{
     transform: scale(0.9);
 }
-.bookCard .thumbnail{
+.itemCard .thumbnail{
     width: 132px;
     height: 197px;
 
@@ -18,7 +19,7 @@
     z-index: 1;
 }
 
-.bookCard .background{
+.itemCard .background{
     content: "";
     position: absolute;
     top: 0;
@@ -32,15 +33,15 @@
     width: 100%;
     height: auto;
 }
-.bookCard .bottom{
+.itemCard .bottom{
     display: flex;
     flex-direction: column;
 }
-.bookCard .bottom .title{
+.itemCard .bottom .title{
     font-size: 8px;
     margin-bottom: 32px;
 }
-.bookCard .bottom .amount{
+.itemCard .bottom .amount{
     position: absolute;
     bottom: 10px;
     left: 10px;
@@ -51,6 +52,12 @@
     padding: 0.2rem;
 }
 
-.bookCard h3{
+.itemCard .title {
+    color: var(--darkest);
+}
+.itemCard .authors {
+    color: var(--darkest);
+}
+.itemCard .publisher {
     color: var(--darkest);
 }

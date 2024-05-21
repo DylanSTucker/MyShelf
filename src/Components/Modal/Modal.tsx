@@ -46,7 +46,7 @@ const Modal = ({ show, item, data, onClose }: Props) => {
             <i className="fa-solid fa-circle-xmark"></i>
           </button>
           <div className="inner-box">
-            <img src={thumbnail} alt=""></img>
+            <img src={thumbnail} alt="" className="thumbnail" />
             <div className="info">
               <h1>{item.volumeInfo.title}</h1>
               <h3>{item.volumeInfo.authors}</h3>
@@ -55,10 +55,10 @@ const Modal = ({ show, item, data, onClose }: Props) => {
                 <span>{item.volumeInfo.publishedDate}</span>
               </h4>
               <br></br>
-              <a href={item.volumeInfo.previewLink}>
-                <button className="more">More</button>
-              </a>
-              <button onClick={addToShelf}>Add To Shelf</button>
+              <button onClick={addToShelf}>Read</button>
+              <button className="want-to-read" onClick={addToShelf}>
+                Want to Read
+              </button>
             </div>
           </div>
           <h4 className="description">{item.volumeInfo.description}</h4>

@@ -5,6 +5,7 @@ type Props = {
   sidebar: boolean;
   shelf: boolean;
   setShelf: (shelf: boolean) => void;
+  filters: string[];
 };
 
 const Sidebar = (props: Props) => {
@@ -50,6 +51,18 @@ const Sidebar = (props: Props) => {
       <hr />
       <div className="genre-list">
         <h3>Non-Fiction</h3>
+        <div className="side-link">
+          <i className="fa-solid fa-flask" />
+          <p>Science</p>
+        </div>
+        <div className="side-link">
+          <i className="fa-solid fa-handshake-angle" />
+          <p>Self-Help</p>
+        </div>
+        <div className="side-link">
+          <i className="fa-solid fa-landmark" />
+          <p>History</p>
+        </div>
         <h3>Fiction</h3>
         <div className="side-link">
           <i className="fa-solid fa-atom" />

@@ -1,0 +1,52 @@
+.bookCard{
+    background-color: var(--dark);
+    padding: 1rem;
+    max-width: 176px;
+    margin-bottom: 10px;
+    /*box-shadow: 0 5px 5px rgba(255,255,255,.5);*/
+    transition: .5s;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.bookCard:hover{
+    transform: scale(0.9);
+}
+.bookCard .thumbnail{
+    width: 132px;
+    height: 197px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.bookCard .background{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(50px);
+    /*transform: scale(3);*/
+    width: 100%;
+    height: auto;
+
+}
+.bookCard .bottom .title{
+    font-size: 8px;
+    margin-bottom: 32px;
+}
+
+.bookCard .title {
+    font-weight: bold;
+    white-space: nowrap;
+    color: var(--darkest);
+}
+.bookCard .authors {
+    font-size: 32px;
+    color: var(--darkest);
+}
+.bookCard .publisher {
+    color: var(--darkest);
+}

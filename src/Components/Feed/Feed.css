@@ -17,3 +17,7 @@
     grid-gap:20px;
     box-sizing: border-box;
 }
+.query{
+    color: var(--darkest);
+    margin: 1rem;
+}

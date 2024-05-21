@@ -26,12 +26,11 @@ const Card = (props: Props) => {
       {props.bookData.map((item: any) => {
         let thumbnail =
           item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
-        let amount = item.saleInfo.listPrice && item.saleInfo.listPrice.amount;
         if (thumbnail != undefined) {
           return (
             <>
               <div
-                className="bookCard"
+                className="itemCard"
                 onClick={() => {
                   setShow(true);
                   setBookItem(item);
@@ -52,6 +51,12 @@ const Card = (props: Props) => {
 
                 <div>
                   <h3 className="title">{item.volumeInfo.title}</h3>
+                </div>
+                <div>
+                  <p className="author">{item.volumeInfo.authors}</p>
+                </div>
+                <div>
+                  <p className="publisher">{item.volumeInfo.publisher}</p>
                 </div>
               </div>
               <Modal

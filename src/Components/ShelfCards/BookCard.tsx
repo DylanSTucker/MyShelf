@@ -1,18 +1,27 @@
+import "./BookCards.css";
 type Props = {
   //key: string;
   book_title: string;
   book_author: string;
-  //book_publisher: string;
+  book_publisher: string;
   thumbnail: string;
 };
 
 const BookCard = (props: Props) => {
+  const allAuthors = props.book_author.replace(/{|}|"|/g, "");
   return (
     <div className="bookCard">
-      <img src={props.thumbnail} />
+      <img className="thumbnail" src={props.thumbnail} />
+
+      <div className="background">
+        <img src={props.thumbnail} />
+      </div>
+
       <div>
-        <h3 className="title">{props.book_title}</h3>
-        <p className="authors">{props.book_author}</p>
+        <p className="title">{props.book_title}</p>
+      </div>
+      <div>
+        <p className="author">{allAuthors}</p>
       </div>
     </div>
   );

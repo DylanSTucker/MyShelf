@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
+import Filters from "../../Components/Filters/Filters";
 
 type Props = {
   itemInfo: Object[];
@@ -16,6 +17,7 @@ const Home = (props: Props) => {
   const [shelf, setShelf] = useState(true);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
+  const [searchUpdate, setSearchUpdate] = useState(true);
   const [bookData, setData] = useState([]);
   const searchBook = (evt: { key: string }) => {
     if (evt.key === "Enter") {
@@ -33,23 +35,39 @@ const Home = (props: Props) => {
   };
   console.log(bookData);
 
+  //an array that holds filters for the shelf
+  let filters: string[] = [];
+
   return (
     <>
       <Navbar
         search={search}
         setSearch={setSearch}
+        searchUpdate={searchUpdate}
+        setSearchUpdate={setSearchUpdate}
         searchBook={searchBook}
         setSidebar={setSidebar}
         sidebar={sidebar}
         shelf={shelf}
         setShelf={setShelf}
       />
-      <Sidebar sidebar={sidebar} shelf={shelf} setShelf={setShelf} />
-      <div className={shelf ? "container" : "d-none"}>
-        {<Shelf itemInfo={props.itemInfo} />}
+      <Sidebar
+        sidebar={sidebar}
+        shelf={shelf}
+        setShelf={setShelf}
+        filters={filters}
+      />
+      <div className={shelf ? "shelf-container" : "d-none"}>
+        <Filters filters={filters} />
+        <Shelf itemInfo={props.itemInfo} />
       </div>
       <div className={!shelf ? "container" : "d-none"}>
-        <Feed bookData={bookData} />
+        <Feed
+          bookData={bookData}
+          search={search}
+          searchUpdate={searchUpdate}
+          setSearchUpdate={setSearchUpdate}
+        />
       </div>
     </>
   );

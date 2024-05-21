@@ -1,6 +1,11 @@
+/*
+when width goes below 1100px, sidebar should auto collapse.
+When user wants to uncollapse sidebar, it should overlap feed/shelf
+*/
 .sidebar{
-    background: #111318;
+    background: var(--white);
     width: 15%;
+    min-width: 150px;
     height: 100vh;
     position: fixed;
     top: 0;
@@ -34,6 +39,9 @@ i{
     width: fit-content;
     flex-wrap: wrap;
     cursor: pointer;
+}
+.side-link i{
+    margin-bottom: 16px;
 }
 .sidebar hr{
     border: 0;

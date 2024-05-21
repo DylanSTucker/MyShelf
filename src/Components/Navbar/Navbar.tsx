@@ -3,6 +3,8 @@ import "./Navbar.css";
 type Props = {
   search: string;
   setSearch: (search: string) => void;
+  searchUpdate: boolean;
+  setSearchUpdate: (searchUpdate: boolean) => void;
   searchBook: (evt: { key: string }) => void;
   sidebar: boolean;
   setSidebar: (sidebar: boolean) => void;
@@ -11,17 +13,13 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
-  const handleChange = (e: { target: { value: string } }) => {
-    props.setSearch(e.target.value);
-    props.setShelf(false);
-    console.log(props.shelf);
-  };
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     props.setShelf(false);
-    console.log(props.shelf);
+    props.setSearchUpdate(true);
+    props.searchUpdate = true;
+    console.log(props.searchUpdate, "search");
   };
-
   return (
     <nav className="flex-div">
       <div className="nav-left flex-div">
@@ -37,6 +35,13 @@ const Navbar = (props: Props) => {
       <div className="nav-middle flex-div">
         <div className="search-box flex-div">
           <form onSubmit={handleSubmit}>
+            {/*<input
+              type="text"
+              placeholder="search"
+              value={props.search}
+              onChange={(e) => props.setSearch(e.target.value)}
+              onKeyDown={props.searchBook}
+            />*/}
             <input
               type="text"
               placeholder="search"
