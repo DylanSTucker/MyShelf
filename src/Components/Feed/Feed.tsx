@@ -9,7 +9,6 @@ interface Props {
 }
 let query = "";
 const Feed = (props: Props) => {
-  console.log(props.searchUpdate);
   if (props.searchUpdate) {
     query = props.search;
     props.setSearchUpdate(false);

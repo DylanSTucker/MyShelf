@@ -10,6 +10,7 @@
     color: var(--darkest);
     background-color: var(--light);
     font-weight: bold;
-    width: 80px;
+    min-width: 80px;
+    width: 120px;
     height: 30px;
 }

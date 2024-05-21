@@ -6,6 +6,7 @@ type Props = {
   shelf: boolean;
   setShelf: (shelf: boolean) => void;
   filters: string[];
+  resetFilters: () => void;
 };
 
 const Sidebar = (props: Props) => {
@@ -15,6 +16,19 @@ const Sidebar = (props: Props) => {
     removeCookie("Email");
     removeCookie("AuthToken");
     window.location.reload();
+  };
+  const addFilter = (filter: string) => {
+    //return if this is a duplicate
+    let isDuplicate = false;
+    props.filters.forEach((item: string) => {
+      if (item == filter) {
+        isDuplicate = true;
+      }
+    });
+    if (isDuplicate) return;
+    //add to filters array if it is not a duplicate
+    props.filters.push(filter);
+    props.resetFilters();
   };
 
   return (
@@ -31,11 +45,18 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-book" />
           <p>My Shelf</p>
         </div>
-        <div className="side-link">
-          <i className="fa-solid fa-book-open" />
+        <div className="side-link" onClick={() => addFilter("Reading")}>
+          <i
+            className="fa-solid fa-book-open-reader"
+            onClick={() => addFilter("Reading")}
+          />
           <p>Reading</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Read")}>
+          <i className="fa-solid fa-book-open" />
+          <p>Read</p>
+        </div>
+        <div className="side-link" onClick={() => addFilter("Want to Read")}>
           <i className="fa-solid fa-bookmark" />
           <p>Want To Read</p>
         </div>
@@ -51,28 +72,28 @@ const Sidebar = (props: Props) => {
       <hr />
       <div className="genre-list">
         <h3>Non-Fiction</h3>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Science")}>
           <i className="fa-solid fa-flask" />
           <p>Science</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Self-Help")}>
           <i className="fa-solid fa-handshake-angle" />
           <p>Self-Help</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("History")}>
           <i className="fa-solid fa-landmark" />
           <p>History</p>
         </div>
         <h3>Fiction</h3>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Sci-Fi")}>
           <i className="fa-solid fa-atom" />
           <p>Sci-Fi</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Fantasy")}>
           <i className="fa-solid fa-dragon" />
           <p>Fantasy</p>
         </div>
-        <div className="side-link">
+        <div className="side-link" onClick={() => addFilter("Romance")}>
           <i className="fa-solid fa-heart" />
           <p>Romance</p>
         </div>

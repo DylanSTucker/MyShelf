@@ -11,6 +11,9 @@ type Props = {
   itemInfo: Object[];
 };
 
+//an array that holds filters for the shelf
+let filters: string[] = [];
+
 const Home = (props: Props) => {
   const google_api_key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
 
@@ -19,6 +22,7 @@ const Home = (props: Props) => {
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
   const [bookData, setData] = useState([]);
+  const [seed, setSeed] = useState(1);
   const searchBook = (evt: { key: string }) => {
     if (evt.key === "Enter") {
       axios
@@ -33,10 +37,11 @@ const Home = (props: Props) => {
         .catch((err) => console.log(err));
     }
   };
-  console.log(bookData);
+  const resetFilters = () => {
+    setSeed(Math.random());
+  };
 
-  //an array that holds filters for the shelf
-  let filters: string[] = [];
+  console.log(bookData);
 
   return (
     <>
@@ -56,9 +61,10 @@ const Home = (props: Props) => {
         shelf={shelf}
         setShelf={setShelf}
         filters={filters}
+        resetFilters={resetFilters}
       />
       <div className={shelf ? "shelf-container" : "d-none"}>
-        <Filters filters={filters} />
+        <Filters key={seed} filters={filters} resetFilters={resetFilters} />
         <Shelf itemInfo={props.itemInfo} />
       </div>
       <div className={!shelf ? "container" : "d-none"}>

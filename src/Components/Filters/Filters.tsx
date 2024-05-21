@@ -2,15 +2,25 @@ import "./Filters.css";
 
 type Props = {
   filters: string[];
+  resetFilters: () => void;
 };
 
 const Filters = (props: Props) => {
-  const arr = ["Read", "Fantasy", "Sci-Fi"];
+  const removeFilters = (filter: string) => {
+    for (let i = 0; i < filter.length; i++) {
+      if (filter === props.filters[i]) {
+        delete props.filters[i];
+      }
+    }
+    props.resetFilters();
+  };
 
   return (
     <div className="filters-nav">
-      {arr?.map((item: string) => (
-        <button className="filter">{item}</button>
+      {props.filters?.map((item: string) => (
+        <button className="filter" onClick={() => removeFilters(item)}>
+          {item}
+        </button>
       ))}
     </div>
   );
