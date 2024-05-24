@@ -51,10 +51,10 @@ const Card = (props: Props) => {
                   <img src={thumbnail} alt="" />
                 </div>
 
-                <div>
+                <div className="title-container">
                   <p className="title">{item.volumeInfo.title}</p>
                 </div>
-                <div>
+                <div className="author-container">
                   <p className="author">{item.volumeInfo.authors}</p>
                 </div>
               </div>

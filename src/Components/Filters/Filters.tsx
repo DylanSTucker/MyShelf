@@ -1,14 +1,15 @@
 import "./Filters.css";
 
 type Props = {
-  filters: string[];
+  filters: Set<string>;
   removeFilters: (filter: string) => void;
 };
 
 const Filters = (props: Props) => {
+  const filtersArray = Array.from(props.filters);
   return (
     <div className="filters-nav">
-      {props.filters?.map((item: string) => (
+      {filtersArray?.map((item: string) => (
         <button className="filter" onClick={() => props.removeFilters(item)}>
           {item}
         </button>

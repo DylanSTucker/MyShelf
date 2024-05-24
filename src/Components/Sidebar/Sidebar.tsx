@@ -5,7 +5,7 @@ type Props = {
   sidebar: boolean;
   shelf: boolean;
   setShelf: (shelf: boolean) => void;
-  filters: string[];
+  filters: Set<string>;
   resetFilters: () => void;
 };
 
@@ -19,15 +19,11 @@ const Sidebar = (props: Props) => {
   };
   const addFilter = (filter: string) => {
     //return if this is a duplicate
-    let isDuplicate = false;
-    props.filters.forEach((item: string) => {
-      if (item == filter) {
-        isDuplicate = true;
-      }
-    });
-    if (isDuplicate) return;
+    if (filter in props.filters) {
+      return;
+    }
     //add to filters array if it is not a duplicate
-    props.filters.push(filter);
+    props.filters.add(filter);
     props.resetFilters();
   };
 
@@ -84,6 +80,7 @@ const Sidebar = (props: Props) => {
           <p>History</p>
         </div>
         <div className="side-link" onClick={() => addFilter("Fiction")}>
+          <i className="fa-solid fa-dragon" />
           <p>Fiction</p>
         </div>
         <div className="side-link" onClick={() => addFilter("Sci-Fi")}>
@@ -91,7 +88,7 @@ const Sidebar = (props: Props) => {
           <p>Sci-Fi</p>
         </div>
         <div className="side-link" onClick={() => addFilter("Fantasy")}>
-          <i className="fa-solid fa-dragon" />
+          <i className="fa-solid fa-hat-wizard" />
           <p>Fantasy</p>
         </div>
         <div className="side-link" onClick={() => addFilter("Romance")}>

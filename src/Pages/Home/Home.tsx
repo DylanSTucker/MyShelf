@@ -12,7 +12,7 @@ type Props = {
 };
 
 //an array that holds filters for the shelf
-let filters: string[] = [];
+let filters = new Set<string>();
 
 const Home = (props: Props) => {
   const google_api_key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
@@ -39,28 +39,25 @@ const Home = (props: Props) => {
   };
   const resetFilters = () => {
     setSeed(Math.random());
-    passesFilter("");
   };
-  const passesFilter = (category: string): boolean => {
-    if (filters.length < 1 || category === "") {
-      return true;
-    }
-    for (let i = 0; i < filters.length; i++) {
-      if ('{"' + filters[i] + '"}' === category) {
-        return true;
+  const filterCategories = (data: object[]): object[] => {
+    if (filters.size < 1 || data.length < 1) return data;
+
+    let newData: object[] = [];
+    data.forEach((item: object) => {
+      if ("category" in item) {
+        const str = JSON.stringify(item.category).replace(/[^a-zA-Z ]/g, "");
+        if (filters.has(str)) {
+          newData.push(item);
+          console.log(newData);
+        }
       }
-    }
-    return false;
+    });
+    return newData;
   };
   const removeFilters = (filter: string) => {
-    for (let i = 0; i < filters.length; i++) {
-      if (filter === filters[i]) {
-        filters.splice(i, 1);
-      }
-    }
-    if (filters.length < 1) filters = [];
+    filters.delete(filter);
     resetFilters();
-    passesFilter("");
   };
 
   console.log(bookData);
@@ -87,11 +84,7 @@ const Home = (props: Props) => {
       />
       <div className={shelf ? "shelf-container" : "d-none"}>
         <Filters key={seed} filters={filters} removeFilters={removeFilters} />
-        <Shelf
-          itemInfo={props.itemInfo}
-          filters={filters}
-          passesFilter={passesFilter}
-        />
+        <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />
       </div>
       <div className={!shelf ? "container" : "d-none"}>
         <Feed

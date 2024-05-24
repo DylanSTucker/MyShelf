@@ -18,10 +18,10 @@ const BookCard = (props: Props) => {
         <img src={props.thumbnail} />
       </div>
 
-      <div>
-        <h6 className="title">{props.book_title}</h6>
+      <div className="title-container">
+        <p className="title">{props.book_title}</p>
       </div>
-      <div>
+      <div className="author-container">
         <p className="author">{allAuthors}</p>
       </div>
     </div>
