@@ -1,26 +1,16 @@
 import "./Card.css";
-import Modal from "../Modal/Modal";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 interface Props {
   bookData: Object[];
+  setData: (data: Object) => void;
+  setBookItem: (item: Object) => void;
+  setShowModal: (showModal: boolean) => void;
 }
 
 const Card = (props: Props) => {
   const [cookies, setCookie, removeCookie] = useCookies(undefined);
-
-  const [show, setShow] = useState(false);
-  const [bookItem, setBookItem] = useState();
-  const [data, setData] = useState({
-    book_title: "",
-    book_author: "",
-    book_publisher: "",
-    email: cookies.Email,
-    date: new Date(),
-    thumbnail: "",
-    category: "",
-  });
 
   return (
     <>
@@ -33,9 +23,9 @@ const Card = (props: Props) => {
               <div
                 className="itemCard"
                 onClick={() => {
-                  setShow(true);
-                  setBookItem(item);
-                  setData({
+                  props.setShowModal(true);
+                  props.setBookItem(item);
+                  props.setData({
                     book_title: item.volumeInfo.title,
                     book_author: item.volumeInfo.authors,
                     book_publisher: item.volumeInfo.publisher,
@@ -58,12 +48,6 @@ const Card = (props: Props) => {
                   <p className="author">{item.volumeInfo.authors}</p>
                 </div>
               </div>
-              <Modal
-                show={show}
-                item={bookItem}
-                data={data}
-                onClose={() => setShow(false)}
-              />
             </>
           );
         }

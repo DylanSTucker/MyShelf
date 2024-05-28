@@ -21,13 +21,18 @@
     --dark: #364857;
     --darkest: #334252;
     */
+    
     --white: #1a1c23;
     --light: #97979B;
     --dark: #23252F;
     --darkest: #FFFFFF;
     --blacker: #121217;
+    --highlight: #3DC7BE;
 
     /*non color related variables*/
+    --nav-size: 60px;
+    --border-radius: 8px;
+    --speed: 500ms;
 }
 
 *{

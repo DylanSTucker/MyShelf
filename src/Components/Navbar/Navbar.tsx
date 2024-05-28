@@ -17,7 +17,7 @@ const Navbar = (props: Props) => {
     e.preventDefault();
     props.setShelf(false);
     props.setSearchUpdate(true);
-    props.searchUpdate = true;
+    //props.searchUpdate = true;
     console.log(props.searchUpdate, "search");
   };
   return (

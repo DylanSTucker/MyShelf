@@ -3,17 +3,18 @@ import "./Modal.css";
 import { useCookies } from "react-cookie";
 
 type Props = {
-  show: boolean;
+  showModal: boolean;
   item: any;
   data: Object;
   onClose: () => void;
 };
 
-const Modal = ({ show, item, data, onClose }: Props) => {
+const Modal = ({ showModal, item, data, onClose }: Props) => {
   const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const [readMore, setReadMore] = useState(false);
   const userEmail = cookies.Email;
 
-  if (!show) {
+  if (!showModal) {
     return null;
   }
   let thumbnail =
@@ -38,6 +39,11 @@ const Modal = ({ show, item, data, onClose }: Props) => {
     }
     window.location.reload();
   };
+
+  let read = "Read More";
+  if (readMore) read = "Read Less";
+  else read = "Read More";
+
   return (
     <>
       <div className="overlay">
@@ -48,20 +54,42 @@ const Modal = ({ show, item, data, onClose }: Props) => {
           <div className="inner-box">
             <img src={thumbnail} alt="" className="thumbnail" />
             <div className="info">
-              <h1>{item.volumeInfo.title}</h1>
+              <h1 className="title">{item.volumeInfo.title}</h1>
               <h3>{item.volumeInfo.authors}</h3>
               <h4>
-                {item.volumeInfo.publisher}
+                {item.volumeInfo.publisher}{" "}
                 <span>{item.volumeInfo.publishedDate}</span>
               </h4>
+              <div className="star-rating">
+                <p className="page-count">{item.volumeInfo.pageCount} pages</p>
+
+                <p className="rating">{item.volumeInfo.averageRating}</p>
+                <i className="rating fa-solid fa-star" />
+              </div>
+              <div className="categories">
+                <div className="tags">{item.volumeInfo.categories[0]}</div>
+              </div>
               <br></br>
               <button onClick={addToShelf}>Read</button>
               <button className="want-to-read" onClick={addToShelf}>
                 Want to Read
               </button>
+              <button className="want-to-read" onClick={addToShelf}>
+                Reading
+              </button>
             </div>
           </div>
-          <h4 className="description">{item.volumeInfo.description}</h4>
+          <div className="description">
+            <h4 className={readMore ? "more" : "less"}>
+              {item.volumeInfo.description}
+            </h4>
+            <button
+              className="read-more-button"
+              onClick={() => setReadMore(readMore ? false : true)}
+            >
+              {read}
+            </button>
+          </div>
         </div>
       </div>
     </>

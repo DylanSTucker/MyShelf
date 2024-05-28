@@ -1,6 +1,6 @@
 .overlay{
     width: 100%;
-    position: fixed;
+    position: relative;
     left: 0;
     top: 0;
     bottom: 0;
@@ -8,17 +8,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2;
 }
 .overlay-inner{
-    background-color: var(--white);
-    width: 700px;
-    height: 550px;
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    height: auto;
     padding: 1.5rem;
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
     font-size: 1.3rem;
+    z-index: 2;
 }
 .overlay-inner .close{
     position: absolute;
@@ -36,8 +36,32 @@
 }
 .overlay-inner .inner-box .thumbnail{
     margin-right: 20px;
-    width: 150px;
-    height: 200px;
+    width: 126px;
+    height: 202px;
+}
+.tags{
+    color: var(--darkest);
+    background-color: var(--highlight);
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0.2em 0.2em 0.2em 0.2em;
+}
+.page-count{
+    color: var(--darkest);
+    display: inline-block;
+    margin-right: 50px;
+}
+.title{
+    color: var(--darkest);
+    font-weight: bold;
+}
+.star-rating{
+    color: var(--darkest);
+    display: inline-block;
+}
+.rating{
+    display: inline-block;
+    margin: 5px;
 }
 
 .overlay-inner .inner-box h1{
@@ -62,8 +86,31 @@
     padding: 0.3rem 0.5rem;
 }
 .overlay-inner .description{
-    margin-top: 2rem;
+    padding: 15px;
+    max-width: 800px;
     text-align: justify;
-    font-size: 13px;
+    margin: auto;
+    margin-top: 2rem;
     color: var(--darkest);
+    border: 1px solid var(--darkest);
+}
+.less{
+    max-height: 200px;
+
+    /*this may not work in some browsers maybe look for another solution*/
+    -webkit-mask-image: linear-gradient(0deg, transparent 5px, red 200px);
+}
+.less{
+    font-size: 15px;
+}
+.more{
+    font-size: 15px;
+}
+.read-more-button{
+    background: none;
+    color: var(--highlight);
+    border: none;
+    text-decoration: underline;
+    display: block;
+    margin: 0 auto;
 }
