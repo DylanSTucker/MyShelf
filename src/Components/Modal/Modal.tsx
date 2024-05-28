@@ -55,29 +55,36 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
             <img src={thumbnail} alt="" className="thumbnail" />
             <div className="info">
               <h1 className="title">{item.volumeInfo.title}</h1>
-              <h3>{item.volumeInfo.authors}</h3>
-              <h4>
+              <h3 className="authors">{item.volumeInfo.authors}</h3>
+              <h4 className="publisher">
                 {item.volumeInfo.publisher}{" "}
                 <span>{item.volumeInfo.publishedDate}</span>
               </h4>
               <div className="star-rating">
                 <p className="page-count">{item.volumeInfo.pageCount} pages</p>
-
-                <p className="rating">{item.volumeInfo.averageRating}</p>
-                <i className="rating fa-solid fa-star" />
+                {item.volumeInfo.averageRating && (
+                  <>
+                    <p className="rating">{item.volumeInfo.averageRating}</p>
+                    <i className="rating fa-solid fa-star" />
+                  </>
+                )}
               </div>
               <div className="categories">
                 <div className="tags">{item.volumeInfo.categories[0]}</div>
               </div>
               <br></br>
-              <button onClick={addToShelf}>Read</button>
-              <button className="want-to-read" onClick={addToShelf}>
-                Want to Read
-              </button>
-              <button className="want-to-read" onClick={addToShelf}>
-                Reading
-              </button>
             </div>
+          </div>
+          <div className="tag-buttons">
+            <button className="want-to-read" onClick={addToShelf}>
+              Read
+            </button>
+            <button className="want-to-read" onClick={addToShelf}>
+              Want to Read
+            </button>
+            <button className="want-to-read" onClick={addToShelf}>
+              Reading
+            </button>
           </div>
           <div className="description">
             <h4 className={readMore ? "more" : "less"}>
