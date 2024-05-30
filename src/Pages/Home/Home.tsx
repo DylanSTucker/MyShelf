@@ -40,6 +40,8 @@ const Home = (props: Props) => {
   const resetFilters = () => {
     setSeed(Math.random());
   };
+
+  //str may have multiple tags, but this function is not seperating them
   const filterCategories = (data: object[]): object[] => {
     if (filters.size < 1 || data.length < 1) return data;
 
@@ -47,6 +49,7 @@ const Home = (props: Props) => {
     data.forEach((item: object) => {
       if ("category" in item) {
         const str = JSON.stringify(item.category).replace(/[^a-zA-Z ]/g, "");
+        console.log(str);
         if (filters.has(str)) {
           newData.push(item);
           console.log(newData);

@@ -39,6 +39,26 @@
     width: 126px;
     height: 202px;
 }
+.modal-imgs{
+    position:relative;
+}
+.overlay-inner .inner-box .background-modal{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 50%;
+    width: 150px;
+    height: 250px;
+    opacity: 1;
+    z-index: -1;
+    background-color: var(--white);
+}
+.background-modal-img{
+    width: 100%;
+    height: auto;
+    filter: blur(6px);
+    opacity: 0.2;
+}
 .overlay-inner .inner-box .authors{
     font-size: 1rem;
 }

@@ -20,7 +20,12 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
 
-  const addToShelf = async () => {
+  /*
+  Description: adds book to shelf through POST method
+  */
+  const addToShelf = async (tag: string) => {
+    //push new tag ("Read", "Want To Read", "Reading") to categories array
+    item.volumeInfo.categories.push(tag);
     console.log(data);
     try {
       const response = await fetch(
@@ -52,7 +57,12 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
             <i className="fa-solid fa-circle-xmark"></i>
           </button>
           <div className="inner-box">
-            <img src={thumbnail} alt="" className="thumbnail" />
+            <div className="modal-imgs">
+              <img src={thumbnail} alt="" className="thumbnail" />
+              <div className="background-modal">
+                <img src={thumbnail} className="background-modal-img" />
+              </div>
+            </div>
             <div className="info">
               <h1 className="title">{item.volumeInfo.title}</h1>
               <h3 className="authors">{item.volumeInfo.authors}</h3>
@@ -76,13 +86,19 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
             </div>
           </div>
           <div className="tag-buttons">
-            <button className="want-to-read" onClick={addToShelf}>
+            <button className="want-to-read" onClick={() => addToShelf("Read")}>
               Read
             </button>
-            <button className="want-to-read" onClick={addToShelf}>
+            <button
+              className="want-to-read"
+              onClick={() => addToShelf("Want To Read")}
+            >
               Want to Read
             </button>
-            <button className="want-to-read" onClick={addToShelf}>
+            <button
+              className="want-to-read"
+              onClick={() => addToShelf("Reading")}
+            >
               Reading
             </button>
           </div>
