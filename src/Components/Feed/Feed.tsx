@@ -5,18 +5,28 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 interface Props {
-  bookData: Object[];
+  allBookData: Object[];
   search: string;
   searchUpdate: boolean;
   setSearchUpdate: (searchUpdate: boolean) => void;
 }
+interface bookData {
+  book_title: String;
+  book_author: String;
+  book_publisher: String;
+  email: String;
+  date: Date;
+  thumbnail: String;
+  category: String;
+}
+
 let query = "";
 
 //search feed
 const Feed = (props: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [bookItem, setBookItem] = useState<object>();
-  const [data, setData] = useState<object>({
+  const [data, setData] = useState<bookData>({
     book_title: "",
     book_author: "",
     book_publisher: "",
@@ -39,14 +49,14 @@ const Feed = (props: Props) => {
       )}
       {!showModal && (
         <div className="feed">
-          {
+          {props.allBookData.map((book: any) => (
             <Card
-              bookData={props.bookData}
+              book={book}
               setData={setData}
               setBookItem={setBookItem}
               setShowModal={setShowModal}
             />
-          }
+          ))}
         </div>
       )}
       {showModal && (

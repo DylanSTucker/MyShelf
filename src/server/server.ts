@@ -24,13 +24,26 @@ app.get("/shelf/:userEmail", async (req: Request, res: Response) =>{
 
 //add a book to the users book shelf
 app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
-    const {userEmail} = req.params;
+    const {userEmail} = req.params;    
     const {book_title, email, book_author, book_publisher, date, thumbnail, category} = req.body;
-    console.log(book_title, userEmail, book_author, book_publisher, date, thumbnail, category);
+    console.log(book_title, userEmail, book_author, book_publisher, date, thumbnail, category.toString());
     const id = uuidv4();
+    
     try{
         const newShelfEntry = pool.query(`INSERT INTO shelf(id, book_title, book_author, book_publisher, email, date, thumbnail, category) VALUES($1, $2, $3, $4, $5, $6, $7, $8)`,
-    [id, book_title, book_author, book_publisher, userEmail, date, thumbnail, category]);
+    [id, book_title, book_author, book_publisher, userEmail, date, thumbnail, category.toString()]);
+    res.json(newShelfEntry);
+    }catch(err){
+        console.error(err);
+    }
+})
+
+//remove a book from shelf
+app.post('/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
+    const {book_title} = req.body;
+    try{
+        const newShelfEntry = pool.query(`DELETE FROM shelf WHERE book_title=$1`,
+    [book_title]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);

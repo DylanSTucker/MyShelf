@@ -21,7 +21,7 @@ const Home = (props: Props) => {
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
-  const [bookData, setData] = useState([]);
+  const [allBookData, setAllBookData] = useState([]);
   const [seed, setSeed] = useState(1);
   const searchBook = (evt: { key: string }) => {
     if (evt.key === "Enter") {
@@ -33,7 +33,7 @@ const Home = (props: Props) => {
             google_api_key +
             "&maxResults=40"
         )
-        .then((res) => setData(res.data.items))
+        .then((res) => setAllBookData(res.data.items))
         .catch((err) => console.log(err));
     }
   };
@@ -41,19 +41,31 @@ const Home = (props: Props) => {
     setSeed(Math.random());
   };
 
-  //str may have multiple tags, but this function is not seperating them
+  //this function is very slow @  >= O(n^2)
   const filterCategories = (data: object[]): object[] => {
     if (filters.size < 1 || data.length < 1) return data;
 
     let newData: object[] = [];
     data.forEach((item: object) => {
       if ("category" in item) {
-        const str = JSON.stringify(item.category).replace(/[^a-zA-Z ]/g, "");
-        console.log(str);
-        if (filters.has(str)) {
-          newData.push(item);
-          console.log(newData);
+        let str: string[] = [];
+        try {
+          str = String(item.category).split(",");
+          str.forEach((i: string) => {
+            if (filters.has(i)) {
+              newData.push(item);
+            }
+          });
+        } catch (error) {
+          let errorMessage = "Failed to do something exceptional";
+          if (error instanceof Error) {
+            errorMessage = error.message;
+          }
+          console.log(errorMessage);
         }
+
+        //str.forEach((i: string) => console.log(i.replace(/[^a-zA-Z ]/g, "")));
+        console.log(str);
       }
     });
     return newData;
@@ -63,7 +75,7 @@ const Home = (props: Props) => {
     resetFilters();
   };
 
-  console.log(bookData);
+  console.log(allBookData);
 
   return (
     <>
@@ -91,7 +103,7 @@ const Home = (props: Props) => {
       </div>
       <div className={!shelf ? "container" : "d-none"}>
         <Feed
-          bookData={bookData}
+          allBookData={allBookData}
           search={search}
           searchUpdate={searchUpdate}
           setSearchUpdate={setSearchUpdate}
