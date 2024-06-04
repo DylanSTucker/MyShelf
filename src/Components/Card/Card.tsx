@@ -10,6 +10,7 @@ interface bookData {
   date: Date;
   thumbnail: String;
   category: String;
+  volume_id: String;
 }
 
 interface Props {
@@ -40,6 +41,7 @@ const Card = (props: Props) => {
               date: new Date(),
               thumbnail: props.book.volumeInfo.imageLinks.thumbnail,
               category: props.book.volumeInfo.categories,
+              volume_id: props.book.id,
             });
           }}
         >

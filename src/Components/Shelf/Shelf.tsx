@@ -2,6 +2,7 @@ import { useState } from "react";
 import BookCard from "../ShelfCards/BookCard";
 import ShelfModal from "../Modal/ShelfModal";
 import "./Shelf.css";
+import axios from "axios";
 
 type Props = {
   itemInfo: Object[];

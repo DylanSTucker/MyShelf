@@ -29,7 +29,6 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
   }
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-  console.log(data);
 
   //make sure categories exists, if it does not them use an empty array
   let categories = [];
@@ -40,9 +39,10 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
   */
   const addToShelf = async (tag: string) => {
     //push new tag ("Read", "Want To Read", "Reading") to categories array
-    if (data.category === "") data.category = tag;
-    else data.category = "," + tag;
-    console.log(data);
+    //should get categories from api call as it contains more information. Put this in a new function
+    console.log(data.category);
+    if (data.category) data.category += "," + tag;
+    else data.category = tag;
     try {
       const response = await fetch(
         `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}`,
@@ -60,7 +60,6 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
     }
     window.location.reload();
   };
-  console.log(data);
 
   let read = "Read More";
   if (readMore) read = "Read Less";

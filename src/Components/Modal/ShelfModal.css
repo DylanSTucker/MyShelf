@@ -1,0 +1,12 @@
+.notes{
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem;
+}
+.notes-field{
+    width: 500px;
+    height: 100px;
+}
+.tags{
+    margin: 5px;
+}

@@ -1,7 +1,7 @@
 import "./Feed.css";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
   searchUpdate: boolean;
   setSearchUpdate: (searchUpdate: boolean) => void;
 }
+
+//defines bookData type
 interface bookData {
   book_title: String;
   book_author: String;
@@ -18,6 +20,7 @@ interface bookData {
   date: Date;
   thumbnail: String;
   category: String;
+  volume_id: String;
 }
 
 let query = "";
@@ -34,12 +37,16 @@ const Feed = (props: Props) => {
     date: new Date(),
     thumbnail: "",
     category: "",
+    volume_id: "",
   });
 
   if (props.searchUpdate) {
     query = props.search;
-    props.setSearchUpdate(false);
   }
+
+  useEffect(() => {
+    props.setSearchUpdate(false);
+  }, [query]); //only re-run the effect if query changes
   return (
     <div>
       {query && !showModal && (

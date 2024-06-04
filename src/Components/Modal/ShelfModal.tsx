@@ -1,21 +1,30 @@
-import { useState } from "react";
-import "./Modal.css";
+import { useEffect, useState } from "react";
+import "./ShelfModal.css";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 type Props = {
   showModal: boolean;
   item: any;
   onClose: () => void;
 };
-
-const Modal = ({ showModal, item, onClose }: Props) => {
+const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const [data, setData] = useState<any>({
+    title: "",
+    author: "",
+    publisher: "",
+    publisherDate: "",
+    categories: [],
+    thumbnail: "",
+    description: "",
+  });
+
   const [readMore, setReadMore] = useState(false);
   const userEmail = cookies.Email;
 
   //this function should remove the displayed book from the shelf database
   const removeFromShelf = async () => {
-    console.log("removed");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}/remove`,
@@ -34,6 +43,36 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     window.location.reload();
   };
 
+  //this function may also be too slow with the .split.join calls
+  const getBookInfo = async () => {
+    const id = item.volume_id;
+    //scrape the data needed from googles api
+    axios
+      .get("https://www.googleapis.com/books/v1/volumes/" + id)
+      .then((res) => {
+        const str = res.data.volumeInfo.description;
+        setData({
+          title: res.data.volumeInfo.title,
+          author: res.data.volumeInfo.author,
+          publisher: res.data.volumeInfo.publisher,
+          publisherDate: res.data.volumeInfo.publishedDate,
+          categories: res.data.volumeInfo.categories[0]
+            .split("/")
+            .concat([item.category]),
+          thumbnail: res.data.volumeInfo.imageLinks.thumbnail,
+          //remove HTML tags in string, before setting the description with clean text
+          description: str.split(/<[^>]*>/).join(""),
+        });
+      })
+      .then(() => data.categories.push(item.category))
+      .catch((err) => console.log(err));
+  };
+
+  //call getBookInfo() when the book(item) that user is looking at changes
+  useEffect(() => {
+    getBookInfo();
+  }, [item]);
+
   if (!showModal) {
     return null;
   }
@@ -41,10 +80,6 @@ const Modal = ({ showModal, item, onClose }: Props) => {
   let read = "Read More";
   if (readMore) read = "Read Less";
   else read = "Read More";
-  item.book_author = item.book_author.replace(/{|}|"|/g, "");
-  let categories = [];
-  if (item.category) categories = item.category.split(",");
-
   return (
     <>
       <div className="overlay">
@@ -54,16 +89,16 @@ const Modal = ({ showModal, item, onClose }: Props) => {
           </button>
           <div className="inner-box">
             <div className="modal-imgs">
-              <img src={item.thumbnail} alt="" className="thumbnail" />
+              <img src={data.thumbnail} alt="" className="thumbnail" />
               <div className="background-modal">
-                <img src={item.thumbnail} className="background-modal-img" />
+                <img src={data.thumbnail} className="background-modal-img" />
               </div>
             </div>
             <div className="info">
-              <h1 className="title">{item.book_title}</h1>
-              <h3 className="authors">{item.book_author}</h3>
+              <h1 className="title">{data.title}</h1>
+              <h3 className="authors">{data.author}</h3>
               <h4 className="publisher">
-                {item.book_publisher} <span>{item.date}</span>
+                {data.publisher} <span>{data.publisherDate}</span>
               </h4>
               {/*
                             <div className="star-rating">
@@ -77,7 +112,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
               </div>
               */}
               <div className="categories">
-                {categories.map((category: string) => (
+                {data.categories?.map((category: string) => (
                   <div className="tags">{category}</div>
                 ))}
               </div>
@@ -106,23 +141,28 @@ const Modal = ({ showModal, item, onClose }: Props) => {
             </button>
                 */}
           </div>
-          {/*
-                    <div className="description">
-            <h4 className={readMore ? "more" : "less"}>
-              {item.volumeInfo.description}
-            </h4>
+
+          <div id="desc" className="description">
+            <h4 className={readMore ? "more" : "less"}>{data.description}</h4>
             <button
               className="read-more-button"
-              onClick={() => setReadMore(readMore ? false : true)}
+              onClick={() => {
+                setReadMore(readMore ? false : true);
+              }}
             >
               {read}
             </button>
           </div>
-          */}
+
+          <div className="notes">
+            <form>
+              <textarea className="notes-field" />
+            </form>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default Modal;
+export default ShelfModal;
