@@ -10,3 +10,50 @@
 .tags{
     margin: 5px;
 }
+.remove{
+    text-decoration: none;
+    border: none;
+    border-radius:5px;
+    background-color: var(--highlight);
+    color: var(--darkest);
+}
+.btns{
+    display: flex;
+    margin: 30px;
+    justify-content: center;
+}
+.btn-details, .btn-notes{
+    margin-right: 30px;
+    text-decoration: none;
+    border: none;
+    border-radius:5px;
+    background: none;
+    color: var(--darkest);
+    font-size: larger;
+    font-weight:bold;
+}
+.btn-details-selected, .btn-notes-selected{
+    margin-right: 30px;
+    text-decoration: underline;
+    border: none;
+    border-radius:5px;
+    background: none;
+    color: var(--darkest);
+    font-size: larger;
+    font-weight:bold;
+    text-decoration-thickness: 4px;
+}
+.btn-details:hover, .btn-notes:hover{
+    color: var(--highlight);
+}
+.tab-notes{
+    display: flex;
+    justify-content: center;
+}
+.notes{
+    display: block;
+}
+.notes-display{
+    height:500px;
+    color: var(--darkest);
+}

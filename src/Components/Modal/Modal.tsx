@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Modal.css";
 import { useCookies } from "react-cookie";
+import { getBookInfo } from "../../scripts/scrape";
 
 interface bookData {
   book_title: String;
@@ -9,19 +10,28 @@ interface bookData {
   email: String;
   date: Date;
   thumbnail: String;
-  category: String;
+  categories: String;
 }
 
 type Props = {
   showModal: boolean;
   item: any;
-  data: bookData;
   onClose: () => void;
 };
 
-const Modal = ({ showModal, item, data, onClose }: Props) => {
+const Modal = ({ showModal, item, onClose }: Props) => {
   const [cookies, setCookie, removeCookie] = useCookies(undefined);
   const [readMore, setReadMore] = useState(false);
+  const [data, setData] = useState<any>({
+    title: "",
+    author: "",
+    publisher: "",
+    publisher_date: "",
+    thumbnail: "",
+    categories: [],
+    description: "",
+    volume_id: "",
+  });
   const userEmail = cookies.Email;
 
   if (!showModal) {
@@ -30,26 +40,28 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
   let thumbnail =
     item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
 
-  //make sure categories exists, if it does not them use an empty array
-  let categories = [];
-  if (item.volumeInfo.categories) categories = item.volumeInfo.categories;
-
   /*
   Description: adds book to shelf through POST method
   */
   const addToShelf = async (tag: string) => {
     //push new tag ("Read", "Want To Read", "Reading") to categories array
     //should get categories from api call as it contains more information. Put this in a new function
-    console.log(data.category);
-    if (data.category) data.category += "," + tag;
-    else data.category = tag;
     try {
       const response = await fetch(
         `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            title: data.title,
+            author: data.author,
+            publisher: data.publisher,
+            email: userEmail,
+            publisher_date: data.publisher_date,
+            thumbnail: data.thumbnail,
+            categories: data.categories.toString() + "," + tag,
+            volume_id: data.volume_id,
+          }),
         }
       );
       if (response.status === 200) {
@@ -60,6 +72,10 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
     }
     window.location.reload();
   };
+
+  useEffect(() => {
+    getBookInfo(item.id, setData);
+  }, [item]);
 
   let read = "Read More";
   if (readMore) read = "Read Less";
@@ -96,11 +112,9 @@ const Modal = ({ showModal, item, data, onClose }: Props) => {
                 )}
               </div>
               <div className="categories">
-                <div className="tags">
-                  {categories.map((category: string) => (
-                    <>{category}</>
-                  ))}
-                </div>
+                {data.categories.map((category: string) => (
+                  <div className="tags">{category}</div>
+                ))}
               </div>
               <br></br>
             </div>

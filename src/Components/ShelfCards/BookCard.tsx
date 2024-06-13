@@ -3,18 +3,18 @@ import "./BookCards.css";
 type Props = {
   //key: string;
   data: Object;
-  book_title: string;
-  book_author: string;
-  book_publisher: string;
+  title: string;
+  author: string;
+  publisher: string;
   thumbnail: string;
-  category: string;
+  categories: string;
   setShowModal: (showModal: boolean) => void;
   setBookItem: (data: Object) => void;
 };
 
 const BookCard = (props: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
-  const allAuthors = props.book_author.replace(/{|}|"|/g, "");
+  const allAuthors = props.author;
 
   const handleClick = () => {
     props.setBookItem(props.data);
@@ -31,7 +31,7 @@ const BookCard = (props: Props) => {
         </div>
 
         <div className="title-container">
-          <p className="title">{props.book_title}</p>
+          <p className="title">{props.title}</p>
         </div>
         <div className="author-container">
           <p className="author">{allAuthors}</p>

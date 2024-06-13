@@ -83,9 +83,9 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-dragon" />
           <p>Fiction</p>
         </div>
-        <div className="side-link" onClick={() => addFilter("Sci-Fi")}>
+        <div className="side-link" onClick={() => addFilter("Science Fiction")}>
           <i className="fa-solid fa-atom" />
-          <p>Sci-Fi</p>
+          <p>Science Fiction</p>
         </div>
         <div className="side-link" onClick={() => addFilter("Fantasy")}>
           <i className="fa-solid fa-hat-wizard" />

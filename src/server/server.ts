@@ -22,16 +22,28 @@ app.get("/shelf/:userEmail", async (req: Request, res: Response) =>{
     }
 });
 
+//get users notes from a specific book
+app.get("/notes/:userEmail/:volume_id", async (req: Request, res: Response) =>{
+    //gets user email from request
+    const {userEmail, volume_id} = req.params;
+    try{
+        const notes = await pool.query("SELECT * FROM notes WHERE email = $1 AND volume_id = $2", [userEmail, volume_id]);
+        res.json(notes.rows);
+    }catch(err){
+        console.error(err);
+    }
+});
+
 //add a book to the users book shelf
 app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
-    const {book_title, email, book_author, book_publisher, date, thumbnail, category, volume_id} = req.body;
-    console.log(book_title, userEmail, book_author, book_publisher, date, thumbnail, category.toString(), volume_id);
+    const {title, email, author, publisher, publisher_date, thumbnail, categories, volume_id} = req.body;
+    console.log(title, userEmail, author, publisher, publisher_date, thumbnail, categories, volume_id);
     const id = uuidv4();
     
     try{
-        const newShelfEntry = pool.query(`INSERT INTO shelf(id, book_title, book_author, book_publisher, email, date, thumbnail, category, volume_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-    [id, book_title, book_author, book_publisher, userEmail, date, thumbnail, category.toString(), volume_id]);
+        const newShelfEntry = pool.query(`INSERT INTO shelf(id, title, author, publisher, email, publisher_date, thumbnail, categories, volume_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+    [id, title, author, publisher, userEmail, publisher_date, thumbnail, categories, volume_id]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);
@@ -40,10 +52,26 @@ app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
 
 //remove a book from shelf
 app.post('/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
-    const {book_title} = req.body;
+    const {title} = req.body;
     try{
-        const newShelfEntry = pool.query(`DELETE FROM shelf WHERE book_title=$1`,
-    [book_title]);
+        const newShelfEntry = pool.query(`DELETE FROM shelf WHERE title=$1`,
+    [title]);
+    res.json(newShelfEntry);
+    }catch(err){
+        console.error(err);
+    }
+})
+
+//add a note to a book
+app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
+    const {userEmail} = req.params;    
+    const {title, volume_id, note} = req.body;
+    console.log(title, volume_id, note);
+    const id = uuidv4();
+    
+    try{
+        const newShelfEntry = pool.query(`INSERT INTO notes(id, title, note, volume_id, email) VALUES($1, $2, $3, $4, $5)`,
+    [id, title, note, volume_id, userEmail]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);

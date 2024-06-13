@@ -9,7 +9,7 @@ interface bookData {
   email: String;
   date: Date;
   thumbnail: String;
-  category: String;
+  categories: String;
   volume_id: String;
 }
 
@@ -40,7 +40,7 @@ const Card = (props: Props) => {
               email: cookies.Email,
               date: new Date(),
               thumbnail: props.book.volumeInfo.imageLinks.thumbnail,
-              category: props.book.volumeInfo.categories,
+              categories: props.book.volumeInfo.categories,
               volume_id: props.book.id,
             });
           }}

@@ -19,7 +19,7 @@ interface bookData {
   email: String;
   date: Date;
   thumbnail: String;
-  category: String;
+  categories: String;
   volume_id: String;
 }
 
@@ -36,7 +36,7 @@ const Feed = (props: Props) => {
     email: "",
     date: new Date(),
     thumbnail: "",
-    category: "",
+    categories: "",
     volume_id: "",
   });
 
@@ -70,7 +70,6 @@ const Feed = (props: Props) => {
         <Modal
           showModal={showModal}
           item={bookItem}
-          data={data}
           onClose={() => setShowModal(false)}
         />
       )}

@@ -2,7 +2,6 @@ import { useState } from "react";
 import BookCard from "../ShelfCards/BookCard";
 import ShelfModal from "../Modal/ShelfModal";
 import "./Shelf.css";
-import axios from "axios";
 
 type Props = {
   itemInfo: Object[];
@@ -13,10 +12,6 @@ const Shelf = (props: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [bookItem, setBookItem] = useState<Object>();
 
-  const handleClick = (show: boolean) => {
-    setShowModal(show);
-  };
-
   return (
     <>
       {!showModal && (
@@ -24,11 +19,11 @@ const Shelf = (props: Props) => {
           {props.itemInfo?.map((item: any) => (
             <BookCard
               data={item}
-              book_title={item.book_title}
-              book_author={item.book_author}
-              book_publisher={item.book_publisher}
+              title={item.title}
+              author={item.author}
+              publisher={item.publisher}
               thumbnail={item.thumbnail}
-              category={item.category}
+              categories={item.categories}
               setShowModal={setShowModal}
               setBookItem={setBookItem}
             />

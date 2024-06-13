@@ -21,7 +21,9 @@ function App() {
   //this function should be created in the app.tsx file and passed through Home.tsx and anywhere else it needs to go
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/shelf/${userEmail}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}`
+      );
       const json = await response.json();
       setInfo(json);
     } catch (err) {

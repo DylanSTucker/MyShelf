@@ -44,13 +44,13 @@ const Home = (props: Props) => {
   //this function is very slow @  >= O(n^2)
   const filterCategories = (data: object[]): object[] => {
     if (filters.size < 1 || data.length < 1) return data;
-
     let newData: object[] = [];
     data.forEach((item: object) => {
-      if ("category" in item) {
+      if ("categories" in item) {
         let str: string[] = [];
         try {
-          str = String(item.category).split(",");
+          str = String(item.categories).split(",");
+          console.log(str);
           str.forEach((i: string) => {
             if (filters.has(i)) {
               newData.push(item);
@@ -74,8 +74,6 @@ const Home = (props: Props) => {
     filters.delete(filter);
     resetFilters();
   };
-
-  console.log(allBookData);
 
   return (
     <>
