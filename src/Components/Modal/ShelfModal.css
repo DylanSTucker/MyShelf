@@ -19,7 +19,7 @@
 }
 .btns{
     display: flex;
-    margin: 30px;
+    margin: 30px 30px 10px;
     justify-content: center;
 }
 .btn-details, .btn-notes{
@@ -54,6 +54,21 @@
     display: block;
 }
 .notes-display{
-    height:500px;
+    height:auto;
     color: var(--darkest);
+}
+.notes-list{
+    list-style-type: none;
+}
+.note{
+    width: 400px;
+    height: auto;
+    margin: 10px;
+    background-color: var(--dark);
+}
+.comment-info{
+    font-size: 15px;
+}
+.comment{
+    text-align: start;
 }

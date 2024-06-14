@@ -35,7 +35,7 @@ const SignUp = () => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, userName, password }),
       }
     );
 
@@ -44,6 +44,7 @@ const SignUp = () => {
       setError(data.detail);
     } else {
       setCookie("Email", data.email);
+      setCookie("UserName", data.user_name);
       setCookie("AuthToken", data.token);
 
       window.location.reload();

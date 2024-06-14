@@ -14,6 +14,7 @@ interface bookNotesEntry {
   note: string;
   volume_id: string;
   email: string;
+  comment_date: string;
 }
 
 const ShelfModal = ({ showModal, item, onClose }: Props) => {
@@ -31,6 +32,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const [readMore, setReadMore] = useState(false);
   const [tab, setTab] = useState("details");
   const userEmail = cookies.Email;
+  const username = cookies.UserName;
   const [bookNotes, setBookNotes] = useState<bookNotesEntry[]>();
 
   const handleSubmit = async (e: any) => {
@@ -62,7 +64,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
     } catch (err) {
       console.error(err);
     }
-    //window.location.reload();
+    window.location.reload();
   };
 
   //this function should remove the displayed book from the shelf database
@@ -93,7 +95,6 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
     );
     const res = await req.json();
     setBookNotes(res);
-    console.log(res[0].note);
   };
 
   //call getBookInfo() when the book(item) that user is looking at changes
@@ -213,12 +214,22 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
                 <div className="notes">
                   <form method="post" onSubmit={(e) => handleSubmit(e)}>
                     <textarea name="content" className="notes-field" />
+                    <br></br>
                     <button type="submit">Submit</button>
                   </form>
                   <div className="notes-display">
-                    {bookNotes?.map((entry: bookNotesEntry) => (
-                      <>{entry.note}</>
-                    ))}
+                    <ul className="notes-list">
+                      {bookNotes?.map((entry: bookNotesEntry) => (
+                        <li className="note">
+                          <p className="comment-info">
+                            {username}
+                            <br></br>
+                            {entry.comment_date}
+                          </p>
+                          <p className="comment">{entry.note}</p>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>

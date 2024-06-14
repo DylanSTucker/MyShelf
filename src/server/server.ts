@@ -52,11 +52,15 @@ app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
 
 //remove a book from shelf
 app.post('/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
-    const {title} = req.body;
+    const {volume_id} = req.body;
     try{
-        const newShelfEntry = pool.query(`DELETE FROM shelf WHERE title=$1`,
-    [title]);
-    res.json(newShelfEntry);
+    const removeFromShelf = pool.query(`DELETE FROM shelf WHERE volume_id=$1`,
+    [volume_id]);
+    const removeFromNotes = pool.query(`DELETE FROM notes WHERE volume_id=$1`,
+        [volume_id]);
+
+    res.json(removeFromShelf);
+    res.json(removeFromNotes);
     }catch(err){
         console.error(err);
     }
@@ -68,10 +72,12 @@ app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
     const {title, volume_id, note} = req.body;
     console.log(title, volume_id, note);
     const id = uuidv4();
+    const date = new Date();
+    const comment_date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
     
     try{
-        const newShelfEntry = pool.query(`INSERT INTO notes(id, title, note, volume_id, email) VALUES($1, $2, $3, $4, $5)`,
-    [id, title, note, volume_id, userEmail]);
+        const newShelfEntry = pool.query(`INSERT INTO notes(id, title, note, volume_id, email, comment_date) VALUES($1, $2, $3, $4, $5, $6)`,
+    [id, title, note, volume_id, userEmail, comment_date]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);
@@ -112,7 +118,7 @@ app.post('/login', async(req, res) => {
         const success = await Bcrypt.compare(password, users.rows[0].hashed_password);
         const token = jwt.sign({email}, "secret", {expiresIn: "1hr"});
         if(success){
-            res.json({"email": users.rows[0].email, token});
+            res.json({"email": users.rows[0].email, token, "user_name": user_name});
         }else{
             res.json({detail: "Login failed"});
         }
