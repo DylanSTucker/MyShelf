@@ -45,6 +45,8 @@ const Home = (props: Props) => {
   const filterCategories = (data: object[]): object[] => {
     if (filters.size < 1 || data.length < 1) return data;
     let newData: object[] = [];
+    let duplicates = new Set<object>([]);
+    //console.log(data[0].title);
     data.forEach((item: object) => {
       if ("categories" in item) {
         let str: string[] = [];
@@ -52,8 +54,10 @@ const Home = (props: Props) => {
           str = String(item.categories).split(",");
           console.log(str);
           str.forEach((i: string) => {
-            if (filters.has(i)) {
+            if (filters.has(i) && !duplicates.has(item)) {
               newData.push(item);
+              duplicates.add(item);
+              console.log(duplicates);
             }
           });
         } catch (error) {

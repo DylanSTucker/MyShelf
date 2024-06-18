@@ -83,6 +83,20 @@ app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
         console.error(err);
     }
 })
+//change tag("Read", "Want To Read", "Reading")
+app.post('/shelf/:userEmail/change', async (req: Request, res: Response) =>{
+    const {userEmail} = req.params;    
+    const {categories, volume_id} = req.body;
+    console.log(categories, volume_id);
+    
+    try{
+        const newShelfEntry = pool.query(`UPDATE shelf SET categories = $1 WHERE volume_id = $2`,
+    [categories, volume_id]);
+    res.json(newShelfEntry);
+    }catch(err){
+        console.error(err);
+    }
+})
 
 //endpoint for signup
 app.post('/signup', async(req, res) => {

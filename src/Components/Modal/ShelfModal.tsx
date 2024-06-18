@@ -114,6 +114,30 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
 
   //item.categories is a string, so format into array
   let categories = item.categories.split(",");
+
+  //change tag("Read", "Want To Read", "Reading")
+  const changeTag = async (newTag: string) => {
+    console.log(newTag);
+    categories[categories.length - 1] = newTag;
+    const str = categories.toString();
+    item.categories = str;
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}/change`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(item),
+        }
+      );
+      if (response.status === 200) {
+        console.log("worked");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <>
       <div className="overlay">
@@ -153,27 +177,35 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
               <br></br>
             </div>
           </div>
-          <div className="tag-buttons">
-            <button className="remove" onClick={() => removeFromShelf()}>
-              Remove
-            </button>
-            {/*
-                            <button className="want-to-read" onClick={() => addToShelf("Read")}>
-              Read
-            </button>
-            <button
-              className="want-to-read"
-              onClick={() => addToShelf("Want To Read")}
+          <div className="tag-selector">
+            <select
+              className="selector"
+              name="status"
+              id="status"
+              onChange={(e) => changeTag(e.target.value)}
             >
-              Want to Read
-            </button>
-            <button
-              className="want-to-read"
-              onClick={() => addToShelf("Reading")}
-            >
-              Reading
-            </button>
-                */}
+              <option
+                className="option"
+                value="Read"
+                selected={categories[categories.length - 1] == "Read"}
+              >
+                Read
+              </option>
+              <option
+                className="option"
+                value="Want To Read"
+                selected={categories[categories.length - 1] == "Want To Read"}
+              >
+                Want To Read
+              </option>
+              <option
+                className="option"
+                value="Reading"
+                selected={categories[categories.length - 1] == "Reading"}
+              >
+                Reading
+              </option>
+            </select>
           </div>
           <div className="tabs">
             <div className="btns">
@@ -236,6 +268,11 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
             )}
           </div>
         </div>
+      </div>
+      <div className="remove-container">
+        <button className="remove" onClick={() => removeFromShelf()}>
+          Remove
+        </button>
       </div>
     </>
   );
