@@ -1,0 +1,17 @@
+.login-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white);
+    height: 100%;
+
+}
+.login-container{
+    background: var(--darkest);
+    padding: 3px;
+    border: rounded;
+    width: 25%;
+}
+.username-container, .email-container, .password-container, .confirm-password-container{
+    margin-bottom: 3px;
+}

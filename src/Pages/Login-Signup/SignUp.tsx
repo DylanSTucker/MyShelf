@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import e from "express";
+import "./SignUp.css";
 
 const SignUp = () => {
   const [cookies, setCookie, removeCookie] = useCookies(undefined);
@@ -51,11 +52,11 @@ const SignUp = () => {
     }
   };
   return (
-    <div className="d-flex justify-content-center align-items-center bg-primary vh-100">
-      <div className="bg-white p-3 rounded w-25">
+    <div className="login-page">
+      <div className="login-container">
         <h2>{isLogin ? "Login" : "Sign-Up"}</h2>
         <form>
-          <div className="mb-3">
+          <div className="username-container">
             <label htmlFor="name">
               <strong>User Name</strong>
             </label>
@@ -66,7 +67,7 @@ const SignUp = () => {
               onChange={(e) => setUserName(e.target.value)}
             />
           </div>
-          <div className="mb-3">
+          <div className="email-container">
             <label htmlFor="email">
               <strong>Email</strong>
             </label>
@@ -77,7 +78,7 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="mb-3">
+          <div className="password-container">
             <label htmlFor="password">
               <strong>Password</strong>
             </label>
@@ -89,7 +90,7 @@ const SignUp = () => {
             />
           </div>
           {!isLogin && (
-            <div className="mb-3">
+            <div className="confirm-password-container">
               <label htmlFor="confirmPassword">
                 <strong>Confirm Password</strong>
               </label>
