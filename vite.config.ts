@@ -10,4 +10,5 @@ export default defineConfig({
   plugins:[
     react()
   ],
+  base: "https://dylanstucker.github.io/MyShelf/"
 });
