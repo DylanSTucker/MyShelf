@@ -5,3 +5,8 @@
     padding-bottom: 20px;
     /*background: var(--white);*/
 }
+.container{
+    display: flex;
+    justify-content: center;
+
+}
