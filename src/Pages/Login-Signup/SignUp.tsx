@@ -104,6 +104,7 @@ const SignUp = () => {
           )}
           {error && <p>{error}</p>}
           <button
+          className="submit-button"
             type="submit"
             onClick={(e) => handleSubmit(e, isLogin ? "login" : "signup")}
           >
@@ -112,21 +113,21 @@ const SignUp = () => {
           <button
             className={
               isLogin
-                ? "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
-                : "btn w-100 btn-success"
+                ? "login-button"
+                : "login-button-highlight login-button"
             }
             //onClick={(e) => handleSubmit(e, "signup")}
-            onClick={(e) => viewLogin(e, false)}
+            onClick={(e) => viewLogin(e, true)}
           >
             <strong>Login</strong>
           </button>
           <button
             className={
               isLogin
-                ? "btn w-100 btn-success"
-                : "btn btn-default border w-100 bg-light rounded-0 text-decoration-none"
+                ? "signup-button-highlight signup-button"
+                : "signup-button"
             }
-            onClick={(e) => viewLogin(e, true)}
+            onClick={(e) => viewLogin(e, false)}
           >
             Sign Up
           </button>

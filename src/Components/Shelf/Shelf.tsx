@@ -14,6 +14,9 @@ const Shelf = (props: Props) => {
 
   return (
     <>
+    {props.itemInfo.length<=0 && (
+      <h1 className="no-books">There are no books in your shelf</h1>
+    )}
       {!showModal && (
         <div className="shelf">
           {props.itemInfo?.map((item: any) => (

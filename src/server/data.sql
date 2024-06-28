@@ -24,6 +24,5 @@ CREATE TABLE notes(
     note VARCHAR(3000),
     volume_id VARCHAR(500)
     email VARCHAR(255),
-    volume_id VARCHAR(500),
     comment_date VARCHAR(255),
 );

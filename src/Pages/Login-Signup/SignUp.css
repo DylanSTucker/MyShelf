@@ -15,3 +15,33 @@
 .username-container, .email-container, .password-container, .confirm-password-container{
     margin-bottom: 3px;
 }
+.submit-button{
+    width: 75px;
+    display: block;
+    margin: 5px auto;
+    text-align: center;
+    background-color: var(--darkest);
+}
+.login-button{
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    background-color: var(--darkest);
+}
+.signup-button{
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    background-color: var(--darkest);
+
+}
+.login-button-highlight{
+    background-color: var(--highlight);
+}
+.signup-button-highlight{
+    background-color: var(--highlight);
+}
