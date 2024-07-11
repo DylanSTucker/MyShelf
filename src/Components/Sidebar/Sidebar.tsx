@@ -26,6 +26,10 @@ const Sidebar = (props: Props) => {
     props.filters.add(filter);
     props.resetFilters();
   };
+  const handleSetShelf = () =>{
+    props.setShelf(props.shelf === false ? true : false);
+    
+  }
 
   return (
     <div className={`sidebar ${props.sidebar ? "" : "small-sidebar"}`}>
@@ -36,7 +40,7 @@ const Sidebar = (props: Props) => {
         </div>
         <div
           className="side-link"
-          onClick={() => props.setShelf(props.shelf === false ? true : false)}
+          onClick={() => handleSetShelf()}
         >
           <i className="fa-solid fa-book" />
           <p>My Shelf</p>

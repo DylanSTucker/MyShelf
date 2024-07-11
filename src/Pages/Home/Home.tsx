@@ -18,6 +18,7 @@ const Home = (props: Props) => {
   const google_api_key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
 
   const [shelf, setShelf] = useState(true);
+  const [feed, setFeed] = useState(false);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
@@ -79,6 +80,7 @@ const Home = (props: Props) => {
     resetFilters();
   };
 
+
   return (
     <>
       <Navbar
@@ -99,18 +101,23 @@ const Home = (props: Props) => {
         filters={filters}
         resetFilters={resetFilters}
       />
-      <div className={shelf ? "shelf-container" : "d-none"}>
-        <Filters key={seed} filters={filters} removeFilters={removeFilters} />
-        <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />
-      </div>
-      <div className={!shelf ? "container" : "d-none"}>
-        <Feed
-          allBookData={allBookData}
-          search={search}
-          searchUpdate={searchUpdate}
-          setSearchUpdate={setSearchUpdate}
-        />
-      </div>
+      {!shelf && feed &&
+        <div className={"container"}>
+            <Feed
+              allBookData={allBookData}
+              search={search}
+              searchUpdate={searchUpdate}
+              setSearchUpdate={setSearchUpdate}
+              setFeed={setFeed}
+            />
+        </div>
+      }
+      {shelf && !feed && 
+            <div className={"shelf-container"}>
+            <Filters key={seed} filters={filters} removeFilters={removeFilters} />
+            <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />
+          </div>
+      }
     </>
   );
 };

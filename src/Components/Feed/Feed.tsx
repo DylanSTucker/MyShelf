@@ -9,6 +9,7 @@ interface Props {
   search: string;
   searchUpdate: boolean;
   setSearchUpdate: (searchUpdate: boolean) => void;
+  setFeed: (feed: boolean) => void;
 }
 
 //defines bookData type
@@ -46,6 +47,7 @@ const Feed = (props: Props) => {
 
   useEffect(() => {
     props.setSearchUpdate(false);
+    props.setFeed(true);
   }, [query]); //only re-run the effect if query changes
   return (
     <div className="feed-container">
