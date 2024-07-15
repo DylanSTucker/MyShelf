@@ -11,7 +11,7 @@ type Props = {
 const Shelf = (props: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [bookItem, setBookItem] = useState<Object>();
-
+  console.log(props.itemInfo.length);
   return (
     <>
     {props.itemInfo.length<=0 && (

@@ -3,16 +3,6 @@ import "./Modal.css";
 import { useCookies } from "react-cookie";
 import { getBookInfo } from "../../scripts/scrape";
 
-interface bookData {
-  book_title: String;
-  book_author: String;
-  book_publisher: String;
-  email: String;
-  date: Date;
-  thumbnail: String;
-  categories: String;
-}
-
 type Props = {
   showModal: boolean;
   item: any;
@@ -20,7 +10,7 @@ type Props = {
 };
 
 const Modal = ({ showModal, item, onClose }: Props) => {
-  const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const [cookies] = useCookies(undefined);
   const [readMore, setReadMore] = useState(false);
   const [data, setData] = useState<any>({
     title: "",
@@ -33,6 +23,8 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     volume_id: "",
   });
   const userEmail = cookies.Email;
+  console.log(import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER + "/" + userEmail);
+
 
   if (!showModal) {
     return null;
@@ -48,7 +40,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     //should get categories from api call as it contains more information. Put this in a new function
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}`,
+        `${import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER}/${userEmail}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

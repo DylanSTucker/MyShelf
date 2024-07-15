@@ -37,7 +37,7 @@ app.get("/notes/:userEmail/:volume_id", async (req: Request, res: Response) =>{
 //add a book to the users book shelf
 app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
-    const {title, email, author, publisher, publisher_date, thumbnail, categories, volume_id} = req.body;
+    const {title, author, publisher, publisher_date, thumbnail, categories, volume_id} = req.body;
     console.log(title, userEmail, author, publisher, publisher_date, thumbnail, categories, volume_id);
     const id = uuidv4();
     
@@ -85,7 +85,6 @@ app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
 })
 //change tag("Read", "Want To Read", "Reading")
 app.post('/shelf/:userEmail/change', async (req: Request, res: Response) =>{
-    const {userEmail} = req.params;    
     const {categories, volume_id} = req.body;
     console.log(categories, volume_id);
     
@@ -106,7 +105,7 @@ app.post('/signup', async(req, res) => {
     const salt = Bcrypt.genSaltSync(10);
     const hashe_password = Bcrypt.hashSync(password, salt);
     try{
-        const signup = await pool.query(`INSERT INTO users(user_name, email, hashed_password) VALUES($1, $2, $3)`, 
+        pool.query(`INSERT INTO users(user_name, email, hashed_password) VALUES($1, $2, $3)`, 
         [user_name, email, hashe_password]);
         const token = jwt.sign({email}, "secret", {expiresIn: "1hr"});
         res.json({email, token});

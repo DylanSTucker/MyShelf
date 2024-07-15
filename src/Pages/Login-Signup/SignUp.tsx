@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import e from "express";
 import "./SignUp.css";
 
 const SignUp = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const [cookies, setCookie] = useCookies(undefined);
   const [isLogin, setIsLogin] = useState(true);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +18,7 @@ const SignUp = () => {
     setIsLogin(status);
   };
   console.log(isLogin);
+  console.log(import.meta.env.VITE_REACT_APP_SERVERURL);
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
@@ -30,7 +29,6 @@ const SignUp = () => {
       setError("Make sure passwords match!");
       return;
     }
-
     const response = await fetch(
       `${import.meta.env.VITE_REACT_APP_SERVERURL}/${endpoint}`,
       {

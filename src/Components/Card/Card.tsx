@@ -1,27 +1,13 @@
 import "./Card.css";
-import { useState } from "react";
-import { useCookies } from "react-cookie";
 
-interface bookData {
-  book_title: String;
-  book_author: String;
-  book_publisher: String;
-  email: String;
-  date: Date;
-  thumbnail: String;
-  categories: String;
-  volume_id: String;
-}
 
 interface Props {
   book: any;
-  setData: (data: bookData) => void;
   setBookItem: (item: Object) => void;
   setShowModal: (showModal: boolean) => void;
 }
 
 const Card = (props: Props) => {
-  const [cookies, setCookie, removeCookie] = useCookies(undefined);
   let thumbnail =
     props.book.volumeInfo.imageLinks &&
     props.book.volumeInfo.imageLinks.thumbnail;
@@ -33,16 +19,6 @@ const Card = (props: Props) => {
           onClick={() => {
             props.setShowModal(true);
             props.setBookItem(props.book);
-            props.setData({
-              book_title: props.book.volumeInfo.title,
-              book_author: props.book.volumeInfo.authors,
-              book_publisher: props.book.volumeInfo.publisher,
-              email: cookies.Email,
-              date: new Date(),
-              thumbnail: props.book.volumeInfo.imageLinks.thumbnail,
-              categories: props.book.volumeInfo.categories,
-              volume_id: props.book.id,
-            });
           }}
         >
           <img

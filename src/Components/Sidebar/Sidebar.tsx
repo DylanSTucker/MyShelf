@@ -10,13 +10,17 @@ type Props = {
 };
 
 const Sidebar = (props: Props) => {
-  const [cookies, setCookies, removeCookie] = useCookies(undefined);
+  const [cookies, setCookies, removeCookie] = useCookies();
 
+  
   const signOut = () => {
+    console.log(cookies.email);
+    setCookies("Email", "");
     removeCookie("Email");
     removeCookie("AuthToken");
     window.location.reload();
   };
+  
   const addFilter = (filter: string) => {
     //return if this is a duplicate
     if (filter in props.filters) {
@@ -27,8 +31,8 @@ const Sidebar = (props: Props) => {
     props.resetFilters();
   };
   const handleSetShelf = () =>{
-    props.setShelf(props.shelf === false ? true : false);
-    
+    props.setShelf(true);
+    //props.setFeed(false);
   }
 
   return (

@@ -1,7 +1,6 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./ShelfModal.css";
 import { useCookies } from "react-cookie";
-import axios from "axios";
 import { getBookInfo } from "../../scripts/scrape";
 
 type Props = {
@@ -18,7 +17,7 @@ interface bookNotesEntry {
 }
 
 const ShelfModal = ({ showModal, item, onClose }: Props) => {
-  const [cookies, setCookie, removeCookie] = useCookies(undefined);
+  const [cookies] = useCookies(undefined);
   const [data, setData] = useState<any>({
     title: "",
     author: "",
@@ -71,7 +70,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const removeFromShelf = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}/remove`,
+        `${import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER}/${userEmail}/remove`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -89,7 +88,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
 
   const getNotes = async () => {
     const req = await fetch(
-      `${import.meta.env.VITE_SERVERURL_NOTES_USER}/${userEmail}/${
+      `${import.meta.env.VITE_REACT_APP_SERVERURL_NOTES_USER}/${userEmail}/${
         item.volume_id
       }`
     );

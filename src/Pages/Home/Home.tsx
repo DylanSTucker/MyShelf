@@ -1,7 +1,7 @@
 import "./Home.css";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Feed from "../../Components/Feed/Feed";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
@@ -15,10 +15,9 @@ type Props = {
 let filters = new Set<string>();
 
 const Home = (props: Props) => {
-  const google_api_key = import.meta.env.VITE_GOOGLE_BOOKS_API_KEY;
+  const google_api_key = import.meta.env.VITE_REACT_APP_GOOGLE_BOOKS_API_KEY;
 
   const [shelf, setShelf] = useState(true);
-  const [feed, setFeed] = useState(false);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
@@ -47,13 +46,12 @@ const Home = (props: Props) => {
     if (filters.size < 1 || data.length < 1) return data;
     let newData: object[] = [];
     let duplicates = new Set<object>([]);
-    //console.log(data[0].title);
+
     data.forEach((item: object) => {
       if ("categories" in item) {
         let str: string[] = [];
         try {
           str = String(item.categories).split(",");
-          console.log(str);
           str.forEach((i: string) => {
             if (filters.has(i) && !duplicates.has(item)) {
               newData.push(item);
@@ -80,7 +78,6 @@ const Home = (props: Props) => {
     resetFilters();
   };
 
-
   return (
     <>
       <Navbar
@@ -101,18 +98,17 @@ const Home = (props: Props) => {
         filters={filters}
         resetFilters={resetFilters}
       />
-      {!shelf && feed &&
+      {!shelf &&
         <div className={"container"}>
             <Feed
               allBookData={allBookData}
               search={search}
               searchUpdate={searchUpdate}
               setSearchUpdate={setSearchUpdate}
-              setFeed={setFeed}
             />
         </div>
       }
-      {shelf && !feed && 
+      {shelf && 
             <div className={"shelf-container"}>
             <Filters key={seed} filters={filters} removeFilters={removeFilters} />
             <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />

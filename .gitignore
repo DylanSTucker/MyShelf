@@ -24,7 +24,10 @@ dist-ssr
 *.sw?
 *.pem
 
+#secrets
+secretsCode.ts
+
 #env
 .env
 db.env
-
+app.env

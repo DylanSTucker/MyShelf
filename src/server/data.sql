@@ -22,7 +22,7 @@ CREATE TABLE notes(
     id VARCHAR(255) PRIMARY KEY,
     title VARCHAR(100),
     note VARCHAR(3000),
-    volume_id VARCHAR(500)
+    volume_id VARCHAR(500),
     email VARCHAR(255),
-    comment_date VARCHAR(255),
+    comment_date VARCHAR(255)
 );
