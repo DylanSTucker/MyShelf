@@ -21,7 +21,7 @@ function App() {
   const getData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/shelf/${userEmail}`
+        `${process.env.SERVERURL_SHELF_USER}/${userEmail}`
       );
       const json = await response.json();
       setInfo(json);

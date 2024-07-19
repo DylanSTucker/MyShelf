@@ -70,7 +70,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const removeFromShelf = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER}/${userEmail}/remove`,
+        `${process.env.SERVERURL_SHELF_USER}/${userEmail}/remove`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -88,7 +88,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
 
   const getNotes = async () => {
     const req = await fetch(
-      `${import.meta.env.VITE_REACT_APP_SERVERURL_NOTES_USER}/${userEmail}/${
+      `${process.env.SERVERURL_NOTES_USER}/${userEmail}/${
         item.volume_id
       }`
     );
@@ -123,7 +123,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_SERVERURL_SHELF_USER}/${userEmail}/change`,
+        `${process.env.SERVERURL_SHELF_USER}/${userEmail}/change`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

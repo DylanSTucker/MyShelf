@@ -18,7 +18,7 @@ const SignUp = () => {
     setIsLogin(status);
   };
   console.log(isLogin);
-  console.log(import.meta.env.VITE_REACT_APP_SERVERURL);
+  console.log(process.env.SERVERURL);
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
@@ -30,7 +30,7 @@ const SignUp = () => {
       return;
     }
     const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_SERVERURL}/${endpoint}`,
+      `${process.env.SERVERURL}/${endpoint}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

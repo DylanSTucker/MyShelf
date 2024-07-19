@@ -15,7 +15,7 @@ type Props = {
 let filters = new Set<string>();
 
 const Home = (props: Props) => {
-  const google_api_key = import.meta.env.VITE_REACT_APP_GOOGLE_BOOKS_API_KEY;
+  const google_api_key = process.env.GOOGLE_BOOKS_API_KEY;
 
   const [shelf, setShelf] = useState(true);
   const [sidebar, setSidebar] = useState(true);

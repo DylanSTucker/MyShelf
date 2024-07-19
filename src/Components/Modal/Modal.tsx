@@ -23,8 +23,6 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     volume_id: "",
   });
   const userEmail = cookies.Email;
-  console.log(import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER + "/" + userEmail);
-
 
   if (!showModal) {
     return null;
@@ -40,7 +38,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     //should get categories from api call as it contains more information. Put this in a new function
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_SERVERURL_SHELF_USER}/${userEmail}`,
+        `${process.env.SERVERURL_SHELF_USER}/${userEmail}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

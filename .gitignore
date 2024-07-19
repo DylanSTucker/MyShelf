@@ -31,3 +31,7 @@ secretsCode.ts
 .env
 db.env
 app.env
+
+#cert
+server.key
+server.cert
