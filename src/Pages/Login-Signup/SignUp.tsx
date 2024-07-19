@@ -17,8 +17,6 @@ const SignUp = () => {
     setError("");
     setIsLogin(status);
   };
-  console.log(isLogin);
-  console.log(process.env.SERVERURL);
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
