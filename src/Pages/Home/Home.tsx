@@ -99,7 +99,7 @@ const Home = (props: Props) => {
         resetFilters={resetFilters}
       />
       {!shelf &&
-        <div className={"container"}>
+        <div className={"feed-container"}>
             <Feed
               allBookData={allBookData}
               search={search}

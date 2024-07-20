@@ -25,7 +25,7 @@ const Feed = (props: Props) => {
     props.setSearchUpdate(false);
   }, [query]); //only re-run the effect if query changes
   return (
-    <div className="feed-container">
+    <div className="fd">
       {query && !showModal && (
         <div className="query">
           <h2>Search results for "{query}"</h2>

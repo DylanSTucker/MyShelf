@@ -1,8 +1,9 @@
 .itemCard{
     background-color: var(--dark);
-    padding-top: 1rem;
+    padding: 1rem;
+    max-width: 176px;
+    max-height: 290px;
     margin-bottom: 10px;
-    /*box-shadow: 0 5px 5px rgba(255,255,255,.5);*/
     transition: .5s;
     text-align: center;
     position: relative;

@@ -62,7 +62,7 @@ const Sidebar = (props: Props) => {
         </div>
         <div className="side-link" onClick={() => addFilter("Want to Read")}>
           <i className="fa-solid fa-bookmark" />
-          <p>Want To Read</p>
+          <p>To Be Read</p>
         </div>
         <div className="side-link">
           <i className="fa-solid fa-chart-simple" />

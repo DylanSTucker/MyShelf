@@ -11,7 +11,6 @@ When user wants to uncollapse sidebar, it should overlap feed/shelf
     padding-left: 2%;
     padding-top: 80px;
     text-overflow: ellipsis;
-
 }
 p{
     color: var(--darkest);
@@ -66,7 +65,7 @@ i{
 
 
 /*mobile formatting*/
-@media all and (max-width: 790px){
+@media all and (max-width: 799px){
     .side-link{
         display:block;
         padding-bottom: 10px;
