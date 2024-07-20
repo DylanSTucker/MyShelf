@@ -24,6 +24,7 @@ nav{
     margin-right: 15px;
     padding: 8px 12px;
     border-radius: 25px;
+    white-space: nowrap;
 }
 
 .nav-middle .search-box input{
@@ -45,4 +46,27 @@ nav{
 .nav-right .user-icon{
     width: 35px;
     border-radius: 50%;
+}
+
+/*mobile formatting*/
+@media all and (min-width: 300px) and (max-width: 524px){
+    /*shrink search box*/
+    .nav-middle .search-box{
+        width:auto;
+    }
+
+    .nav-middle .search-box img i{
+        width: 10px;
+    }
+
+    .nav-middle .search-box input{
+        width: auto;
+    }
+    
+    
+}
+@media all and (max-width: 149px){
+    nav{
+        position:fixed;
+    }
 }

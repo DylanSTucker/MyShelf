@@ -8,6 +8,8 @@
     grid-gap:10px;
     box-sizing: border-box;
     position: relative;
+    justify-content: center;
+
 }
 .no-books{
     text-align: center;
@@ -15,3 +17,26 @@
     margin-top: 100px;
     color: var(--light);
 }
+
+
+/*mobile formatting*/
+@media all and (min-width: 900px) and (max-width: 1024px){
+
+    .shelf{
+    }
+}
+/*mobile formatting*/
+@media all and (min-width: 828px) and (max-width: 899px){
+
+    .shelf{
+    }
+}
+
+/*mobile formatting*/
+@media all and (min-width: 210px) and (max-width: 370px){
+
+    .shelf{
+        width: 200px;
+    }
+}
+

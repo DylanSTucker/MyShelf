@@ -10,3 +10,21 @@
     justify-content: center;
 
 }
+
+/*mobile formatting*/
+@media all and (min-width: 210px) and (max-width: 370px){
+
+    .shelf-container{
+        justify-content: center;
+        padding-left: 30%;
+
+    }
+}
+
+@media all and (max-width: 209px){
+    .shelf-container{
+        position:fixed;
+        padding-left: 40px;
+        background: var(--white);
+    }
+}

@@ -3,14 +3,15 @@ when width goes below 1100px, sidebar should auto collapse.
 When user wants to uncollapse sidebar, it should overlap feed/shelf
 */
 .sidebar{
-    background: var(--white);
     width: 15%;
     min-width: 150px;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     padding-left: 2%;
     padding-top: 80px;
+    text-overflow: ellipsis;
+
 }
 p{
     color: var(--darkest);
@@ -30,18 +31,17 @@ i{
 }
 .shortcut-links i{
     width: 20px;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 .side-link{
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     width: fit-content;
-    flex-wrap: wrap;
     cursor: pointer;
 }
 .side-link i{
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }
 .sidebar hr{
     border: 0;
@@ -59,4 +59,65 @@ i{
     width: 25px;
     border-radius: 50%;
     margin-right: 20px;
+}
+.side-link p{
+    font-size: 15px;
+}
+
+
+/*mobile formatting*/
+@media all and (max-width: 790px){
+    .side-link{
+        display:block;
+        padding-bottom: 10px;
+        width: 60px;
+        text-align: center;
+    }
+    .side-link p{
+        font-size: small;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+    }
+    .side-link i{
+        display:block;
+        padding-bottom: 5px;
+        margin: auto;
+        transform: scale(1.5);
+
+    }
+}
+
+/*mobile formatting*/
+@media all and (max-width: 209px){
+    .sidebar{
+        position: absolute;
+        z-index: 1;
+        max-width: 30px;
+    }
+    .shortcut-links{
+        width: 30px;
+    }
+    .side-link{
+        display:block;
+        padding-bottom: 1px;
+        width: 30px;
+        text-align: center;
+    }
+    .side-link p{
+        font-size:xx-small;
+        display: none;
+    }
+    .side-link i{
+        display:block;
+        padding-bottom: 5px;
+        margin: auto;
+        transform: scale(1);
+    }
+    .sidebar hr{
+        border: 0;
+        height: 1px;
+        background: var(--darkest);
+        width: 20%;
+    }
 }

@@ -54,4 +54,17 @@
     color: var(--darkest);
 }
 
-
+/*mobile formatting*/
+@media all and (min-width: 960px) and (max-width: 1024px){
+    .bookCard{
+        background-color: var(--dark);
+        padding: 1rem;
+        max-width: 176px;
+        max-height: 290px;
+        margin-bottom: 10px;
+        transition: .5s;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+}
