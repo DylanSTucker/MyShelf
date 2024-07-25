@@ -96,3 +96,21 @@
 .comment{
     text-align: start;
 }
+
+@media all and (max-width: 900px){
+    .background-modal{
+        display: none;
+    }
+}
+
+
+@media all and (min-width: 300px) and (max-width: 400px){
+
+    .info{
+    }
+
+    .background-modal{
+        display: none;
+    }
+}
+

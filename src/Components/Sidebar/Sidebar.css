@@ -11,7 +11,19 @@ When user wants to uncollapse sidebar, it should overlap feed/shelf
     padding-left: 2%;
     padding-top: 80px;
     text-overflow: ellipsis;
+    overflow-y: scroll;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidebar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .sidebar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 p{
     color: var(--darkest);
 }
@@ -85,6 +97,9 @@ i{
         transform: scale(1.5);
 
     }
+    .sidebar hr{
+        width: 40%;
+    }
 }
 
 /*mobile formatting*/
@@ -92,7 +107,8 @@ i{
     .sidebar{
         position: absolute;
         z-index: 1;
-        max-width: 30px;
+        min-width: 40px !important;
+        overflow-y: hidden;
     }
     .shortcut-links{
         width: 30px;

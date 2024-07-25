@@ -193,9 +193,9 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
               <option
                 className="option"
                 value="Want To Read"
-                selected={categories[categories.length - 1] == "Want To Read"}
+                selected={categories[categories.length - 1] == "To Be Read"}
               >
-                Want To Read
+                To Be Read
               </option>
               <option
                 className="option"

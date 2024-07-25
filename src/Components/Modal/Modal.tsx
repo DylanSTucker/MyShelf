@@ -115,9 +115,9 @@ const Modal = ({ showModal, item, onClose }: Props) => {
             </button>
             <button
               className="want-to-read"
-              onClick={() => addToShelf("Want To Read")}
+              onClick={() => addToShelf("To Be Read")}
             >
-              Want to Read
+              To Be Read
             </button>
             <button
               className="want-to-read"

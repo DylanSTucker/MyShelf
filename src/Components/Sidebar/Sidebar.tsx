@@ -15,7 +15,7 @@ const Sidebar = (props: Props) => {
   
   const signOut = () => {
     console.log(cookies.email);
-    setCookies("Email", "");
+    setCookies("Email", cookies.Email);
     removeCookie("Email");
     removeCookie("AuthToken");
     window.location.reload();
@@ -32,7 +32,8 @@ const Sidebar = (props: Props) => {
   };
   const handleSetShelf = () =>{
     props.setShelf(true);
-    //props.setFeed(false);
+    window.location.reload();
+
   }
 
   return (

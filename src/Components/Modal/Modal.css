@@ -34,11 +34,12 @@
     display: flex;
     justify-content: center;
 }
-.overlay-inner .inner-box .thumbnail{
+.overlay-inner .inner-box .thumbnail {
     margin-right: 30px;
     width: 126px;
     height: 202px;
 }
+
 .modal-imgs{
     position:relative;
 }
@@ -142,4 +143,16 @@
     text-decoration: underline;
     display: block;
     margin: 0 auto;
+}
+
+
+@media all and (min-width: 150px) and (max-width: 209px){
+    .overlay{
+        padding-top: 0px; 
+    }
+}
+@media all and (max-width: 149px){
+    .overlay{
+        padding-top: 0px; 
+    }
 }

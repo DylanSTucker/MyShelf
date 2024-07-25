@@ -11,11 +11,12 @@ type Props = {
 const Shelf = (props: Props) => {
   const [showModal, setShowModal] = useState(false);
   const [bookItem, setBookItem] = useState<Object>();
-  console.log(props.itemInfo.length);
   return (
     <>
     {props.itemInfo.length<=0 && (
-      <h1 className="no-books">There are no books in your shelf</h1>
+      <div className="no-books">
+        <h1>There are no books in your shelf</h1>
+      </div>
     )}
       {!showModal && (
         <div className="shelf">
