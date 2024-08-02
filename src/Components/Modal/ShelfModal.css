@@ -7,16 +7,12 @@
     width: 500px;
     height: 100px;
 }
-.tags{
-    margin: 5px;
-}
 .tag-selector{
     display: flex;
     justify-content: center;
-    margin: 50px 20px 20px;
+    margin: 30px 20px 20px;
     padding-right: 30px;
     border: 10px;
-
 }
 .selector{   
     padding: 3px 10px 3px; 
@@ -102,6 +98,15 @@
         display: none;
     }
 }
+@media all and (max-width: 700px){
+    .title{
+        font-size: small;
+    }
+    .tags{
+        font-size: small;
+    }
+}
+
 
 
 @media all and (min-width: 300px) and (max-width: 400px){

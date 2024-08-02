@@ -83,7 +83,7 @@ img{
     background: var(--white);
     overflow-x: hidden;
 }
-@media all and (max-width: 400px){
+@media all and (max-width: 450px){
     body{
         position: absolute;
     }

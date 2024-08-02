@@ -170,12 +170,13 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
               */}
               <div className="categories">
                 {categories?.map((category: string) => (
-                  <div className="tags">{category}</div>
+                  <div className="tags"><p>{category}</p></div>
                 ))}
               </div>
               <br></br>
             </div>
           </div>
+
           <div className="tag-selector">
             <select
               className="selector"

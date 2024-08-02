@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import SignUp from "./Pages/Login-Signup/SignUp";
+import Landing from "./Pages/Landing/LandingPage";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
@@ -43,7 +44,10 @@ We should probably make the login/signup into one page
       {/*<Navbar />*/}
       <Routes>
         {authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
-        {!authToken && <Route path="/" element={<SignUp />} />}
+        {!authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
+
+        {/*!authToken && <Route path="/" element={<SignUp />} />*/}
+        {/*!authToken && <Route path="/" element={<Landing />} />*/}
 
         {/*Using '!' is not a good solution. 
         It tells typescript that 'tasks' will not be null, but it could be in some instances. Find a better solution */}

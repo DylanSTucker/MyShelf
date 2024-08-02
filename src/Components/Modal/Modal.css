@@ -66,12 +66,21 @@
 .overlay-inner .inner-box .publisher{
     font-size: 1rem;
 }
+.categories{
+    display: flex;
+}
 .tags{
     color: var(--darkest);
     background-color: var(--highlight);
-    display: inline-block;
+    display:inline-block;
     border-radius: 5px;
     padding: 0.2em 0.2em 0.2em 0.2em;
+    margin: 5px;
+}
+.tags p{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 0;
 }
 .page-count{
     color: var(--darkest);
@@ -145,6 +154,11 @@
     margin: 0 auto;
 }
 
+@media all and (max-width: 700px){
+    .authors, .publisher{
+        font-size: 10px !important;
+    }
+}
 
 @media all and (min-width: 150px) and (max-width: 209px){
     .overlay{

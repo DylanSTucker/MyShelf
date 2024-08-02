@@ -31,4 +31,13 @@ export default {
 
 - change directory to root directory
 - enter command:
-  npm i --legacy-peer-deps
+  npm i
+
+- To build this project run the following commands in a terminal in the root directory
+  npm run build
+  npm run deploy
+  
+- in a seperate terminal run the following commands in the root directory
+  cd src/server
+  npx tsc
+  npm run deploy
