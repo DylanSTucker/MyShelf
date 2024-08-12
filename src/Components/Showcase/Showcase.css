@@ -1,0 +1,50 @@
+.itemShowcase{
+    background-color: var(--dark);
+    padding: 1rem;
+    max-width: 400px;
+    max-height: 290px;
+    margin-bottom: 10px;
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    margin: auto;
+}
+.itemShowcase .thumbnail{
+    width: 132px;
+    height: 197px;
+
+    position: relative;
+    
+    z-index: 1;
+}
+
+.itemShowcase .backgroundShowcase{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(50px);
+    /*transform: scale(3);*/
+    width: 100%;
+    height: auto;
+}
+
+.itemShowcase .info-container{
+    display: block;
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.itemShowcase .title{
+    font-weight: bold;
+    font-size: xx-large;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0;
+    color: var(--darkest);
+}

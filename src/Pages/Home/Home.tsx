@@ -6,6 +6,8 @@ import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
 import Filters from "../../Components/Filters/Filters";
+import HomeTab from "../../Components/Home/HomeTab";
+import { useCookies } from "react-cookie";
 
 type Props = {
   itemInfo: Object[];
@@ -17,12 +19,17 @@ let filters = new Set<string>();
 const Home = (props: Props) => {
   const google_api_key = process.env.GOOGLE_BOOKS_API_KEY;
 
+  const [cookies] = useCookies(undefined);
+  const authToken = cookies.AuthToken;
+
+
   const [shelf, setShelf] = useState(true);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
   const [allBookData, setAllBookData] = useState([]);
   const [seed, setSeed] = useState(1);
+  
   const searchBook = (evt: { key: string }) => {
     if (evt.key === "Enter") {
       axios
@@ -98,7 +105,7 @@ const Home = (props: Props) => {
         filters={filters}
         resetFilters={resetFilters}
       />
-      {!shelf &&
+      {authToken && !shelf &&
         <div className={"feed-container"}>
             <Feed
               allBookData={allBookData}
@@ -108,7 +115,10 @@ const Home = (props: Props) => {
             />
         </div>
       }
-      {shelf && 
+      {!authToken &&
+        <HomeTab/>
+      }
+      {authToken && shelf && 
             <div className={"shelf-container"}>
             <Filters key={seed} filters={filters} removeFilters={removeFilters} />
             <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />

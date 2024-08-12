@@ -1,4 +1,6 @@
 import "./Navbar.css";
+import { useCookies } from "react-cookie";
+
 
 type Props = {
   search: string;
@@ -13,6 +15,9 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
+  const [cookies] = useCookies(undefined);
+
+
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     props.setShelf(false);
@@ -53,6 +58,12 @@ const Navbar = (props: Props) => {
           </form>
         </div>
       </div>
+      {!cookies.authToken &&
+          <div className="login-buttons">
+            <button className="sign-up">Sign Up</button>
+            <button className="login">Login</button>
+          </div>
+        }
     </nav>
   );
 };
