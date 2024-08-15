@@ -1,14 +1,11 @@
 import "./HomeTab.css";
-import axios from "axios";
+import {searchBooks} from "../../scripts/googleBooks";
 import Card from "../Card/Card";
-import Showcase from "../Showcase/Showcase"
+import Showcase from "../Showcase/Showcase";
 import Modal from "../Modal/Modal";
 
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-
-const google_api_key = process.env.GOOGLE_BOOKS_API_KEY;
-
 
 interface Props{
     search: string;
@@ -25,22 +22,14 @@ const Search = (props: Props) =>{
 
     const [allBookData, setAllBookData] = useState([]);
 
-    const searchBook = async () => {
-        axios
-        .get(
-            "https://www.googleapis.com/books/v1/volumes?q=" + props.search +
-            "&key=" +
-            google_api_key +
-            "&maxResults=" + props.maxResults
-        )
-        .then((res) => setAllBookData(res.data.items))
-        .catch((err) => console.log(err));
-      };
-      useEffect(() => {
+
+    useEffect(() => {
         if(!cookies.authToken){
-            searchBook();
+            //search google books
+            searchBooks(props.search, setAllBookData, props.maxResults);
         }
-      }, []); //only re-run the effect if query changes
+    }, []); //only re-run the effect if query changes
+
     if(props.showcase){
         return (
             <div className="searches-container">
@@ -81,7 +70,7 @@ const HomeTab = () => {
     <div className="home-container">
         {!showModal && 
             <>
-                <div className="showcase">
+            <div className="showcase">
                     <Search 
                         search={"Mistborn"}
                         tag={"Mistborn"}
@@ -108,6 +97,18 @@ const HomeTab = () => {
                     maxResults={5}
                     showcase={false}
                 />
+
+                <div className="showcase">
+                    <Search 
+                        search={"Meditations: A New Translation"}
+                        tag={"Meditations"}
+                        setBookItem={setBookItem}
+                        setShowModal={setShowModal}
+                        maxResults={1}
+                        showcase={true}
+                    />
+                </div>
+
                 <Search 
                     search={"subject:'Philosophy'"}
                     tag={"Philosophy"}

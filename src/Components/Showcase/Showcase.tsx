@@ -1,4 +1,5 @@
 import { useCookies } from "react-cookie";
+import {searchBooks} from "../../scripts/googleBooks";
 import "./Showcase.css"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -21,20 +22,9 @@ const Showcase = (props: Props) => {
 
     const [allBookData, setAllBookData] = useState([]);
 
-    const searchBook = async () => {
-        axios
-        .get(
-            "https://www.googleapis.com/books/v1/volumes?q=" + props.search +
-            "&key=" +
-            google_api_key +
-            "&maxResults=1"
-        )
-        .then((res) => setAllBookData(res.data.items))
-        .catch((err) => console.log(err));
-      };
-      useEffect(() => {
+    useEffect(() => {
         if(!cookies.authToken){
-            searchBook();
+            searchBooks(props.search, setAllBookData, 1);
         }
       }, []); //only re-run the effect if query changes
 

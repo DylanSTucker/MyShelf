@@ -9,7 +9,7 @@ When user wants to uncollapse sidebar, it should overlap feed/shelf
     position: fixed;
     top: 0;
     padding-left: 2%;
-    padding-top: 80px;
+    padding-top: 90px;
     text-overflow: ellipsis;
     overflow-y: scroll;
 }

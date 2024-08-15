@@ -43,7 +43,6 @@
     font-weight: bold;
     font-size: xx-large;
     text-overflow: ellipsis;
-    white-space: nowrap;
     overflow: hidden;
     margin: 0;
     color: var(--darkest);
