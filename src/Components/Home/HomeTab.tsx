@@ -68,6 +68,25 @@ const HomeTab = () => {
 
   return (
     <div className="home-container">
+        <div className="welcome-text">
+            <div className="emphasis">Welcome To <p>&nbsp;Your&nbsp;</p>  Shelf</div>
+        </div>
+        <div className="tagline">
+            <p>Keep Track of Your Books. Take Notes. View Stats</p>
+        </div>
+        <div className="quotes-container">
+            <p></p>
+        </div>
+
+        <div className="login-buttons">
+            <button className="sign-up">Sign Up</button>
+            <button className="login">Login</button>
+        </div>
+
+        <div className="screenshot-container">
+            <div className="screenshot-background"/>
+        </div>
+
         {!showModal && 
             <>
             <div className="showcase">

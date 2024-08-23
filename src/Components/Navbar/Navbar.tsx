@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import {searchBooks} from "../../scripts/googleBooks";
 import { useCookies } from "react-cookie";
 
 
@@ -7,7 +8,7 @@ type Props = {
   setSearch: (search: string) => void;
   searchUpdate: boolean;
   setSearchUpdate: (searchUpdate: boolean) => void;
-  searchBook: (evt: { key: string }) => void;
+  setAllBookData: (item: []) => void;
   sidebar: boolean;
   setSidebar: (sidebar: boolean) => void;
   shelf: boolean;
@@ -17,13 +18,13 @@ type Props = {
 const Navbar = (props: Props) => {
   const [cookies] = useCookies(undefined);
 
-
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     props.setShelf(false);
     props.setSearchUpdate(true);
-    //props.searchUpdate = true;
-    console.log(props.searchUpdate, "search");
+
+    //search google books api
+    searchBooks(props.search, props.setAllBookData, 40);
   };
   return (
     <nav className="flex-div">
@@ -52,18 +53,11 @@ const Navbar = (props: Props) => {
               placeholder="search"
               value={props.search}
               onChange={(e) => props.setSearch(e.target.value)}
-              onKeyDown={props.searchBook}
             />
             <i className="fa-solid fa-magnifying-glass" />
           </form>
         </div>
       </div>
-      {!cookies.authToken &&
-          <div className="login-buttons">
-            <button className="sign-up">Sign Up</button>
-            <button className="login">Login</button>
-          </div>
-        }
     </nav>
   );
 };

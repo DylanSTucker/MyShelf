@@ -17,7 +17,6 @@ type Props = {
 let filters = new Set<string>();
 
 const Home = (props: Props) => {
-  const google_api_key = process.env.GOOGLE_BOOKS_API_KEY;
 
   const [cookies] = useCookies(undefined);
   const authToken = cookies.AuthToken;
@@ -29,7 +28,7 @@ const Home = (props: Props) => {
   const [searchUpdate, setSearchUpdate] = useState(true);
   const [allBookData, setAllBookData] = useState([]);
   const [seed, setSeed] = useState(1);
-  
+  /*
   const searchBook = (evt: { key: string }) => {
     if (evt.key === "Enter") {
       axios
@@ -44,6 +43,7 @@ const Home = (props: Props) => {
         .catch((err) => console.log(err));
     }
   };
+  */
   const resetFilters = () => {
     setSeed(Math.random());
   };
@@ -92,19 +92,23 @@ const Home = (props: Props) => {
         setSearch={setSearch}
         searchUpdate={searchUpdate}
         setSearchUpdate={setSearchUpdate}
-        searchBook={searchBook}
+        setAllBookData={setAllBookData}
         setSidebar={setSidebar}
         sidebar={sidebar}
         shelf={shelf}
         setShelf={setShelf}
       />
-      <Sidebar
-        sidebar={sidebar}
-        shelf={shelf}
-        setShelf={setShelf}
-        filters={filters}
-        resetFilters={resetFilters}
-      />
+
+      {authToken && 
+        <Sidebar
+          sidebar={sidebar}
+          shelf={shelf}
+          setShelf={setShelf}
+          filters={filters}
+          resetFilters={resetFilters}
+        />
+      }
+
       {authToken && !shelf &&
         <div className={"feed-container"}>
             <Feed

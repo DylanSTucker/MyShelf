@@ -48,28 +48,6 @@ nav{
     border-radius: 50%;
 }
 
-.login-buttons{
-    display: flex;
-    width: 200px;
-    margin: 10px 10px 10px 10px;
-}
-
-.sign-up{
-    background: var(--highlight);
-    width: 125px;
-    border: 5px;
-    margin-right: 5px;
-    padding: 12px 32px;
-    border-radius: 10px; 
-    font-size: 16px;
-}
-.login{
-    background: none;
-    border: none;
-    text-decoration: underline;
-    font-size: large;
-    color: var(--darkest);
-}
 
 /*mobile formatting*/
 @media all and (min-width: 300px) and (max-width: 524px){
