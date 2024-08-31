@@ -46,7 +46,7 @@ We should probably make the login/signup into one page
         {authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
         {!authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
 
-        {/*!authToken && <Route path="/" element={<SignUp />} />*/}
+        {!authToken && <Route path="/SignUp" element={<SignUp />} />}
         {/*!authToken && <Route path="/" element={<Landing />} />*/}
 
         {/*Using '!' is not a good solution. 

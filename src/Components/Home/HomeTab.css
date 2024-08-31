@@ -6,6 +6,54 @@
     /*background: var(--white);*/
     justify-content: center;
 }
+nav{
+    display: flex;
+    justify-content: space-between;
+
+
+    padding: 10px 2%;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+nav button{
+    background: none;
+    border:none;
+    padding: 8px;
+    margin: 3px;
+    color: var(--darkest);
+}
+.nav-buttons{
+    display: inline-flex;
+    margin-right: 200px;
+}
+.nav-logo p{
+    margin-left: 20px;
+}
+.nav-logo i{
+    margin-top: 10px;
+}
+.nav-logo{
+    display: inline-flex;
+    width: 50px;
+    margin-left: 200px;
+    white-space: nowrap;
+
+}
+.divider{
+    border-left: 1px solid var(--dark);
+    height: 40px;
+}
+
+.nav-login{
+    border: 1px solid var(--darkest);
+    padding: 8px;
+    border-radius: 4px;
+    background: none;
+    margin: 3px;
+    color: var(--darkest);
+}
 
 .email-container, .password-container{
     width: 300px;

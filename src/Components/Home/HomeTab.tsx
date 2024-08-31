@@ -3,9 +3,11 @@ import {searchBooks} from "../../scripts/googleBooks";
 import Card from "../Card/Card";
 import Showcase from "../Showcase/Showcase";
 import Modal from "../Modal/Modal";
+import SignUp from "../../Pages/Login-Signup/SignUp";
 
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 import TagCloud from "TagCloud";
 
@@ -16,6 +18,30 @@ interface Props{
     setShowModal: (showModal: boolean) => void;
     maxResults: number;
     showcase: boolean;
+}
+
+const LandingNavbar = () =>{
+    return(
+        <nav>
+            <div className="nav-logo">
+                <i className="fa-solid fa-book fa-xl" />
+                <p>My Shelf</p>
+
+            </div>
+            <div className="nav-buttons">
+                <button>Books</button>
+                <button>App</button>
+                <button>Features</button>
+                <div className="divider"></div>
+                <div className="nav-login-buttons">
+                    <button className="nav-signup">Sign Up</button>
+                    <button className="nav-login">Login</button>
+                </div>
+            </div>
+
+        </nav>
+
+    );
 }
 
 const Search = (props: Props) =>{
@@ -68,6 +94,11 @@ const HomeTab = () => {
     const [bookItem, setBookItem] = useState<object>();
     const [showModal, setShowModal] = useState(false);
 
+    const navigate = useNavigate();
+    const redirect = () => {
+        navigate("/SignUp");
+    }
+
 
     useEffect(() => {
         return () => {
@@ -105,6 +136,7 @@ const HomeTab = () => {
 
   return (
     <div className="home-container">
+        <LandingNavbar/>
         <div className="welcome-text">
             <div className="emphasis">Welcome To <p>&nbsp;Your&nbsp;</p>  Shelf</div>
         </div>
@@ -116,29 +148,8 @@ const HomeTab = () => {
         </div>
 
         <div className="login-buttons">
-            <button className="sign-up">Sign Up</button>
-            <button className="login">Login</button>
+            <button className="sign-up" onClick={() => redirect()}>Sign Up</button>
         </div>
-        <div className="email-container">
-            <label htmlFor="email">
-              <strong>Email</strong>
-            </label>
-            <input
-              className="form-control rounded-0"
-              type="email"
-              placeholder="Email"
-            />
-          </div>
-          <div className="password-container">
-            <label htmlFor="password">
-              <strong>Password</strong>
-            </label>
-            <input
-              className="form-control rounded-0"
-              type="password"
-              placeholder="Password"
-            />
-          </div>
         {/*
                 <div className="screenshot-container">
             <div className="screenshot-background"/>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -10,6 +11,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   console.log(cookies);
   const viewLogin = (e: { preventDefault: () => void }, status: boolean) => {
@@ -44,6 +47,7 @@ const SignUp = () => {
       setCookie("UserName", data.user_name);
       setCookie("AuthToken", data.token);
 
+      navigate("/");
       window.location.reload();
     }
   };
