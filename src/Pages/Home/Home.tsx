@@ -87,6 +87,7 @@ const Home = (props: Props) => {
 
   return (
     <>
+    {authToken && 
       <Navbar
         search={search}
         setSearch={setSearch}
@@ -98,7 +99,7 @@ const Home = (props: Props) => {
         shelf={shelf}
         setShelf={setShelf}
       />
-
+    }
       {authToken && 
         <Sidebar
           sidebar={sidebar}

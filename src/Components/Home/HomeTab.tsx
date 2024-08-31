@@ -7,6 +7,8 @@ import Modal from "../Modal/Modal";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
+import TagCloud from "TagCloud";
+
 interface Props{
     search: string;
     tag: string;
@@ -23,6 +25,7 @@ const Search = (props: Props) =>{
     const [allBookData, setAllBookData] = useState([]);
 
 
+    //search for books to display
     useEffect(() => {
         if(!cookies.authToken){
             //search google books
@@ -66,13 +69,47 @@ const HomeTab = () => {
     const [showModal, setShowModal] = useState(false);
 
 
+    useEffect(() => {
+        return () => {
+            const cloud: any = ".tagcloud";
+            const text = [
+                "Fantasy",
+                "Sci-Fi",
+                "Romance",
+                "History",
+                "Fiction",
+                "Non-Fiction",
+                "Science",
+                "Self-Help",
+                "Philosophy",
+                "Thriller",
+                "Historical Fiction",
+                "Memoir",
+                "Poetry",
+                "Essay",
+                "Autobiography",
+                "Fairy Tale",
+            ];
+
+            const options: object = {
+                radius: 200,
+                maxSpeed: "normal",
+                initSpeed: "normal",
+                keep: true,
+            };
+
+            TagCloud(cloud, text, options);
+        }
+    }, []);
+
+
   return (
     <div className="home-container">
         <div className="welcome-text">
             <div className="emphasis">Welcome To <p>&nbsp;Your&nbsp;</p>  Shelf</div>
         </div>
         <div className="tagline">
-            <p>Keep Track of Your Books. Take Notes. View Stats</p>
+            <p>Keep Track of Your Books. Take Notes. View Stats.</p>
         </div>
         <div className="quotes-container">
             <p></p>
@@ -82,23 +119,55 @@ const HomeTab = () => {
             <button className="sign-up">Sign Up</button>
             <button className="login">Login</button>
         </div>
-
-        <div className="screenshot-container">
+        <div className="email-container">
+            <label htmlFor="email">
+              <strong>Email</strong>
+            </label>
+            <input
+              className="form-control rounded-0"
+              type="email"
+              placeholder="Email"
+            />
+          </div>
+          <div className="password-container">
+            <label htmlFor="password">
+              <strong>Password</strong>
+            </label>
+            <input
+              className="form-control rounded-0"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+        {/*
+                <div className="screenshot-container">
             <div className="screenshot-background"/>
+        </div>
+        */}
+        {/*
+        <div className="text-sphere">
+            <span className="tagcloud"></span>
+        </div>
+        */}
+        <div className="home-img-container">
+            <div className="home-img-bg">
+                <img className="home-img" src="/HomePage.png" alt="" />
+            </div>
         </div>
 
         {!showModal && 
             <>
-            <div className="showcase">
-                    <Search 
-                        search={"Mistborn"}
-                        tag={"Mistborn"}
-                        setBookItem={setBookItem}
-                        setShowModal={setShowModal}
-                        maxResults={1}
-                        showcase={true}
-                    />
-                </div>
+            <div className="showcase-container">
+                <Search 
+                    search={"1984"}
+                    tag={"1984"}
+                    setBookItem={setBookItem}
+                    setShowModal={setShowModal}
+                    maxResults={1}
+                    showcase={true}
+                />
+
+            </div>
                 <Search 
                     search={"subject:'Fantasy'"}
                     tag={"Fantasy"}

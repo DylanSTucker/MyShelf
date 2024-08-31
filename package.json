@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.25.1",
     "serve": "^14.2.3",
+    "TagCloud": "^2.5.0",
     "ts-node": "^10.9.2",
     "vite-plugin-node": "^3.1.0",
     "zod": "^3.23.4"
