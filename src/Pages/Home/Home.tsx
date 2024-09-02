@@ -6,7 +6,6 @@ import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
 import Filters from "../../Components/Filters/Filters";
-import HomeTab from "../../Components/Home/HomeTab";
 import { useCookies } from "react-cookie";
 
 type Props = {
@@ -87,7 +86,6 @@ const Home = (props: Props) => {
 
   return (
     <>
-    {authToken && 
       <Navbar
         search={search}
         setSearch={setSearch}
@@ -99,8 +97,6 @@ const Home = (props: Props) => {
         shelf={shelf}
         setShelf={setShelf}
       />
-    }
-      {authToken && 
         <Sidebar
           sidebar={sidebar}
           shelf={shelf}
@@ -108,7 +104,7 @@ const Home = (props: Props) => {
           filters={filters}
           resetFilters={resetFilters}
         />
-      }
+      
 
       {authToken && !shelf &&
         <div className={"feed-container"}>
@@ -119,9 +115,6 @@ const Home = (props: Props) => {
               setSearchUpdate={setSearchUpdate}
             />
         </div>
-      }
-      {!authToken &&
-        <HomeTab/>
       }
       {authToken && shelf && 
             <div className={"shelf-container"}>

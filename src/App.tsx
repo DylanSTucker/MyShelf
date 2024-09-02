@@ -44,10 +44,10 @@ We should probably make the login/signup into one page
       {/*<Navbar />*/}
       <Routes>
         {authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
-        {!authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />}
+        {/*!authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />*/}
 
         {!authToken && <Route path="/SignUp" element={<SignUp />} />}
-        {/*!authToken && <Route path="/" element={<Landing />} />*/}
+        {!authToken && <Route path="/" element={<Landing />} />}
 
         {/*Using '!' is not a good solution. 
         It tells typescript that 'tasks' will not be null, but it could be in some instances. Find a better solution */}
