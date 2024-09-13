@@ -162,70 +162,62 @@ const LandingPage = () => {
         */}
         <div className="home-img-container">
             <div className="home-img-bg">
-                <img className="home-img" src="/HomePage.png" alt="" />
+                <video autoPlay muted loop className="home-img">
+                    <source src="/home.mp4" type="video/mp4"></source>
+                </video>
+                {/*<img className="home-img" src="/HomePage.png" alt="" />*/}
             </div>
         </div>
+        <div className="header">
+        <h1>Keep Track of Your Thoughts While You Read.</h1>
 
-        {!showModal && 
-            <>
-            <div className="showcase-container">
-                <Search 
-                    search={"1984"}
-                    tag={"1984"}
-                    setBookItem={setBookItem}
-                    setShowModal={setShowModal}
-                    maxResults={1}
-                    showcase={true}
-                />
+        </div>
 
+        <div className="info-container">
+            <div className="info">
+                <h3>Keep Track of Your Reading Journey</h3>
+                <p>
+                Easily organize your personal library by saving books you've read or want to read. 
+                Filter your collection by genre to quickly find the next book on your list.
+                </p>
             </div>
-                <Search 
-                    search={"subject:'Fantasy'"}
-                    tag={"Fantasy"}
-                    setBookItem={setBookItem}
-                    setShowModal={setShowModal}
-                    maxResults={5}
-                    showcase={false}
-                />
+            <div className="info">
+                <h3>Document Your Thoughts</h3>
+                <p>
+                Capture your thoughts, notes, and favorite quotes from each book you read. 
+                Keep everything in one place for easy reference whenever you need it.
+                </p>
+            </div>
+        </div>
+        <div className="info-container">
+            <div className="info">
+                <h3>Comprehensive Catalog</h3>
+                <p>
+                    Explore millions of titles through our seamless integration with Google Books, 
+                    ensuring you always have access to the latest and greatest reads.
+                </p>
+            </div>
+            <div className="info">
+                <h3>It's Free</h3>
+                <p>
+                Enjoy all of these features at no cost. 
+                Sign up today and start building your book collection with no hidden fees or charges!
+                </p>
+            </div>
+        </div>
+        <div className="line"/>
 
-                <Search 
-                    search={"subject:'Fiction'"}
-                    tag={"Fiction"}
-                    setBookItem={setBookItem}
-                    setShowModal={setShowModal}
-                    maxResults={5}
-                    showcase={false}
-                />
 
-                <div className="showcase">
-                    <Search 
-                        search={"Meditations: A New Translation"}
-                        tag={"Meditations"}
-                        setBookItem={setBookItem}
-                        setShowModal={setShowModal}
-                        maxResults={1}
-                        showcase={true}
-                    />
-                </div>
-
-                <Search 
-                    search={"subject:'Philosophy'"}
-                    tag={"Philosophy"}
-                    setBookItem={setBookItem}
-                    setShowModal={setShowModal}
-                    maxResults={5}
-                    showcase={false}
-                />
-            </>
-        }
-
-        {showModal && (
-            <Modal
-            showModal={showModal}
-            item={bookItem}
-            onClose={() => setShowModal(false)}
-            />
-        )}
+        <div className="coming-soon-container">
+            <h1>Coming Soon!</h1>
+        </div>
+        <div className="upcoming-features">
+        <p>App Version</p>
+        <div/>
+        <p>Statistics</p>
+        <div/>
+        <p>Share With Your Friends</p>
+        </div>
     </div>
   )
 }

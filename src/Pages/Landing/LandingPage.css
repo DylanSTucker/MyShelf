@@ -1,3 +1,16 @@
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+        transform: translateY(300px) scale(0.9);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0px) scale(1);
+    }
+}
+
+
 .landing-container{
     width: 100%;
     height: 360px;
@@ -13,7 +26,7 @@ nav{
 
     padding: 10px 2%;
     background: var(--white);
-    position: sticky;
+    position:static;
     top: 0;
     z-index: 10;
 }
@@ -55,11 +68,6 @@ nav button{
     color: var(--darkest);
 }
 
-.email-container, .password-container{
-    width: 300px;
-    margin-bottom: 3px;
-}
-
 
 
 .home-img-container{
@@ -69,6 +77,9 @@ nav button{
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+
+
 .home-img-bg{
     width: 100%;
     height: 100%;
@@ -83,6 +94,62 @@ nav button{
     height: 75%;
     position: relative;
     z-index: 1;
+}
+
+.header{
+    display: block;
+    color: var(--darkest);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+.header h1{
+    font-weight:900;
+
+}
+
+.info-container{
+    display: flex;
+    justify-content: center;
+}
+.info{
+    max-width: 300px;
+    margin: 20px;
+
+    animation: fade-in linear;
+    animation-timeline: scroll(y);
+}
+.info h3{
+    color: var(--highlight);
+}
+.line{
+    display: block;
+    margin:auto;
+    max-width: 800px;
+    border-bottom: 1px solid var(--darkest);
+}
+
+.coming-soon-container{
+    display: block;
+    color: var(--darkest);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.upcoming-features{
+    display: flex;
+    justify-content: center;
+}
+.upcoming-features p{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+.upcoming-features div{
+    border-left: 1px solid var(--highlight);
+    height: 20px;
 }
 
 
