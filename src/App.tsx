@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import SignUp from "./Pages/Login-Signup/SignUp";
+import Login from "./Pages/Login-Signup/Login";
 import Landing from "./Pages/Landing/LandingPage";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
@@ -47,6 +48,7 @@ We should probably make the login/signup into one page
         {/*!authToken && <Route path="/" element={<Home itemInfo={itemInfo} />} />*/}
 
         {!authToken && <Route path="/SignUp" element={<SignUp />} />}
+        {!authToken && <Route path="/Login" element={<Login />} />}
         {!authToken && <Route path="/" element={<Landing />} />}
 
         {/*Using '!' is not a good solution. 

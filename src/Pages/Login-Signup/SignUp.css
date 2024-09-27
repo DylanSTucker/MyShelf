@@ -1,33 +1,57 @@
+
+
 .login-page{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100vh;
     background: var(--white);
 }
 .login-container{
-    padding: 3px;
-    border: rounded;
-    width: 300px;
+    border: 2px solid var(--darkest);
+    border-radius: 8px;
+    padding: 30px;
+    width: 500px;
     position: relative;
+    color: var(--darkest);
+
+}
+.login-page h2{
+    font-size: 2vw;
+    font-weight: 700;
+    color: var(--darkest);
+
+    text-align: center;
+    margin: 10px auto 30px auto;
 }
 .username-container, .email-container, .password-container, .confirm-password-container{
     color: var(--darkest);
-    margin-bottom: 3px;
+    margin: 10px auto 10px auto;
+    padding: 10px;
 }
 .submit-button{
-    width: 75px;
+    width: 100%;
     display: block;
-    margin: 5px auto;
+    margin: 15px auto 10px auto;
+    padding: 6px;
     text-align: center;
-    background-color: var(--darkest);
+    border: 2px solid var(--highlight);
+    border-radius: 8px;
+    background-color: var(--highlight);
+    font-family: "Archivo Black", sans-serif;
 }
 .login-button{
     width: 100%;
-    height: 30px;
-    border-radius: 3px;
+    margin: 5px;
+    text-align: end;
     border: none;
     text-decoration: none;
-    background-color: var(--darkest);
+    background: none;
+    color: var(--highlight);
+    font-family: "Archivo Black", sans-serif;
+
 }
 .signup-button{
     width: 100%;

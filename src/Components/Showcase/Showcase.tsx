@@ -2,7 +2,6 @@ import { useCookies } from "react-cookie";
 import {searchBooks} from "../../scripts/googleBooks";
 import "./Showcase.css"
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 interface Props {
     book: any;
@@ -12,7 +11,6 @@ interface Props {
   }
 
 const Showcase = (props: Props) => {
-    const google_api_key = process.env.GOOGLE_BOOKS_API_KEY;
 
     let thumbnail =
     props.book.volumeInfo.imageLinks &&
@@ -21,6 +19,7 @@ const Showcase = (props: Props) => {
     const [cookies] = useCookies(undefined);
 
     const [allBookData, setAllBookData] = useState([]);
+    console.log(allBookData)
 
     useEffect(() => {
         if(!cookies.authToken){

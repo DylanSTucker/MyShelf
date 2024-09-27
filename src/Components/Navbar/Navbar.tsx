@@ -1,6 +1,5 @@
 import "./Navbar.css";
 import {searchBooks} from "../../scripts/googleBooks";
-import { useCookies } from "react-cookie";
 
 
 type Props = {
@@ -16,7 +15,6 @@ type Props = {
 };
 
 const Navbar = (props: Props) => {
-  const [cookies] = useCookies(undefined);
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();

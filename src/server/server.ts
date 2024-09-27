@@ -7,11 +7,12 @@ const app = express();
 
 app.use(Cors());
 app.use(express.json());
+app.use(express.static('dist-react'));
 
 //db info
 import {pool} from "./db";
 
-app.get("/shelf/:userEmail", async (req: Request, res: Response) =>{
+app.get("/api/shelf/:userEmail", async (req: Request, res: Response) =>{
     //gets user email from request
     const {userEmail} = req.params;
     try{
@@ -23,7 +24,7 @@ app.get("/shelf/:userEmail", async (req: Request, res: Response) =>{
 });
 
 //get users notes from a specific book
-app.get("/notes/:userEmail/:volume_id", async (req: Request, res: Response) =>{
+app.get("/api/notes/:userEmail/:volume_id", async (req: Request, res: Response) =>{
     //gets user email from request
     const {userEmail, volume_id} = req.params;
     try{
@@ -35,7 +36,7 @@ app.get("/notes/:userEmail/:volume_id", async (req: Request, res: Response) =>{
 });
 
 //add a book to the users book shelf
-app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
+app.post('/api/shelf/:userEmail', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
     const {title, author, publisher, publisher_date, thumbnail, categories, volume_id} = req.body;
     console.log(title, userEmail, author, publisher, publisher_date, thumbnail, categories, volume_id);
@@ -51,7 +52,7 @@ app.post('/shelf/:userEmail', async (req: Request, res: Response) =>{
 })
 
 //remove a book from shelf
-app.post('/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
+app.post('/api/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
     const {volume_id} = req.body;
     try{
     const removeFromShelf = pool.query(`DELETE FROM shelf WHERE volume_id=$1`,
@@ -67,7 +68,7 @@ app.post('/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
 })
 
 //add a note to a book
-app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
+app.post('/api/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
     const {title, volume_id, note} = req.body;
     console.log(title, volume_id, note);
@@ -84,7 +85,7 @@ app.post('/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
     }
 })
 //change tag("Read", "Want To Read", "Reading")
-app.post('/shelf/:userEmail/change', async (req: Request, res: Response) =>{
+app.post('/api/shelf/:userEmail/change', async (req: Request, res: Response) =>{
     const {categories, volume_id} = req.body;
     console.log(categories, volume_id);
     
@@ -98,7 +99,7 @@ app.post('/shelf/:userEmail/change', async (req: Request, res: Response) =>{
 })
 
 //endpoint for signup
-app.post('/signup', async(req, res) => {
+app.post('/api/signup', async(req, res) => {
     const {user_name, email, password} = req.body;
 
     //maybe read documentation on this
@@ -121,7 +122,7 @@ app.post('/signup', async(req, res) => {
 
 //endpoint for login
 
-app.post('/login', async(req, res) => {
+app.post('/api/login', async(req, res) => {
     const {user_name, email, password} = req.body;
     try{
         const users = await pool.query('SELECT * FROM users WHERE email = $1', [email]);

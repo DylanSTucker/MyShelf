@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import { VitePluginNode } from "vite-plugin-node";
 import dotenv from 'dotenv';
 //env path for ec2 instance
-//dotenv.config({ path: '/etc/app.env' });
-dotenv.config();
+dotenv.config({ path: '/etc/app.env' });
+//dotenv.config();
 
 
 
@@ -12,7 +12,9 @@ dotenv.config();
 export default defineConfig(({mode}) => {
   return{
     server: {
-      port: 8080,
+      proxy:{
+        '/api': 'https://localhost:8000',
+      }
     },
     plugins:[
       react()

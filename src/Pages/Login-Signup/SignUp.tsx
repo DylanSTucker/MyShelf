@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
 const SignUp = () => {
-  const [cookies, setCookie] = useCookies(undefined);
-  const [isLogin, setIsLogin] = useState(true);
+  const [, setCookie] = useCookies(undefined);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,24 +13,14 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
-  console.log(cookies);
-  const viewLogin = (e: { preventDefault: () => void }, status: boolean) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setError("");
-    setIsLogin(status);
-  };
-
-  const handleSubmit = async (
-    e: { preventDefault: () => void },
-    endpoint: string
-  ) => {
-    e.preventDefault();
-    if (!isLogin && password != confirmPassword) {
+    if (password != confirmPassword) {
       setError("Make sure passwords match!");
       return;
     }
     const response = await fetch(
-      `${process.env.SERVERURL}/${endpoint}`,
+      `${process.env.SERVERURL}/signup`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -53,8 +42,12 @@ const SignUp = () => {
   };
   return (
     <div className="login-page">
+      
+      <header>      
+        <h2>My Shelf</h2>
+      </header>
+
       <div className="login-container">
-        <h2>{isLogin ? "Login" : "Sign-Up"}</h2>
         <form>
           <div className="username-container">
             <label htmlFor="name">
@@ -89,47 +82,32 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          {!isLogin && (
-            <div className="confirm-password-container">
-              <label htmlFor="confirmPassword">
-                <strong>Confirm Password</strong>
-              </label>
-              <input
-                className="form-control rounded-0"
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
-          )}
+          
+          <div className="confirm-password-container">
+            <label htmlFor="confirmPassword">
+              <strong>Confirm Password</strong>
+            </label>
+            <input
+              className="form-control rounded-0"
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          
           {error && <p>{error}</p>}
           <button
           className="submit-button"
             type="submit"
-            onClick={(e) => handleSubmit(e, isLogin ? "login" : "signup")}
+            onClick={(e) => handleSubmit(e)}
           >
-            Submit
+            Sign up
           </button>
           <button
-            className={
-              isLogin
-                ? "login-button"
-                : "login-button-highlight login-button"
-            }
-            //onClick={(e) => handleSubmit(e, "signup")}
-            onClick={(e) => viewLogin(e, true)}
+            className="login-button"
+            onClick={() => navigate("/Login")}
           >
-            <strong>Login</strong>
-          </button>
-          <button
-            className={
-              isLogin
-                ? "signup-button-highlight signup-button"
-                : "signup-button"
-            }
-            onClick={(e) => viewLogin(e, false)}
-          >
-            Sign Up
+            Already Have An Account?
           </button>
         </form>
       </div>

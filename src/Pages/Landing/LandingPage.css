@@ -1,3 +1,6 @@
+
+
+/* Keyframes */
 @keyframes fade-in{
     0%{
         opacity: 0;
@@ -11,80 +14,169 @@
 }
 
 
+
 .landing-container{
     width: 100%;
     height: 360px;
-
-
-    /*background: var(--white);*/
     justify-content: center;
 }
-nav{
+.landing-container nav{
     display: flex;
     justify-content: space-between;
-
-
     padding: 10px 2%;
     background: var(--white);
     position:static;
     top: 0;
     z-index: 10;
+    font-family: "Oswald", sans-serif;
 }
-nav button{
-    background: none;
-    border:none;
-    padding: 8px;
-    margin: 3px;
-    color: var(--darkest);
+
+
+/* Navbar Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 2%;
+    background: var(--white);
+    position: static;
+    top: 0;
+    z-index: 10;
+    flex-wrap: wrap;
 }
-.nav-buttons{
-    display: inline-flex;
-    margin-right: 200px;
-}
-.nav-logo p{
+
+.nav-logo {
+    display: flex;
+    align-items: center;
     margin-left: 20px;
 }
-.nav-logo i{
-    margin-top: 10px;
-}
-.nav-logo{
-    display: inline-flex;
-    width: 50px;
-    margin-left: 200px;
-    white-space: nowrap;
 
-}
-.divider{
-    border-left: 1px solid var(--dark);
-    height: 40px;
+.nav-logo i {
+    margin: 0px 20px 20px 0px;
 }
 
-.nav-login{
-    border: 1px solid var(--darkest);
-    padding: 8px;
-    border-radius: 4px;
+.nav-logo p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-buttons button {
     background: none;
+    border: none;
+    padding: 8px;
     margin: 3px;
     color: var(--darkest);
+    font-size: 1rem;
+    cursor: pointer;
 }
 
+.divider {
+    border-left: 1px solid var(--dark);
+    height: 40px;
+    margin: 0 10px;
+}
 
+.nav-login-buttons {
+    display: flex;
+    align-items: center;
+}
 
-.home-img-container{
+.nav-signup {
+    background: var(--highlight);
+    padding: 8px 16px;
+    margin-right: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.nav-login {
+    border: 2px solid var(--darkest) !important;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--darkest);
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .nav-buttons {
+        flex-direction: row;
+        align-items: flex-start;
+        margin-right: 0;
+    }
+
+    .nav-buttons button {
+        margin: 5px 0;
+    }
+
+    .nav-login-buttons {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .nav-login-buttons button {
+        margin: 5px 0;
+    }
+
+    .divider {
+        display: none;
+    }
+}
+
+/* Main Header */ 
+.welcome-text, .tagline{
     display: flex;
     justify-content: center;
-    padding: 0px 40px 0px 40px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding: 0 40px;
+    width: 100%;
+    white-space: nowrap;
+}
+.welcome-text h1{
+    font-size: 7vw;
+    font-weight: 900;
+    color: var(--darkest);
+}
+.emphasis{
+    font-style: italic;
+    font-weight: lighter;
 }
 
+.tagline p {
+    font-size: 2vw;
+}
+.login-buttons{
+    display: flex;
+    justify-content: center;
+    margin: 10px 10px 10px 10px;
+}
+.sign-up{
+    background: var(--highlight);
+    width: 125px;
+    border: 5px;
+    margin-right: 5px;
+    padding: 12px 32px;
+    border-radius: 10px; 
+    font-size: 16px;
+}
 
-
-.home-img-bg{
+/* image/video */
+.home-img-container {
+    display: flex;
+    justify-content: center;
+    padding: 0 40px;
+    margin: 30px 0;
+}
+.home-img-bg {
     width: 100%;
     height: 100%;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding: 40px 0;
     display: flex;
     justify-content: center;
     background-color: var(--blacker);
@@ -96,6 +188,7 @@ nav button{
     z-index: 1;
 }
 
+/* info section */
 .header{
     display: block;
     color: var(--darkest);
@@ -115,13 +208,21 @@ nav button{
 .info{
     max-width: 300px;
     margin: 20px;
-
     animation: fade-in linear;
     animation-timeline: scroll(y);
 }
-.info h3{
-    color: var(--highlight);
+.info div{
+    display: flex;
 }
+.info h3{
+    color: var(--darkest);
+}
+.info span{
+    color: var(--highlight);
+    margin-right: 10px;
+    font-size: 40px;
+}
+
 .line{
     display: block;
     margin:auto;
@@ -129,23 +230,20 @@ nav button{
     border-bottom: 1px solid var(--darkest);
 }
 
-.coming-soon-container{
+/* coming soon section */
+.coming-soon-container {
     display: block;
     color: var(--darkest);
     max-width: 600px;
-    margin: auto;
+    margin: 20px auto;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 .upcoming-features{
     display: flex;
     justify-content: center;
 }
-.upcoming-features p{
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 30px;
+.upcoming-features p {
+    margin: 0 10px 30px;
 }
 .upcoming-features div{
     border-left: 1px solid var(--highlight);
@@ -153,95 +251,9 @@ nav button{
 }
 
 
-.searches-container{
-    width: 100%;
-    height: 360px;
 
-    margin-top: 10px;
-    padding: 10px;
-
-    overflow: hidden;
-}
-.searches{
-    background-color: var(--white);
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 25px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,0.1fr));
-    grid-gap:10px;
-    box-sizing: border-box;
-    position: relative;
-    justify-content: center;
-}
-.showcase-container{
-    display: flex;
-    justify-content: center;
-}
-
-.home-container h3{
-    color: var(--darkest);
-    padding-left: 8%;
-}
-.welcome-text{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.welcome-text p{
-    font-style: italic;
-    font-weight: bolder;
-    font-size:80px;
-
-}
-.emphasis{
-    display: flex;
-    color: var(--darkest);
-    font-size:80px;
-}
-.tagline{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.tagline p {
-    font-size: 25px;
-}
-
-.login-buttons{
-    display: flex;
-    justify-content: center;
-    margin: 10px 10px 10px 10px;
-}
-
-.sign-up{
-    background: var(--highlight);
-    width: 125px;
-    border: 5px;
-    margin-right: 5px;
-    padding: 12px 32px;
-    border-radius: 10px; 
-    font-size: 16px;
-}
-.login{
-    background: none;
-    border: none;
-    text-decoration: underline;
-    font-size: large;
-    color: var(--darkest);
-}
-
-.screenshot-container{
-    display: flex;
-    justify-content: center;
-
-}
-.screenshot-background{
-    background-color: var(--darkest);
-    width: 500px;
-    height: 500px;
-}
-
+/* text cloud */
+/*REMOVED*/
 .text-sphere{
     display: flex;
     justify-content: center;

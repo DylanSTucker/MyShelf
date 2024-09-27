@@ -2,7 +2,6 @@ import "./Home.css";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Feed from "../../Components/Feed/Feed";
 import {useState } from "react";
-import axios from "axios";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
 import Filters from "../../Components/Filters/Filters";
