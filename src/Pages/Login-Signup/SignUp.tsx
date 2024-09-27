@@ -20,7 +20,7 @@ const SignUp = () => {
       return;
     }
     const response = await fetch(
-      `${process.env.SERVERURL}/signup`,
+      `${process.env.SIGNUPURL}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

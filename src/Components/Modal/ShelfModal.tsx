@@ -45,7 +45,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
     console.log(formJson);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_REACT_APP_SERVERURL}/shelf/${userEmail}/notes`,
+        `${process.env.SERVERURL_SHELF_USER}` + `/${userEmail}/notes`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

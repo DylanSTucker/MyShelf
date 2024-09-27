@@ -12,9 +12,7 @@ dotenv.config({ path: '/etc/app.env' });
 export default defineConfig(({mode}) => {
   return{
     server: {
-      proxy:{
-        '/api': 'https://localhost:8000',
-      }
+
     },
     plugins:[
       react()

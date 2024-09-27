@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
 
     const response = await fetch(
-      `${process.env.SERVERURL}/api/login`,
+      `${process.env.LOGINURL}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
