@@ -1,8 +1,8 @@
 import pg from "pg";
 import dotenv from 'dotenv';
 //env path for ec2 instance
-dotenv.config({ path: '/etc/app.env' });
-//dotenv.config({ path: 'db.env' });
+//dotenv.config({ path: '/etc/app.env' });
+dotenv.config({ path: 'db.env' });
 
 
 export const pool = new pg.Pool({

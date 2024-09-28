@@ -88,9 +88,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
 
   const getNotes = async () => {
     const req = await fetch(
-      `${process.env.SERVERURL_NOTES_USER}/${userEmail}/${
-        item.volume_id
-      }`
+      `${process.env.SERVERURL}/api/notes/${userEmail}/${item.volume_id}`
     );
     const res = await req.json();
     setBookNotes(res);
@@ -151,7 +149,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
                 <img src={data.thumbnail} className="background-modal-img" />
               </div>
             </div>
-            <div className="info">
+            <div className="shelf-book-info">
               <h1 className="title">{data.title}</h1>
               <h3 className="authors">{data.author}</h3>
               <h4 className="publisher">
