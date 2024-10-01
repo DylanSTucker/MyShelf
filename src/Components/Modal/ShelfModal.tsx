@@ -112,7 +112,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
   //item.categories is a string, so format into array
   let categories = item.categories.split(",");
 
-  //change tag("Read", "Want To Read", "Reading")
+  //change tag("Read", "To Be Read", "Reading")
   const changeTag = async (newTag: string) => {
     console.log(newTag);
     categories[categories.length - 1] = newTag;
@@ -191,7 +191,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
               </option>
               <option
                 className="option"
-                value="Want To Read"
+                value="To Be Read"
                 selected={categories[categories.length - 1] == "To Be Read"}
               >
                 To Be Read

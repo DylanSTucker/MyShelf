@@ -84,7 +84,7 @@ app.post('/api/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
         console.error(err);
     }
 })
-//change tag("Read", "Want To Read", "Reading")
+//change tag("Read", "To Be Read", "Reading")
 app.post('/api/shelf/:userEmail/change', async (req: Request, res: Response) =>{
     const {categories, volume_id} = req.body;
     console.log(categories, volume_id);
