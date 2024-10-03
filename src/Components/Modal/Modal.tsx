@@ -85,7 +85,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
                 <img src={thumbnail} className="background-modal-img" />
               </div>
             </div>
-            <div className="info">
+            <div className="modal-info">
               <h1 className="title">{item.volumeInfo.title}</h1>
               <h3 className="authors">{item.volumeInfo.authors}</h3>
               <h4 className="publisher">

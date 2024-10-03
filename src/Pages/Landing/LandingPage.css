@@ -20,6 +20,8 @@
     height: 360px;
     justify-content: center;
 }
+
+
 .landing-container nav{
     display: flex;
     justify-content: space-between;
@@ -129,6 +131,7 @@ nav {
         display: none;
     }
 }
+
 
 /* Main Header */ 
 .welcome-text, .tagline{

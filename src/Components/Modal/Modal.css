@@ -114,6 +114,8 @@
 .tag-buttons{
     display: flex;
     justify-content: center;
+    margin: 30px;
+    padding: 5px;
 }
 .want-to-read{
     margin-right: 15px;

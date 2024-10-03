@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const allCategories = new Set(["Fiction", "Fantasy", "Science Fiction", "Philosophy", "Satire", "Young Adult Fiction", "Humorous", "Suspense", "Classics"]);
+const allCategories = new Set(["Fiction", "Fantasy", "Science Fiction", "Philosophy", "Satire", "Young Adult Fiction", "Humorous", "Suspense", "Classics", "Horror", "Comics & Graphic Novels", "Manga", "Dark Fantasy"]);
 
 //this function may also be too slow with the .split.join calls
 export const getBookInfo = async (
@@ -46,6 +46,6 @@ const getCategories = (categories: string[]) =>{
       }
     });
   });
-
+  console.log(cat);
   return cat;
 }
