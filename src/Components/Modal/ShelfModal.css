@@ -22,10 +22,9 @@
     width: 100px;
     height: 40px;
     font-size: 20px;
-    text-decoration: none;
-    border: none;
+    border: 2px solid var(--darkest);
     border-radius:5px;
-    background-color: var(--highlight);
+    background-color: var(--white);
     color: var(--darkest);
 }
 .btns{
@@ -92,7 +91,7 @@
     list-style-type: none;
 }
 .note{
-    width: 400px;
+    width: auto;
     height: auto;
     margin: 10px;
     background-color: var(--white);
@@ -107,7 +106,6 @@
     color: var(--light);
 }
 .comment{
-    text-align: start;
     font-size: 15px;
     margin: 0px;
     padding: 0px;
