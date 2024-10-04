@@ -14,6 +14,8 @@ interface bookNotesEntry {
   volume_id: string;
   email: string;
   comment_date: string;
+  type: string;
+  index_info: string;
 }
 
 const ShelfModal = ({ showModal, item, onClose }: Props) => {
@@ -54,6 +56,8 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
             note: formJson.content,
             volume_id: item.volume_id,
             email: userEmail,
+            type: formJson.commentType,
+            index_info: formJson.chapter + ": pg." + formJson.page
           }),
         }
       );
@@ -243,18 +247,28 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
               <div className="tab-notes">
                 <div className="notes">
                   <form method="post" onSubmit={(e) => handleSubmit(e)}>
-                    <textarea name="content" className="notes-field" />
+                    <textarea name="content" className="notes-field" placeholder="Your thoughts here..."></textarea>
                     <br></br>
-                    <button type="submit">Submit</button>
+                    <div className="comment-options">
+                      <select name="commentType" className="comment-type">
+                          <option value="Summary">Summary</option>
+                          <option value="Thought">Thought</option>
+                          <option value="Summary">Quote</option>
+                        </select>
+                      <div className="extra-comment-info">
+                        <input name="chapter" type="text" className="chapter" placeholder="Chapter"></input>
+                        <input name="page" type="text" className="page" placeholder="Page #"></input>
+                      </div>
+                      <button type="submit">Submit</button>
+
+                    </div>
                   </form>
                   <div className="notes-display">
                     <ul className="notes-list">
                       {bookNotes?.map((entry: bookNotesEntry) => (
                         <li className="note">
                           <p className="comment-info">
-                            {username}
-                            <br></br>
-                            {entry.comment_date}
+                            {entry.type} &nbsp; | &nbsp; {entry.index_info} &nbsp; <span>{entry.comment_date}</span>
                           </p>
                           <p className="comment">{entry.note}</p>
                         </li>

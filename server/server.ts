@@ -70,15 +70,15 @@ app.post('/api/shelf/:userEmail/remove', async (req: Request, res: Response) =>{
 //add a note to a book
 app.post('/api/shelf/:userEmail/notes', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
-    const {title, volume_id, note} = req.body;
-    console.log(title, volume_id, note);
+    const {title, volume_id, note, type, index_info} = req.body;
+    console.log(title, volume_id, note, type, index_info);
     const id = uuidv4();
     const date = new Date();
     const comment_date = date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
     
     try{
-        const newShelfEntry = pool.query(`INSERT INTO notes(id, title, note, volume_id, email, comment_date) VALUES($1, $2, $3, $4, $5, $6)`,
-    [id, title, note, volume_id, userEmail, comment_date]);
+        const newShelfEntry = pool.query(`INSERT INTO notes(id, title, note, volume_id, email, comment_date, type, index_info) VALUES($1, $2, $3, $4, $5, $6, $7, $8)`,
+    [id, title, note, volume_id, userEmail, comment_date, type, index_info]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);
