@@ -11,7 +11,7 @@
     background-color: var(--white);
     width: 100%;
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: 0px;
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,0.1fr));
     grid-gap:10px;
@@ -21,7 +21,7 @@
 }
 .query{
     color: var(--darkest);
-    margin: 1rem;
+    margin: 3.2rem 1rem;
     white-space:nowrap;
     position:relative;
 }
@@ -30,7 +30,6 @@
     display:inline;
     justify-content: start;
     vertical-align: top;    
-
 }
 
 @media all and (min-width: 1155px) and (max-width: 1255px){

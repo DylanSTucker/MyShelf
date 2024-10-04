@@ -1,9 +1,10 @@
 
-nav{
+.shelf-navbar{
     padding: 10px 2%;
     justify-content: space-between;
     background: var(--white);
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 10;
 }

@@ -25,7 +25,7 @@ const Navbar = (props: Props) => {
     searchBooks(props.search, props.setAllBookData, 40);
   };
   return (
-    <nav className="flex-div">
+    <nav className="shelf-navbar">
       <div className="nav-left flex-div">
         <div className="menu-icon">
           <i

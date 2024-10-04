@@ -33,7 +33,7 @@ const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const [readMore, setReadMore] = useState(false);
   const [tab, setTab] = useState("details");
   const userEmail = cookies.Email;
-  const username = cookies.UserName;
+  //const username = cookies.UserName;
   const [bookNotes, setBookNotes] = useState<bookNotesEntry[]>();
 
   const handleSubmit = async (e: any) => {
