@@ -65,14 +65,6 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-bookmark" />
           <p>To Be Read</p>
         </div>
-        <div className="side-link">
-          <i className="fa-solid fa-chart-simple" />
-          <p>Stats</p>
-        </div>
-        <div className="side-link">
-          <i className="fa-solid fa-gear" />
-          <p>Settings</p>
-        </div>
       </div>
       <hr />
       <div className="genre-list">
