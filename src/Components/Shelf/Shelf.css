@@ -33,14 +33,14 @@
 }
 
 /*mobile formatting*/
-@media all and (min-width: 250px) and (max-width: 550px){
+@media all and (min-width: 300px) and (max-width: 550px){
 
     .no-books h1{
         font-size: medium;
     }
 }
 /*mobile formatting*/
-@media all and (max-width: 249px){
+@media all and (max-width: 300px){
     .no-books h1{
         font-size: x-small;
     }

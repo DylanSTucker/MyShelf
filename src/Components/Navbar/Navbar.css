@@ -1,5 +1,6 @@
 
 .shelf-navbar{
+    display: flex;
     padding: 10px 2%;
     justify-content: space-between;
     background: var(--white);

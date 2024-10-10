@@ -12,7 +12,7 @@ const LandingNavbar = () =>{
     const navigate = useNavigate();
 
     return(
-        <nav>
+        <nav className="landing-nav">
             <div className="nav-logo">
                 <i className="fa-solid fa-book fa-xl" />
                 <p>My Shelf</p>

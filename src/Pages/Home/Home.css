@@ -43,33 +43,28 @@
 
     }
 }
-@media all and (max-width: 400px){
-    .shelf-container{
-        /* this is what is causing the viewport issue */
-        /*position: absolute;*/
+@media all and (max-width: 450px){
+    .feed-container{
+        padding-top: 80px;
     }
+
 }
 
 
-@media all and (max-width: 209px){
+@media all and (max-width: 250px){
     .shelf-container{
 
         padding-left: 40px;
-        padding-top: 70px;
         background: var(--white);
     }
     .feed-container{
         /*position:fixed;*/
         padding-left: 40px;
-        padding-top: 70px;
         background: var(--white);
     }
 }
 
 @media all and (max-width: 149px){
-    .shelf-container{
-        padding-top: 70px;
-    }
     .feed-container{
         padding-left: 40px;
         padding-top: 50px;

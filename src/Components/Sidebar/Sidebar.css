@@ -104,7 +104,7 @@ i{
 
 
 /*mobile formatting*/
-@media all and (max-width: 209px){
+@media all and (max-width: 300px){
     .sidebar{
         position: absolute;
         z-index: 1;
