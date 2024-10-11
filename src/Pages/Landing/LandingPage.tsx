@@ -1,15 +1,38 @@
 import "./LandingPage.css";
-import { useEffect } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import TagCloud from "TagCloud";
 
 //redirect to sign up page
 const redirect = (navigate: ReturnType<typeof useNavigate>, endpoint: string) => {
     navigate("/" + endpoint);
 }
 
-const LandingNavbar = () =>{
+//HTML reference elements for scrolling to element when button is clicked
+interface landingProps{
+    booksRef: React.RefObject<HTMLDivElement>;
+    featuresRef: React.RefObject<HTMLDivElement>;
+    appRef: React.RefObject<HTMLDivElement>;
+}
+
+const LandingNavbar = (props: landingProps) =>{
     const navigate = useNavigate();
+
+    //functions for scrolling to element when nav button is clicked
+    const scrollToBooks = () => {
+        if (props.booksRef.current) {
+            props.booksRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+    const scrollToApp = () => {
+        if (props.appRef.current) {
+            props.appRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+    const scrollToFeatures = () => {
+        if (props.featuresRef.current) {
+            props.featuresRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 
     return(
         <nav className="landing-nav">
@@ -19,9 +42,9 @@ const LandingNavbar = () =>{
 
             </div>
             <div className="nav-buttons">
-                <button>Books</button>
-                <button>App</button>
-                <button>Features</button>
+                <button onClick={scrollToBooks}>Books</button>
+                <button onClick={scrollToApp}>App</button>
+                <button onClick={scrollToFeatures}>Features</button>
                 <div className="divider"></div>
                 <div className="nav-login-buttons">
                     <button className="nav-signup" onClick={() => redirect(navigate, "SignUp")}>Sign up</button>
@@ -38,45 +61,15 @@ const LandingPage = () => {
 
     const navigate = useNavigate();
 
-
-    useEffect(() => {
-        return () => {
-            const cloud: any = ".tagcloud";
-            const text = [
-                "Fantasy",
-                "Sci-Fi",
-                "Romance",
-                "History",
-                "Fiction",
-                "Non-Fiction",
-                "Science",
-                "Self-Help",
-                "Philosophy",
-                "Thriller",
-                "Historical Fiction",
-                "Memoir",
-                "Poetry",
-                "Essay",
-                "Autobiography",
-                "Fairy Tale",
-            ];
-
-            const options: object = {
-                radius: 200,
-                maxSpeed: "normal",
-                initSpeed: "normal",
-                keep: true,
-            };
-
-            TagCloud(cloud, text, options);
-        }
-    }, []);
+    const booksRef = useRef<HTMLDivElement>(null);
+    const appRef = useRef<HTMLDivElement>(null);
+    const featuresRef = useRef<HTMLDivElement>(null);
 
 
   return (
     <div className="landing-container">
 
-        <LandingNavbar/>
+        <LandingNavbar booksRef={booksRef} featuresRef={featuresRef} appRef={appRef}/>
         <header>
             <div className="welcome-text">
                 <h1>Welcome To </h1> 
@@ -91,7 +84,7 @@ const LandingPage = () => {
             </div>
         </header>
 
-        <div className="home-img-container">
+        <div ref={booksRef} className="home-img-container">
                 <div className="home-img-bg">
                     <video autoPlay muted loop className="home-img">
                         <source src="/home.mp4" type="video/mp4" />
@@ -100,7 +93,7 @@ const LandingPage = () => {
                 </div>
         </div>
         
-        <header className="header">
+        <header ref={featuresRef} className="header">
             <h1>Keep Track of Your Thoughts While You Read.</h1>
         </header>
         
@@ -161,7 +154,7 @@ const LandingPage = () => {
         
         <hr className="line" />
         
-        <section className="coming-soon-container">
+        <section ref={appRef} className="coming-soon-container">
             <h1>Coming Soon!</h1>
         </section>
         
