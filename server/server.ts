@@ -38,13 +38,15 @@ app.get("/api/notes/:userEmail/:volume_id", async (req: Request, res: Response) 
 //add a book to the users book shelf
 app.post('/api/shelf/:userEmail', async (req: Request, res: Response) =>{
     const {userEmail} = req.params;    
+    const date_read = new Date().toDateString();
+    console.log(date_read);
     const {title, author, publisher, publisher_date, thumbnail, categories, volume_id} = req.body;
-    console.log(title, userEmail, author, publisher, publisher_date, thumbnail, categories, volume_id);
+    console.log(title, userEmail, author, publisher, publisher_date, thumbnail, categories, volume_id, date_read);
     const id = uuidv4();
     
     try{
-        const newShelfEntry = pool.query(`INSERT INTO shelf(id, title, author, publisher, email, publisher_date, thumbnail, categories, volume_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-    [id, title, author, publisher, userEmail, publisher_date, thumbnail, categories, volume_id]);
+        const newShelfEntry = pool.query(`INSERT INTO shelf(id, title, author, publisher, email, publisher_date, thumbnail, categories, volume_id, date_read) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+    [id, title, author, publisher, userEmail, publisher_date, thumbnail, categories, volume_id, date_read]);
     res.json(newShelfEntry);
     }catch(err){
         console.error(err);

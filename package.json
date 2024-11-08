@@ -29,6 +29,7 @@
     "react-cookie": "^7.1.4",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.25.1",
+    "recharts": "^2.13.0",
     "serve": "^14.2.3",
     "TagCloud": "^2.5.0",
     "ts-node": "^10.9.2",

@@ -22,6 +22,7 @@ const Shelf = (props: Props) => {
         <div className="shelf">
           {props.itemInfo?.map((item: any) => (
             <BookCard
+              key={item.id}
               data={item}
               title={item.title}
               author={item.author}

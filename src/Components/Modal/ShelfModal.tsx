@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ShelfModal.css";
 import { useCookies } from "react-cookie";
+import { IBookData } from "../../scripts/interfaces";
 import { getBookInfo } from "../../scripts/scrape";
 
 type Props = {
@@ -18,16 +19,19 @@ interface bookNotesEntry {
   index_info: string;
 }
 
+
 const ShelfModal = ({ showModal, item, onClose }: Props) => {
   const [cookies] = useCookies(undefined);
-  const [data, setData] = useState<any>({
+  const [data, setData] = useState<IBookData>({
     title: "",
     author: "",
     publisher: "",
     publisherDate: "",
     categories: [],
     thumbnail: "",
+    pageCount: 0,
     description: "",
+    volume_id: "",
   });
 
   const [readMore, setReadMore] = useState(false);

@@ -5,6 +5,7 @@ import {useState } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 import Shelf from "../../Components/Shelf/Shelf";
 import Filters from "../../Components/Filters/Filters";
+import Stats from "../../Components/Stats/Stats";
 import { useCookies } from "react-cookie";
 
 type Props = {
@@ -26,22 +27,7 @@ const Home = (props: Props) => {
   const [searchUpdate, setSearchUpdate] = useState(true);
   const [allBookData, setAllBookData] = useState([]);
   const [seed, setSeed] = useState(1);
-  /*
-  const searchBook = (evt: { key: string }) => {
-    if (evt.key === "Enter") {
-      axios
-        .get(
-          "https://www.googleapis.com/books/v1/volumes?q=" +
-            search +
-            "&key=" +
-            google_api_key +
-            "&maxResults=40"
-        )
-        .then((res) => setAllBookData(res.data.items))
-        .catch((err) => console.log(err));
-    }
-  };
-  */
+  const [stats, setStats] = useState(false);
   const resetFilters = () => {
     setSeed(Math.random());
   };
@@ -102,6 +88,7 @@ const Home = (props: Props) => {
           setShelf={setShelf}
           filters={filters}
           resetFilters={resetFilters}
+          setStats={setStats}
         />
       
 
@@ -121,6 +108,7 @@ const Home = (props: Props) => {
             <Shelf itemInfo={filterCategories(props.itemInfo)} filters={filters} />
           </div>
       }
+      {authToken && stats && <Stats />}
     </>
   );
 };

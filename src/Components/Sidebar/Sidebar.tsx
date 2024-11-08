@@ -7,6 +7,7 @@ type Props = {
   setShelf: (shelf: boolean) => void;
   filters: Set<string>;
   resetFilters: () => void;
+  setStats: (stats: boolean) => void;
 };
 
 const Sidebar = (props: Props) => {
@@ -32,8 +33,15 @@ const Sidebar = (props: Props) => {
   };
   const handleSetShelf = () =>{
     props.setShelf(true);
+    props.setStats(false);
+
+    //this should get removed and ensure that search feed is disabled when stats is enabled
     window.location.reload();
 
+  }
+  const handleSetStats = () =>{
+    props.setStats(true);
+    props.setShelf(false);
   }
 
   return (
@@ -64,6 +72,10 @@ const Sidebar = (props: Props) => {
         <div className="side-link" onClick={() => addFilter("Want to Read")}>
           <i className="fa-solid fa-bookmark" />
           <p>To Be Read</p>
+        </div>
+        <div className="side-link" onClick={() => handleSetStats()}>
+          <i className="fa-solid fa-chart-simple" />
+          <p>Stats</p>
         </div>
       </div>
       <hr />
