@@ -4,6 +4,21 @@
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+.data-filters{
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+.data-filters button, .stats-container select{
+    margin: 5px;
+    border-radius: 5px;
+    background-color: var(--white);
+    border: solid var(--darkest);
+    color: var(--darkest);
+    font-weight: bold;
+    padding: 0.3rem 0.5rem;
+}
 .stats-header{
     display: block;
     color: var(--darkest);
@@ -20,11 +35,19 @@
     width: 60%;
     border: 1px solid var(--darkest);
     margin: 50px auto 50px auto;
+    padding: 10px;
 }
 .stats-content h2{
     color: var(--darkest);
     font-weight: 900;
     margin: 20px;
+}
+.stats-content hr{
+    margin:auto;
+    border: 0;
+    height: 2px;
+    background: var(--darkest);
+    width: 85%;
 }
 
 .stats-item{

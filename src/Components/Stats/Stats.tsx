@@ -16,7 +16,6 @@ var userData: { [key: string]: number } = {
     "Read": 0,
     "Reading": 0,
     "To Be Read": 0,
-    "notes taken": 0,
     "authors read": 0,
     "pages read": 0,
     "Fiction": 0,
@@ -149,6 +148,7 @@ const Stats = () => {
         getData();
     }, [genreData, userData]);
 
+    //renders custom labels for pie chart
     const renderCustomizedLabel = (entry: any) => {
         const { x, y, cx, cy, name, percent } = entry;
 
@@ -164,30 +164,30 @@ const Stats = () => {
             <header className="stats-header">
                 <h1><span>Your</span> Data</h1>
             </header>
-            <div className="stats-content">
-            <button onClick={getShelfData}>get data</button>
+            <div className="data-filters">
+                <button onClick={getShelfData}>get data</button>
 
-            <select onChange={(e) => setSelectedOption(e.target.value)}>
-                <option value="All Time">All Time</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-            </select>
+                <select onChange={(e) => setSelectedOption(e.target.value)}>
+                    <option value="All Time">All Time</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+            <div className="stats-content">
 
                 <div className="stats-item">
                     <h2>Books Read</h2>
                     <p>{userData["Read"]}</p>
                 </div>
+                <hr/>
                 <div className="stats-item">
                     <h2>Books Reading</h2>
                     <p>{userData["Reading"]}</p>
                 </div>
+                <hr/>
                 <div className="stats-item">
                     <h2>Books To Read</h2>
                     <p>{userData["To Be Read"]}</p>
-                </div>
-                <div className="stats-item">
-                    <h2>Notes Taken</h2>
-                    <p>{userData["notes taken"]}</p>
                 </div>
             </div>
             <div className="stats-content">
