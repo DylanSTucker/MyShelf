@@ -61,6 +61,10 @@
     margin: auto;
     padding: 15px;
 }
+.recharts-responsive-container {
+    display: block;
+    margin: auto;
+}
 .recharts-surface{
     padding: 10px;
     overflow: visible;

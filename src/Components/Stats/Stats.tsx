@@ -22,6 +22,11 @@ var userData: { [key: string]: number } = {
     "Non-Fiction": 0
 };
 var bookType: {name: string, value: number}[] = [];
+var bookSize: {name: string, value: number}[] = [
+    {name: "small", value: 0},
+    {name: "medium", value: 0},
+    {name: "large", value: 0}
+];
 
 
 type infoTypes = Object[];
@@ -30,6 +35,23 @@ interface IFilters {
     yearRead: number;
 }
 
+/*
+check the page count of different books to determine the size of the book
+    small: less than 300 pages
+    medium: 300-500 pages
+    large: more than 500 pages
+*/
+const getBookSizeData = (item: any) =>{
+    userData["pages read"] += item.page_count;
+    if(item.page_count < 300){
+        bookSize[0].value += 1;
+    }else if(item.page_count >= 300 && item.page_count < 500){
+        bookSize[1].value += 1;
+    }else{
+        bookSize[2].value += 1;
+    }
+
+}
 
 /*
 Get author data
@@ -102,19 +124,21 @@ const Stats = () => {
     //this function should get book info from googleBooks.ts script instead of the server
     const getShelfData = async () => {
         try {
-            const response = await fetch(
+            fetch(
                 `${process.env.SERVERURL_SHELF_USER}/${userEmail}`
-            );
-            const json = await response.json();
-            setInfo(json);
-            getData();
+            ).then((res) => res.json())
+            .then((responseJson) => {
+                getData(responseJson);
+
+            });
         } catch (err) {
             console.error(err);
         }
     };
 
     //get book info from googleBooks.ts
-    const getData = () =>{
+    const getData = (info: infoTypes) =>{
+        setInfo(info);
 
         //reset data
         for(let key in userData){
@@ -135,7 +159,8 @@ const Stats = () => {
             //get author related data
             getAuthorData(item.author, authorDuplicates);
 
-            //userData["pages read"] += bookData.pageCount;
+            //get book size data
+            getBookSizeData(item);
         });
         //set data for bookType (count fiction or nonfiction)
         bookType.push({name: "Fiction", value: userData["Fiction"]});
@@ -145,15 +170,15 @@ const Stats = () => {
 
 
     useEffect(() => {
-        getData();
-    }, [genreData, userData]);
+        //when get data button is pressed refresh component
+    }, [info]);
 
     //renders custom labels for pie chart
     const renderCustomizedLabel = (entry: any) => {
         const { x, y, cx, cy, name, percent } = entry;
 
         return(
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={30}>
             {name +` ${(percent * 100).toFixed(0)}%`}
           </text>
         );
@@ -194,67 +219,70 @@ const Stats = () => {
                 <header>
                     <h2>Fiction / Non-Fiction</h2>
                 </header>
-                <PieChart className="pie-chart" width={400} height={400}>
-                    <Pie data={bookType} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={renderCustomizedLabel} labelLine={false}>
-                        {
-                            bookType.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
-                            ))
-                        }
-                    </Pie>
-                </PieChart>
+                <ResponsiveContainer width={400} aspect={1}>
+
+                    <PieChart className="pie-chart">
+                        <Pie data={bookType} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={200} label={renderCustomizedLabel} labelLine={false}>
+                            {
+                                bookType.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                                ))
+                            }
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
 
             <div className="stats-content">
                 <header>
                     <h2>Genre</h2>
                 </header>
-                <BarChart className="bar-chart" 
-                    width={400} 
-                    height={600} 
-                    data={genreData} 
-                    layout="vertical" 
-                >
-                    <CartesianGrid stroke="#FFFFFF" />
-                    <XAxis dataKey="value" type="number">
-                        <Label value="# of books" position="bottom"/>
-                    </XAxis>
-                    <YAxis dataKey="name" type="category"/>
-                    <Tooltip />
-                    <Bar dataKey="value" >
-                    {
-                        genreData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
-                        ))
-                    }
-                    </Bar>
-                </BarChart>
+                <ResponsiveContainer width="75%" aspect={1}>
+                    <BarChart className="bar-chart" 
+                        data={genreData} 
+                        layout="vertical" 
+                    >
+                        <CartesianGrid stroke="#FFFFFF" />
+                        <XAxis dataKey="value" type="number" fontSize={25}>
+                            <Label value="# of books" position="bottom" fontSize={25}/>
+                        </XAxis>
+                        <YAxis dataKey="name" type="category" fontSize={25}/>
+                        <Tooltip />
+                        <Bar dataKey="value" >
+                        {
+                            genreData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
+                            ))
+                        }
+                        </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
             </div>
             <div className="stats-content">
                 <header>
                     <h2>Authors Read</h2>
                     <p>{userData["authors read"]}</p>
                 </header>
-                <BarChart className="bar-chart" 
-                    width={400} 
-                    height={600} 
-                    data={authorData} 
-                    layout="vertical" 
-                >
-                    <CartesianGrid stroke="#FFFFFF" />
-                    <XAxis dataKey="value" type="number">
-                        <Label value="# of books" position="bottom"/>
-                    </XAxis>
-                    <YAxis dataKey="name" type="category"/>
-                    <Tooltip />
-                    <Bar dataKey="value" >
-                    {
-                        authorData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
-                        ))
-                    }
-                    </Bar>
-                </BarChart>
+                <ResponsiveContainer width={800} aspect={1}>
+                    <BarChart className="bar-chart" 
+                        data={authorData} 
+                        layout="vertical" 
+                    >
+                        <CartesianGrid stroke="#FFFFFF" />
+                        <XAxis dataKey="value" type="number" fontSize={25}>
+                            <Label value="# of books" position="bottom" fontSize={25}/>
+                        </XAxis>
+                        <YAxis dataKey="name" type="category" fontSize={25}/>
+                        <Tooltip />
+                        <Bar dataKey="value" >
+                        {
+                            authorData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
+                            ))
+                        }
+                        </Bar>
+                    </BarChart>
+                </ResponsiveContainer>
             </div>
 
             <div className="stats-content">
@@ -262,15 +290,17 @@ const Stats = () => {
                     <h2>Pages Read</h2>
                     <p>{userData["pages read"]}</p>
                 </header>
-                <PieChart className="pie-chart" width={400} height={400}>
-                    <Pie data={bookType} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={renderCustomizedLabel} labelLine={false}>
-                        {
-                            bookType.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
-                            ))
-                        }
-                    </Pie>
-                </PieChart>
+                <ResponsiveContainer width={400} aspect={1}>
+                    <PieChart className="pie-chart">
+                        <Pie data={bookSize} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={200} label={renderCustomizedLabel} labelLine={false}>
+                            {
+                                bookSize.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
+                                ))
+                            }
+                        </Pie>
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
         </div>
     );

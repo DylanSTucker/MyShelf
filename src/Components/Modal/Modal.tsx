@@ -51,6 +51,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
             thumbnail: data.thumbnail,
             categories: data.categories.toString() + "," + tag,
             volume_id: data.volume_id,
+            page_count: item.volumeInfo.pageCount,
           }),
         }
       );
