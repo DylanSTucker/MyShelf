@@ -22,6 +22,7 @@ const Home = (props: Props) => {
 
 
   const [shelf, setShelf] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [sidebar, setSidebar] = useState(true);
   const [search, setSearch] = useState("");
   const [searchUpdate, setSearchUpdate] = useState(true);
@@ -81,6 +82,7 @@ const Home = (props: Props) => {
         sidebar={sidebar}
         shelf={shelf}
         setShelf={setShelf}
+        setShowModal={setShowModal}
       />
         <Sidebar
           sidebar={sidebar}
@@ -98,6 +100,8 @@ const Home = (props: Props) => {
               allBookData={allBookData}
               search={search}
               searchUpdate={searchUpdate}
+              showModal={showModal}
+              setShowModal={setShowModal}
               setSearchUpdate={setSearchUpdate}
             />
         </div>

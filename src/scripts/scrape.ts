@@ -2,7 +2,7 @@ import axios from "axios";
 import { IBookData } from "./interfaces"; 
 
 
-const allCategories = new Set(["Read", "To Be Read", "Reading", "Fiction", "Non-Fiction", "Fantasy", "Science Fiction", "Philosophy", "Satire", "Young Adult Fiction", "Humorous", "Suspense", "Classics", "Horror", "Comics & Graphic Novels", "Manga", "Dark Fantasy"]);
+const allCategories = new Set(["Read", "To Be Read", "Reading", "Fiction", "Non-Fiction", "Fantasy", "Science Fiction", "Philosophy", "Humorous", "Suspense", "Classics", "Horror", "Comics & Graphic Novels", "Manga", "Dark Fantasy"]);
 
 //this function may also be too slow with the .split.join calls
 export const getBookInfo = async (

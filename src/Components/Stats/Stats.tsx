@@ -5,7 +5,6 @@ import { useCookies } from "react-cookie";
 import { IBookData } from "../../scripts/interfaces";
 
 const colors = ["#34B1FE", "#62C370", "#9E4770", "#FEC601", "#EA7317", "#478978", "#E4572E", "#6761A8", "#F4F4F6", "#7A6F9B", "#D7E8BA", "#136F63", "#DEB841"];
-const allCategories = new Set(["Fantasy", "Science Fiction", "Philosophy", "Satire", "Young Adult Fiction", "Humorous", "Suspense", "Classics", "Horror", "Comics & Graphic Novels", "Manga", "Dark Fantasy"]);
 const nonCategories = new Set(["Read", "Reading", "To Be Read", "Fiction", "Non-Fiction"]);
 
 var genreData: { name: string; value: number }[] = [];
@@ -23,9 +22,9 @@ var userData: { [key: string]: number } = {
 };
 var bookType: {name: string, value: number}[] = [];
 var bookSize: {name: string, value: number}[] = [
-    {name: "small", value: 0},
-    {name: "medium", value: 0},
-    {name: "large", value: 0}
+    {name: "<300", value: 0},
+    {name: "300-499", value: 0},
+    {name: ">500", value: 0}
 ];
 
 
@@ -38,7 +37,7 @@ interface IFilters {
 /*
 check the page count of different books to determine the size of the book
     small: less than 300 pages
-    medium: 300-500 pages
+    medium: 300-499 pages
     large: more than 500 pages
 */
 const getBookSizeData = (item: any) =>{
@@ -179,7 +178,7 @@ const Stats = () => {
 
         return(
             <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={30}>
-            {name +` ${(percent * 100).toFixed(0)}%`}
+            {name +` (${(percent * 100).toFixed(0)}%)`}
           </text>
         );
     }
@@ -272,7 +271,7 @@ const Stats = () => {
                         <XAxis dataKey="value" type="number" fontSize={25}>
                             <Label value="# of books" position="bottom" fontSize={25}/>
                         </XAxis>
-                        <YAxis dataKey="name" type="category" fontSize={25}/>
+                        <YAxis dataKey="name" type="category" fontSize={15}/>
                         <Tooltip />
                         <Bar dataKey="value" >
                         {

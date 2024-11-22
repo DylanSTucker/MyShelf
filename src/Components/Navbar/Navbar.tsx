@@ -12,6 +12,7 @@ type Props = {
   setSidebar: (sidebar: boolean) => void;
   shelf: boolean;
   setShelf: (shelf: boolean) => void;
+  setShowModal: (showModal: boolean) => void;
 };
 
 const Navbar = (props: Props) => {
@@ -19,6 +20,7 @@ const Navbar = (props: Props) => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     props.setShelf(false);
+    props.setShowModal(false);
     props.setSearchUpdate(true);
 
     //search google books api

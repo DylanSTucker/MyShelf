@@ -76,7 +76,7 @@ const Modal = ({ showModal, item, onClose }: Props) => {
     <>
       <div className="overlay">
         <div className="overlay-inner">
-          <button className="close" onClick={onClose}>
+          <button className="close-modal" onClick={onClose}>
             <i className="fa-solid fa-circle-xmark"></i>
           </button>
           <div className="inner-box">

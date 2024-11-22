@@ -104,6 +104,14 @@ const Sidebar = (props: Props) => {
           <i className="fa-solid fa-brain"></i>
           <p>Philosophy</p>
         </div>
+        <div className="side-link" onClick={() => addFilter("Humorous")}>
+          <i className="fa-solid fa-face-grin-squint-tears"></i>
+          <p>Humorous</p>
+        </div>
+        <div className="side-link" onClick={() => addFilter("Classics")}>
+          <i className="fa-solid fa-landmark"></i>
+          <p>Classics</p>
+        </div>
       </div>
     </div>
   );

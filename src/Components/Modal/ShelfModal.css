@@ -10,6 +10,16 @@
     color: var(--darkest);
     background-color: var(--white);
 }
+.overlay-inner .close{
+    position: absolute;
+    top:1rem;
+    right: 1rem;
+    outline: none;
+    border: none;
+    font-size: 17px;
+    background-color: transparent;
+
+}
 .option{
     text-align: center;
 }

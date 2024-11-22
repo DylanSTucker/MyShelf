@@ -7,6 +7,8 @@ interface Props {
   allBookData: Object[];
   search: string;
   searchUpdate: boolean;
+  showModal: boolean;
+  setShowModal: (showModal: boolean) => void;
   setSearchUpdate: (searchUpdate: boolean) => void;
 }
 
@@ -14,7 +16,7 @@ let query = "";
 
 //search feed
 const Feed = (props: Props) => {
-  const [showModal, setShowModal] = useState(false);
+  //const [showModal, setShowModal] = useState(false);
   const [bookItem, setBookItem] = useState<object>();
 
   if (props.searchUpdate) {
@@ -26,27 +28,27 @@ const Feed = (props: Props) => {
   }, [query]); //only re-run the effect if query changes
   return (
     <div className="fd">
-      {query && !showModal && (
+      {query && !props.showModal && (
         <div className="query">
           <h2>Search results for "{query}"</h2>
         </div>
       )}
-      {!showModal && (
+      {!props.showModal && (
         <div className="feed">
           {props.allBookData.map((book: any) => (
             <Card
               book={book}
               setBookItem={setBookItem}
-              setShowModal={setShowModal}
+              setShowModal={props.setShowModal}
             />
           ))}
         </div>
       )}
-      {showModal && (
+      {props.showModal && (
         <Modal
-          showModal={showModal}
+          showModal={props.showModal}
           item={bookItem}
-          onClose={() => setShowModal(false)}
+          onClose={() => props.setShowModal(false)}
         />
       )}
     </div>

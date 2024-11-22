@@ -20,7 +20,7 @@
     font-size: 1.3rem;
     z-index: 2;
 }
-.overlay-inner .close{
+.overlay-inner .close-modal{
     position: absolute;
     top:1rem;
     right: 1rem;
@@ -28,7 +28,9 @@
     border: none;
     font-size: 17px;
     background-color: transparent;
+
 }
+
 .overlay-inner .inner-box{
     margin-top: 30px;
     display: flex;
