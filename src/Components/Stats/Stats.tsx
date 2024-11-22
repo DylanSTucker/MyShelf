@@ -1,8 +1,7 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Stats.css";
-import { PieChart, Pie, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Label } from 'recharts';
+import { PieChart, Pie, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Cell, ResponsiveContainer, Label } from 'recharts';
 import { useCookies } from "react-cookie";
-import { IBookData } from "../../scripts/interfaces";
 
 const colors = ["#34B1FE", "#62C370", "#9E4770", "#FEC601", "#EA7317", "#478978", "#E4572E", "#6761A8", "#F4F4F6", "#7A6F9B", "#D7E8BA", "#136F63", "#DEB841"];
 const nonCategories = new Set(["Read", "Reading", "To Be Read", "Fiction", "Non-Fiction"]);
@@ -106,18 +105,6 @@ const Stats = () => {
     const [cookies] = useCookies(undefined);
     const userEmail = cookies.Email;
     const [selectedOption, setSelectedOption] = useState("All Time");
-    
-    const [bookData, setBookData] = useState<IBookData>({
-        title: "",
-        author: "",
-        publisher: "",
-        publisherDate: "",
-        categories: [],
-        thumbnail: "",
-        pageCount: 0,
-        description: "",
-        volume_id: "",
-    });
 
     //NOTE!!!!!
     //this function should get book info from googleBooks.ts script instead of the server
@@ -174,7 +161,7 @@ const Stats = () => {
 
     //renders custom labels for pie chart
     const renderCustomizedLabel = (entry: any) => {
-        const { x, y, cx, cy, name, percent } = entry;
+        const { x, y, cx, name, percent } = entry;
 
         return(
             <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central" fontSize={30}>
@@ -223,7 +210,7 @@ const Stats = () => {
                     <PieChart className="pie-chart">
                         <Pie data={bookType} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={200} label={renderCustomizedLabel} labelLine={false}>
                             {
-                                bookType.map((entry, index) => (
+                                bookType.map((_, index: number) => (
                                     <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
                                 ))
                             }
@@ -249,7 +236,7 @@ const Stats = () => {
                         <Tooltip />
                         <Bar dataKey="value" >
                         {
-                            genreData.map((entry, index) => (
+                            genreData.map((_, index: number) => (
                             <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
                             ))
                         }
@@ -275,7 +262,7 @@ const Stats = () => {
                         <Tooltip />
                         <Bar dataKey="value" >
                         {
-                            authorData.map((entry, index) => (
+                            authorData.map((_, index: number) => (
                             <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
                             ))
                         }
@@ -293,7 +280,7 @@ const Stats = () => {
                     <PieChart className="pie-chart">
                         <Pie data={bookSize} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={200} label={renderCustomizedLabel} labelLine={false}>
                             {
-                                bookSize.map((entry, index) => (
+                                bookSize.map((_, index: number) => (
                                     <Cell key={`cell-${index}`} fill={colors[index % colors.length]}/>
                                 ))
                             }
